@@ -16,7 +16,7 @@ public class CursorChange :  MonobitEngine.MonoBehaviour
 
     public Texture2D RedCursor;
     
-    int pointerjudge = 0;
+    public int pointerjudge = 0;
 
         public void OnclickCursorButton()
     {
@@ -42,13 +42,8 @@ public class CursorChange :  MonobitEngine.MonoBehaviour
         }
         else
         {
-             OnDestroy();
              Cursor.visible = true;
             pointerjudge = 0;
         }
-    }
- void OnDestroy()
-    {
-        MonobitNetwork.Destroy(monobitView);
     }
 }

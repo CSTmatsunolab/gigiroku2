@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2933264573896044302}
   - component: {fileID: 114574544917643056}
   - component: {fileID: 6304513547257814269}
+  - component: {fileID: 114016807823523578}
   m_Layer: 5
   m_Name: CursorImage
   m_TagString: Untagged
@@ -97,7 +98,7 @@ MonoBehaviour:
   - {fileID: 6304513547257814269}
   ownerId: 0
   group: 0
-  prefixBackup: -1
+  prefixBackup: 0
   ownershipTransfer: 0
   compressedStream: 0
 --- !u!114 &6304513547257814269
@@ -126,3 +127,15 @@ MonoBehaviour:
     m_LerpRate: 1
   m_SnapEnabled: 1
   m_SnapThreshold: 3
+--- !u!114 &114016807823523578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5695972126796436258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f41ff54c94d487f877043fa52a4381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
