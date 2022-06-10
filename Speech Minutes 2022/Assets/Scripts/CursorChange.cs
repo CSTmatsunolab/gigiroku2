@@ -35,14 +35,20 @@ public class CursorChange :  MonobitEngine.MonoBehaviour
         if(pointerjudge == 0)
         {
             GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("CursorImage", Vector3.zero, Quaternion.identity, 0);
+            prefab.transform.SetParent(canvas.transform, false);
             Debug.Log("CursorImage複製完了");
             Cursor.visible = false;
             pointerjudge = 1;
         }
         else
         {
+             OnDestroy();
              Cursor.visible = true;
             pointerjudge = 0;
         }
+    }
+ void OnDestroy()
+    {
+        MonobitNetwork.Destroy(monobitView);
     }
 }

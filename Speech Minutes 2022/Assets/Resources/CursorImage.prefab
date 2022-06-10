@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5955255671669121861}
   - component: {fileID: 438610423925940600}
   - component: {fileID: 2933264573896044302}
+  - component: {fileID: 114574544917643056}
+  - component: {fileID: 6304513547257814269}
   m_Layer: 5
   m_Name: CursorImage
   m_TagString: Untagged
@@ -72,3 +74,55 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &114574544917643056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5695972126796436258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277584237ad31144584195f79af03cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_viewIdField: 0
+  m_IsDontDestroyOnRoom: 0
+  m_IsInstantiated: 0
+  m_ObjectStreamCheckTime: 0
+  m_ObjectStreamSendBytes: 
+  m_IsEncrypt: 1
+  InternalObservedComponents: []
+  ObservedComponents:
+  - {fileID: 6304513547257814269}
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  ownershipTransfer: 0
+  compressedStream: 0
+--- !u!114 &6304513547257814269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5695972126796436258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e43095d0b31c5c4da5d336507b33fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SyncPosition:
+    m_EnableSync: 1
+    m_EnableInterpolate: 1
+    m_LerpRate: 10
+  m_SyncRotation:
+    m_EnableSync: 1
+    m_EnableInterpolate: 0
+    m_LerpRate: 5
+  m_SyncScale:
+    m_EnableSync: 0
+    m_EnableInterpolate: 0
+    m_LerpRate: 1
+  m_SnapEnabled: 1
+  m_SnapThreshold: 3
