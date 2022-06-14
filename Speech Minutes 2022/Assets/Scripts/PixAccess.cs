@@ -105,6 +105,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 	public void Clearfjag()
 	{
 		monobitView.RPC("Clear", MonobitTargets.All);
+		GameObject[] sakujo = GameObject.FindGameObjectsWithTag("Zukei");
+		foreach (GameObject obj in sakujo) {
+    		Destroy (obj);
+		}
     }
 	/// <summary>
 	/// 太さ変更
@@ -503,7 +507,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 
 		if (mode)
 		{
-			if(Input.GetKey("s")){
+			if(Input.GetKeyDown("s")){
 				GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("ZukeiCanvas", Vector3.zero, Quaternion.identity, 0);
             	Debug.Log("複製完了");
 			}

@@ -13,6 +13,9 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
     public bool Selectflag = false;
     public GameObject teO;
     public GameObject dropdown;
+    public GameObject DeleteButton;
+    //public GameObject EnlargeButton;
+    //public GameObject ShrinkButton;
     private int touchCount = 0;
     
 
@@ -81,6 +84,16 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
                 else { textfont.fontSize = 32; }
             }
         }
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            DeleteButton.SetActive(true);
+            dropdown.SetActive(true);
+        }
+        else
+        {
+            DeleteButton.SetActive(false);
+            dropdown.SetActive(false);
+        }
     }
    
     public RectTransform m_rectTransform = null;
@@ -100,6 +113,17 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
     {
         if (!monobitView.isMine) { return; }
         m_rectTransform.position += new Vector3(e.delta.x, e.delta.y, 0f);
+    }
+
+    public void DeleteButtonOnclick()
+    {
+        OnDestroy();
+        Selectflag = false;
+        Debug.Log("false&destroy");
+    }
+    void OnDestroy()
+    {
+        MonobitNetwork.Destroy(monobitView);
     }
 
 }

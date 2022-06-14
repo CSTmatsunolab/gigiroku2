@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using MonobitEngine;
 
-public class FusenColorChange : MonobitEngine.MonoBehaviour
+public class ZukeiColorChange : MonobitEngine.MonoBehaviour
 {
     [SerializeField]
-    GameObject FusenPanel;
+    GameObject Image;
     Dropdown dropdown;
     void Start()
     {
@@ -22,28 +22,28 @@ public class FusenColorChange : MonobitEngine.MonoBehaviour
         {
             case 0:
                 //自分の付箋の色を変更する処理
-                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#ffc0cb");
+                Image.GetComponentInChildren<Image>().color = ToColor("#ffc0cb");
                 //自分以外にも上記の付箋の色変更が反映される処理
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
                 
             case 1:
-                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#fffacd");
+                Image.GetComponentInChildren<Image>().color = ToColor("#fffacd");
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
 
             case 2:
-                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#98fb98");
+                Image.GetComponentInChildren<Image>().color = ToColor("#98fb98");
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
 
             case 3:
-                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#fa8072");
+                Image.GetComponentInChildren<Image>().color = ToColor("#fa8072");
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
 
             case 4:
-                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#87cefa");
+                Image.GetComponentInChildren<Image>().color = ToColor("#87cefa");
                 monobitView.RPC("RecvTextColor", MonobitTargets.OthersBuffered, dropdown.value);
                 break;
 
@@ -69,23 +69,23 @@ public class FusenColorChange : MonobitEngine.MonoBehaviour
         switch (colorValue)
         {
             case 0:
-                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#ffc0cb");
+                Image.GetComponentInChildren<Image>().color = ToColor("#ffc0cb");
                 dropdown.value = colorValue;
                 break;
             case 1:
-                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#fffacd");
+                Image.GetComponentInChildren<Image>().color = ToColor("#fffacd");
                 dropdown.value = colorValue;
                 break;
             case 2:
-                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#98fb98");
+                Image.GetComponentInChildren<Image>().color = ToColor("#98fb98");
                 dropdown.value = colorValue;
                 break;
             case 3:
-                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#fa8072");
+                Image.GetComponentInChildren<Image>().color = ToColor("#fa8072");
                 dropdown.value = colorValue;
                 break;
             case 4:
-                FusenPanel.GetComponentInChildren<Image>().color = ToColor("#87cefa");
+                Image.GetComponentInChildren<Image>().color = ToColor("#87cefa");
                 dropdown.value = colorValue;
                 break;
             default:
