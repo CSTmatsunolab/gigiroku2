@@ -503,6 +503,10 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 
 		if (mode)
 		{
+			if(Input.GetKey("s")){
+				GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("ZukeiCanvas", Vector3.zero, Quaternion.identity, 0);
+            	Debug.Log("複製完了");
+			}
 			if (Input.GetMouseButton(0))
 			{
 				//前回値がまだないなら現在の値を前回値として扱う
