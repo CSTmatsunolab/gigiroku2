@@ -1,17 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using MonobitEngine;
 
 public class CursorControll : MonobitEngine.MonoBehaviour
 {
+     private GameObject ChangeRedCursor;
+    CursorChange CursorChange;
+ Vector3 mousePos ;
 
-Vector3 screenPoint;
-  
+   void Start() {
+    mousePos=Input.mousePosition;
+
+     ChangeRedCursor = GameObject.Find("ChangeRedCursor");
+    CursorChange = ChangeRedCursor.GetComponent<CursorChange>();
+  }
     // Update is called once per frame
     void Update () {
-        this.screenPoint = Camera.main.WorldToScreenPoint(transform.position);
-        Vector3 a = new Vector3 (Input.mousePosition.x,Input.mousePosition.y,screenPoint.z);
-        transform.position = Camera.main.ScreenToWorldPoint (a);
+        if(CursorChange.pointerjudge ==0){
+            OnDestroy();
+            Debug.Log("ポインタ削除済み");
+        }
+        
+            mousePos = Input.mousePosition;
+            this.transform.position=mousePos;
+    }
+        void OnDestroy()
+    {
+        MonobitNetwork.Destroy(monobitView);
     }
 }
 

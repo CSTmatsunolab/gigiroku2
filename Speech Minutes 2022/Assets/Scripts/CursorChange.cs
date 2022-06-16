@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -37,12 +37,12 @@ public class CursorChange :  MonobitEngine.MonoBehaviour
             GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("CursorImage", Vector3.zero, Quaternion.identity, 0);
             prefab.transform.SetParent(canvas.transform, false);
             Debug.Log("CursorImage複製完了");
-            Cursor.visible = false;
+            //Cursor.visible = false;
             pointerjudge = 1;
         }
         else
         {
-             Cursor.visible = true;
+             //Cursor.visible = true;
             pointerjudge = 0;
         }
     }
