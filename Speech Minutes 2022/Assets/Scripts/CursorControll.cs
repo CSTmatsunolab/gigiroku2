@@ -12,20 +12,25 @@ public class CursorControll : MonobitEngine.MonoBehaviour
  Vector3 mousePos ;
 
    void Start() {
+        if (monobitView.isMine){
     mousePos=Input.mousePosition;
 
      ChangeRedCursor = GameObject.Find("ChangeRedCursor");
     CursorChange = ChangeRedCursor.GetComponent<CursorChange>();
+        }
   }
     // Update is called once per frame
     void Update () {
+        if (monobitView.isMine){
         if(CursorChange.pointerjudge ==0){
             OnDestroy();
             Debug.Log("ポインタ削除済み");
         }
         
-            mousePos = Input.mousePosition;
+         mousePos = Input.mousePosition;
             this.transform.position=mousePos;
+        }
+           
     }
         void OnDestroy()
     {
