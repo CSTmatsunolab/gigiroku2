@@ -121,6 +121,7 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
     /// <param name="e"></param>
     public void OnDrag(PointerEventData e)
     {
+        monobitView.RequestOwnership();
         //if (!monobitView.isMine) { return; }
         m_rectTransform.position += new Vector3(e.delta.x, e.delta.y, 0f);
     }

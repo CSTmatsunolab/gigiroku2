@@ -224,8 +224,8 @@ MonoBehaviour:
   - {fileID: 5190279057603953336}
   ownerId: 0
   group: 0
-  prefixBackup: -1
-  ownershipTransfer: 2
+  prefixBackup: 0
+  ownershipTransfer: 1
   compressedStream: 0
 --- !u!1001 &602539341755981316
 PrefabInstance:
