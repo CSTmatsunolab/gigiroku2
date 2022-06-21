@@ -62,6 +62,32 @@ MonoBehaviour:
   dropdown: {fileID: 5428637581819236698}
   DeleteButton: {fileID: 4059511487644818936}
   m_rectTransform: {fileID: 2110309875318435685}
+--- !u!114 &4972085670539893344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623849795217680175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e43095d0b31c5c4da5d336507b33fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SyncPosition:
+    m_EnableSync: 1
+    m_EnableInterpolate: 1
+    m_LerpRate: 10
+  m_SyncRotation:
+    m_EnableSync: 1
+    m_EnableInterpolate: 0
+    m_LerpRate: 5
+  m_SyncScale:
+    m_EnableSync: 0
+    m_EnableInterpolate: 0
+    m_LerpRate: 1
+  m_SnapEnabled: 1
+  m_SnapThreshold: 3
 --- !u!114 &1701262138932860522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +113,7 @@ GameObject:
   - component: {fileID: 8241280323035342599}
   - component: {fileID: 5251538765402433018}
   - component: {fileID: 6661551454713360153}
-  - component: {fileID: 2328709395778356196}
+  - component: {fileID: 1881713158909068950}
   m_Layer: 5
   m_Name: TriangleCanvas
   m_TagString: Zukei
@@ -175,7 +201,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2328709395778356196
+--- !u!114 &1881713158909068950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,10 +221,10 @@ MonoBehaviour:
   m_IsEncrypt: 1
   InternalObservedComponents: []
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 4972085670539893344}
   ownerId: 0
   group: 0
-  prefixBackup: 0
+  prefixBackup: -1
   ownershipTransfer: 0
   compressedStream: 0
 --- !u!1001 &602539341755981316

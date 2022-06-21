@@ -55,7 +55,7 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
     {
         if (Selectflag == true)
         {
-            if (!monobitView.isMine) { return; }
+            //if (!monobitView.isMine) { return; }
             scroll = Input.GetAxis("Mouse ScrollWheel");
             Text textfont = this.GetComponentInChildren<Text>();
 
@@ -121,7 +121,7 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
     /// <param name="e"></param>
     public void OnDrag(PointerEventData e)
     {
-        if (!monobitView.isMine) { return; }
+        //if (!monobitView.isMine) { return; }
         m_rectTransform.position += new Vector3(e.delta.x, e.delta.y, 0f);
     }
 
