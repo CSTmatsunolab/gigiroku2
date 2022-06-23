@@ -10,6 +10,7 @@ public class CursorControll : MonobitEngine.MonoBehaviour
      private GameObject ChangeRedCursor;
     CursorChange CursorChange;
  Vector3 mousePos ;
+ public Text Text;
 
    void Start() {
         if (monobitView.isMine){
@@ -17,8 +18,21 @@ public class CursorControll : MonobitEngine.MonoBehaviour
 
      ChangeRedCursor = GameObject.Find("ChangeRedCursor");
     CursorChange = ChangeRedCursor.GetComponent<CursorChange>();
+    Text.text="";
+        //自分のユーザーネーム取得ののち送信
+        Text.text=MonobitEngine.MonobitNetwork.player.name;
+        string text_ = Text.text;
+        monobitView.RPC("UsernameForPointer", MonobitTargets.OthersBuffered, text_);
         }
+        
   }
+
+   [MunRPC]
+    public void UsernameForPointer(string text_)
+    {
+        Text.text = text_;
+    }
+    
     // Update is called once per frame
     void Update () {
         if (monobitView.isMine){
