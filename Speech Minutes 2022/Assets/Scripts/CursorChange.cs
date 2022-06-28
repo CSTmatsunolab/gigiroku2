@@ -20,15 +20,10 @@ public class CursorChange :  MonobitEngine.MonoBehaviour
 
     public GameObject Panel;
 
-    PixAccess PixAccess;
-
-    private GameObject Plane;
-
 public void Start() {
-    Plane= GameObject.Find("Plane");
-    PixAccess = Plane.GetComponent<PixAccess>();
+
 }
-        public void OnclickCursorButton()
+        public void OnclickPointerButton_Always()
     {
         /*
         if(pointerjudge == 0)
@@ -44,27 +39,33 @@ public void Start() {
         */
         if(pointerjudge == 0)
         {
+            pointerjudge = 1;
+            Debug.Log(pointerjudge);
             GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
             //prefab.transform.SetParent(canvas.transform, false);
             Debug.Log("CursorPointer複製完了");
             //Cursor.visible = false;
-            pointerjudge = 1;
+            
+            
         }
         else
         {
              //Cursor.visible = true;
+             if(pointerjudge!=2)
             pointerjudge = 0;
+            Debug.Log(pointerjudge);
         }
     }
-    
-    public void OnMouseDown_()
+         public void OnclickPointerButton_Only()
     {
-        if(PixAccess.mode){
-GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
-            Debug.Log("CursorPointer複製完了");
+        if(pointerjudge!=2){
+        pointerjudge=2;
+        Debug.Log(pointerjudge);
+        }else{
+            pointerjudge = 0;
+            Debug.Log(pointerjudge);
         }
     }
-        
     
 
     public void OnPointerEnter(){

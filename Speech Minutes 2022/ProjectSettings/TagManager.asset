@@ -6,6 +6,9 @@ TagManager:
   tags:
   - line
   - icon
+  - Canvas
+  - Plane
+  - CursorPointer
   layers:
   - Default
   - TransparentFX

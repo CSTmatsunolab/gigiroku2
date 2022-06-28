@@ -500,7 +500,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
     {
 
 		monobitView.RPC("objectCloorUpdate", MonobitTargets.All);
-
+	
 		if (mode)
 		{
 			if(Input.GetKey("s")){
