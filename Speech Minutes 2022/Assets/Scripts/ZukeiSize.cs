@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZukeiSize : MonoBehaviour {
 
-    GameObject image;
+    public GameObject image;
     Vector3 pos; // 最初にクリックしたときの位置
     Quaternion position; // 最初にクリックしたときのBoxの角度
     Vector3 size;
