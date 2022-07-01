@@ -13,6 +13,7 @@ public class ZukeiSize : MonoBehaviour {
     Vector3 vecA; // Boxの中心から現在のマウス位置へのベクトル
     Vector3 mousediff;
     Vector3 nowmouse;
+    Vector3 moveScale;
 
     float angle; // vecAとvecBが成す角度
     Vector3 AxB; // vecAとvecBの外積
@@ -24,7 +25,9 @@ public class ZukeiSize : MonoBehaviour {
         size = transform.parent.localScale;//図形のスケール取得
         //pos = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
         pos = Input.mousePosition;// マウス位置をワールド座標で取得
-        Debug.Log(size);
+ 
+        Debug.Log(Screen.height);
+        moveScale = new Vector3(Screen.width*0.0375f,Screen.height*0.0665f,0f); 
         //position = transform.parent.position; // Boxの真ん中の位置を取得
 
     }
@@ -35,7 +38,7 @@ public class ZukeiSize : MonoBehaviour {
         nowmouse = Input.mousePosition;
         mousediff = nowmouse - pos; //ある地点からのベクトルを求めるときはこう書くんだった
         //Debug.Log(mousediff);
-        transform.parent.localScale = size + (mousediff/100);
+        image.transform.localScale = size + new Vector3(mousediff.x/moveScale.x,mousediff.y/moveScale.y,0);
         // vecA = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.parent.position; // 上に同じく
         // // Vector2にしているのはz座標が悪さをしないようにするためです
 

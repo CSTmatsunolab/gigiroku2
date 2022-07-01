@@ -92,7 +92,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2508743323012690926}
+        - m_Target: {fileID: 4963018746394560752}
           m_MethodName: SetPos
           m_Mode: 1
           m_Arguments:
@@ -121,7 +121,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2508743323012690926}
+        - m_Target: {fileID: 4963018746394560752}
           m_MethodName: Rotate
           m_Mode: 1
           m_Arguments:
