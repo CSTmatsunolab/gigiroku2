@@ -839,6 +839,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FusenPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 3060007209032247408, guid: 4269700db5d67454581f948c665dbc07,
+        type: 3}
+      propertyPath: m_TagString
+      value: UIelements
+      objectReference: {fileID: 0}
     - target: {fileID: 3750750813778185623, guid: 4269700db5d67454581f948c665dbc07,
         type: 3}
       propertyPath: m_AnchoredPosition.y

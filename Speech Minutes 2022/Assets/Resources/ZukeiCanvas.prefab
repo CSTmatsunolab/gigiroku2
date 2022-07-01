@@ -44,16 +44,7 @@ MonoBehaviour:
   chatComent: {fileID: 0}
   Selectflag: 0
   teO: {fileID: 0}
-  PenButton: {fileID: 0}
-  FinishButton: {fileID: 0}
-  EnlargeButton: {fileID: 0}
-  ShrinkButton: {fileID: 0}
-  EditInputFieldObject: {fileID: 0}
-  EditInputField: {fileID: 0}
-  HideButton: {fileID: 0}
   dropdown: {fileID: 0}
-  VisibleButton: {fileID: 0}
-  DeleteButton: {fileID: 0}
   m_rectTransform: {fileID: 2110309875318435685}
 --- !u!1 &8702993008721001250
 GameObject:
@@ -297,6 +288,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Image
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127221763680932801, guid: ff101fc7aff054894836ac69fbe7994b,
+        type: 3}
+      propertyPath: m_TagString
+      value: UIelements
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff101fc7aff054894836ac69fbe7994b, type: 3}
