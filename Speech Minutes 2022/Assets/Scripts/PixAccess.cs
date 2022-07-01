@@ -30,7 +30,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 
     private Vector2 _prevPosition;
     //public Material image1;
-    bool targetUITag;
+    public bool targetUI;
 
     public void Start()
     {
@@ -509,11 +509,8 @@ public class PixAccess : MonobitEngine.MonoBehaviour
                 GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("ZukeiCanvas", Vector3.zero, Quaternion.identity, 0);
                 Debug.Log("複製完了");
             }
-            //ここのじょうけんを変えれば良さそう?
-            //タグを各プレファブにつけて、rayで判断。あたっていたら秒が中止
-            //はたまたドラッグ？
-            IsUGUIHit(Input.mousePosition);
-            if (Input.GetMouseButton(0) && targetUITag == false)
+            //IsUGUIHit(Input.mousePosition);
+            if (Input.GetMouseButton(0) && targetUI == false)
             {
                 //前回値がまだないなら現在の値を前回値として扱う
                 if (_prevPosition == Vector2.zero)
@@ -654,7 +651,7 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 
 
     }
-    public void IsUGUIHit(Vector3 _scrPos)
+    /*public void IsUGUIHit(Vector3 _scrPos)
     { // Input.mousePosition
         PointerEventData pointer = new PointerEventData(EventSystem.current);
         pointer.position = _scrPos;
@@ -674,5 +671,5 @@ public class PixAccess : MonobitEngine.MonoBehaviour
                 Debug.Log("false");
             }
         }
-    }
+    }*/
 }
