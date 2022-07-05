@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class ZukeiSize : MonoBehaviour {
 
-    public GameObject image;
-    Vector3 pos; // 最初にクリックしたときの位置
+    RectTransform image;
+    Vector3 originPos; // 最初にクリックしたときの位置
+    Vector3 originMouse;
     Quaternion position; // 最初にクリックしたときのBoxの角度
     Vector3 size;
 
     //Vector2 vecA; // Boxの中心からposへのベクトル
     Vector3 vecA; // Boxの中心から現在のマウス位置へのベクトル
     Vector3 mousediff;
-    Vector3 nowmouse;
-    Vector3 moveScale;
+    Vector3 nowPos;
+    Vector3 nowMouse;
+    //Vector3 moveScale;
 
     float angle; // vecAとvecBが成す角度
     Vector3 AxB; // vecAとvecBの外積
@@ -22,12 +24,13 @@ public class ZukeiSize : MonoBehaviour {
     // クリック時にパラメータの初期値を求める
     public void SetPos(){
         Debug.Log("クリックされた");
-        size = transform.parent.localScale;//図形のスケール取得
-        //pos = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
-        pos = Input.mousePosition;// マウス位置をワールド座標で取得
- 
-        Debug.Log(Screen.height);
-        moveScale = new Vector3(Screen.width*0.0375f,Screen.height*0.0665f,0f); 
+        image = this.GetComponent<RectTransform>();
+        size = image.sizeDelta;//図形のサイズ取得
+        originPos = Input.mousePosition;// マウス位置をワールド座標で取得
+        // originPos.z = 1.0f;
+        // originMouse = Camera.main.ScreenToWorldPoint(originPos);
+        //Debug.Log(Screen.height);
+        //moveScale = new Vector3(Screen.width*0.0375f,Screen.height*0.0665f,0f); 
         //position = transform.parent.position; // Boxの真ん中の位置を取得
 
     }
@@ -35,10 +38,13 @@ public class ZukeiSize : MonoBehaviour {
     // ハンドルをドラッグしている間に呼び出す
     public void Rotate(){
         Debug.Log("回そうとしてる");
-        nowmouse = Input.mousePosition;
-        mousediff = nowmouse - pos; //ある地点からのベクトルを求めるときはこう書くんだった
+        nowPos = Input.mousePosition;
+        // nowPos.z = 1.0f;
+        // nowMouse = Camera.main.ScreenToWorldPoint(nowPos);
+        mousediff = nowPos - originPos; //ある地点からのベクトルを求めるときはこう書くんだった
         //Debug.Log(mousediff);
-        image.transform.localScale = size + new Vector3(mousediff.x/moveScale.x,mousediff.y/moveScale.y,0);
+        //image.sizeDelta = size + new Vector3(mousediff.x/moveScale.x,mousediff.y/moveScale.y,0);
+        image.sizeDelta = size + mousediff;
         // vecA = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.parent.position; // 上に同じく
         // // Vector2にしているのはz座標が悪さをしないようにするためです
 
