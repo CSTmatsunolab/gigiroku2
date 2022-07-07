@@ -1,8 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using MonobitEngine;
+using UnityEngine.SceneManagement;
+using MonobitEngine.VoiceChat;
+using UnityEngine.UI;
 using System.Linq;
 
-public class freehand : MonoBehaviour
+public class freehand : MonobitEngine.MonoBehaviour
 {
 
     /// <summary>
@@ -23,9 +29,9 @@ public class freehand : MonoBehaviour
     /// <summary>
     /// 描く線の太さ
     /// </summary>
-    [Range(0, 3)] public float lineWidth;
+    public float lineWidth = 1.0f;
 
-    [SerializeField] private AnimationCurve _animationCurve;
+    //[SerializeField] private AnimationCurve _animationCurve;
 
     public Transform parent;
 
@@ -40,21 +46,28 @@ public class freehand : MonoBehaviour
 
     void Update()
     {
+        //MUNサーバに接続している場合
+        if (MonobitNetwork.isConnect)
+        {
+            // ルームに入室している場合
+            if (MonobitNetwork.inRoom)
+            {
+                if (Input.GetMouseButtonDown(1))
+                {
+                    UndoLine();
+                }
+                // ボタンが押された時に線オブジェクトの追加を行う
+                if (Input.GetMouseButtonDown(0))
+                {
+                    this.AddLineObject();
+                }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            UndoLine();
-        }
-        // ボタンが押された時に線オブジェクトの追加を行う
-        if (Input.GetMouseButtonDown(0))
-        {
-            this.AddLineObject();
-        }
-
-        // ボタンが押されている時、LineRendererに位置データの設定を指定していく
-        if (Input.GetMouseButton(0))
-        {
-            this.AddPositionDataToLineRendererList();
+                // ボタンが押されている時、LineRendererに位置データの設定を指定していく
+                if (Input.GetMouseButton(0))
+                {
+                    this.AddPositionDataToLineRendererList();
+                }
+            }
         }
     }
 
@@ -67,14 +80,17 @@ public class freehand : MonoBehaviour
         // 追加するオブジェクトをインスタンス
         GameObject lineObject = new GameObject();
 
-        // lineObject.GetComponent<Transform>().SetParent(parent.transform);
+        lineObject.GetComponent<Transform>().SetParent(parent);
 
 
         //lineObject.GetComponent<Transform>().SetAsLastSibling();
         // オブジェクトにLineRendererを取り付ける
         lineObject.AddComponent<LineRenderer>();
+        lineObject.AddComponent<MonobitTransformView>();
+        registercmp(lineObject);
 
-        lineObject.GetComponent<LineRenderer>().widthCurve = _animationCurve;
+
+        //lineObject.GetComponent<LineRenderer>().widthCurve = _animationCurve;
         lineObject.GetComponent<LineRenderer>().numCapVertices = 10;
         lineObject.GetComponent<LineRenderer>().numCornerVertices = 10;
 
@@ -94,6 +110,36 @@ public class freehand : MonoBehaviour
         // 線の太さを初期化
         lineRendererList.Last().startWidth = this.lineWidth;
         lineRendererList.Last().endWidth = this.lineWidth;
+    }
+    // スクリプト Boo の同期処理を、Observed Component Registration List に登録します。
+    public void registercmp(GameObject obj)
+    {
+        // Boo のコンポーネントを取得します。
+        UnityEngine.Component component = obj.GetComponent<MonobitTransformView>();
+
+        // 二重登録を防止するため、Contains で見つからなかった場合、リストに登録するようにします。
+        if (!this.monobitView.ObservedComponents.Contains(component))
+        {
+            this.monobitView.ObservedComponents.Add(component);
+
+            // 登録内容を monobitView オブジェクトに反映させます。
+            monobitView.UpdateSerializeViewMethod();
+        }
+    }
+    // スクリプト Boo の同期処理を、Observed Component Registration List から削除します。
+    public void removecmp(GameObject obj)
+    {
+        // Boo のコンポーネントを取得します。
+        UnityEngine.Component component = obj.GetComponent<MonobitTransformView>();
+
+        // Contains で見つかった場合、リストから削除するようにします。
+        if (monobitView.ObservedComponents.Contains(component))
+        {
+            monobitView.ObservedComponents.Remove(component);
+
+            // 削除内容を monobitView オブジェクトに反映させます。
+            monobitView.UpdateSerializeViewMethod();
+        }
     }
 
     /// <summary>
@@ -119,8 +165,8 @@ public class freehand : MonoBehaviour
         try
         {
             var lastLineRenderer = lineRendererList.Last();
-
-            Destroy(lastLineRenderer.gameObject);
+            removecmp(lastLineRenderer.gameObject);
+            MonobitNetwork.Destroy(lastLineRenderer.gameObject);
 
             lineRendererList.Remove(lastLineRenderer);
         }
