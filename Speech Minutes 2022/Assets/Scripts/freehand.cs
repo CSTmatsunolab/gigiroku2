@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using MonobitEngine;
-using UnityEngine.SceneManagement;
-using MonobitEngine.VoiceChat;
-using UnityEngine.UI;
 using System.Linq;
 
 public class freehand : MonobitEngine.MonoBehaviour
@@ -46,29 +41,34 @@ public class freehand : MonobitEngine.MonoBehaviour
 
     void Update()
     {
-        //MUNサーバに接続している場合
-        if (MonobitNetwork.isConnect)
+        if (monobitView.isMine)
         {
-            // ルームに入室している場合
-            if (MonobitNetwork.inRoom)
+            //MUNサーバに接続している場合
+            if (MonobitNetwork.isConnect)
             {
-                if (Input.GetMouseButtonDown(1))
+                // ルームに入室している場合
+                if (MonobitNetwork.inRoom)
                 {
-                    UndoLine();
-                }
-                // ボタンが押された時に線オブジェクトの追加を行う
-                if (Input.GetMouseButtonDown(0))
-                {
-                    this.AddLineObject();
-                }
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        UndoLine();
+                    }
+                    // ボタンが押された時に線オブジェクトの追加を行う
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        this.AddLineObject();
+                    }
 
-                // ボタンが押されている時、LineRendererに位置データの設定を指定していく
-                if (Input.GetMouseButton(0))
-                {
-                    this.AddPositionDataToLineRendererList();
+                    // ボタンが押されている時、LineRendererに位置データの設定を指定していく
+                    if (Input.GetMouseButton(0))
+                    {
+                        this.AddPositionDataToLineRendererList();
+
+                    }
                 }
             }
         }
+
     }
 
     /// <summary>
@@ -81,7 +81,7 @@ public class freehand : MonobitEngine.MonoBehaviour
         //GameObject lineObject = new GameObject();
         GameObject lineObject = MonobitNetwork.Instantiate("lineobject", Vector3.zero, Quaternion.identity, 0);
         Debug.Log("おk");
-        lineObject.GetComponent<Transform>().SetParent(parent);
+        //lineObject.GetComponent<Transform>().SetParent(parent);
 
 
         //lineObject.GetComponent<Transform>().SetAsLastSibling();
@@ -158,6 +158,7 @@ public class freehand : MonobitEngine.MonoBehaviour
 
         // 描く線のコンポーネントリストを更新
         lineRendererList.Last().SetPosition(lineRendererList.Last().positionCount - 1, mousePosition);
+
     }
 
 

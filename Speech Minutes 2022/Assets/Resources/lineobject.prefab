@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4905179623939534367}
   - component: {fileID: 9156778696944382793}
   - component: {fileID: 2265264249341105841}
+  - component: {fileID: 114818718754324638}
   m_Layer: 0
   m_Name: lineobject
   m_TagString: Untagged
@@ -179,3 +180,18 @@ MonoBehaviour:
     m_LerpRate: 1
   m_SnapEnabled: 1
   m_SnapThreshold: 3
+--- !u!114 &114818718754324638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3912281635792342579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c566f94fe8399483999489e0ff9cdc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineMaterial: {fileID: 2100000, guid: 98561674317f145dd95d68b08dfdf554, type: 2}
+  lineColor: {r: 0, g: 0, b: 0, a: 0}
+  lineWidth: 1
