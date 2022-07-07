@@ -78,15 +78,16 @@ public class freehand : MonobitEngine.MonoBehaviour
     {
 
         // 追加するオブジェクトをインスタンス
-        GameObject lineObject = new GameObject();
-
+        //GameObject lineObject = new GameObject();
+        GameObject lineObject = MonobitNetwork.Instantiate("lineobject", Vector3.zero, Quaternion.identity, 0);
+        Debug.Log("おk");
         lineObject.GetComponent<Transform>().SetParent(parent);
 
 
         //lineObject.GetComponent<Transform>().SetAsLastSibling();
         // オブジェクトにLineRendererを取り付ける
-        lineObject.AddComponent<LineRenderer>();
-        lineObject.AddComponent<MonobitTransformView>();
+        //lineObject.AddComponent<LineRenderer>();
+        //lineObject.AddComponent<MonobitTransformView>();
         registercmp(lineObject);
 
 

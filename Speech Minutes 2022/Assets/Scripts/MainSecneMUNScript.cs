@@ -200,6 +200,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         //monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
         IconUpdatee();
         Debug.Log("IconUpDate Now");
+        GameObject newWhiteboard = MonobitNetwork.Instantiate("NewWhiteBoard_", Vector3.zero, Quaternion.identity, 0);
     }
 
     public void DebugButton()
@@ -473,7 +474,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public void HideOn(int id)
     {
         script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
-        script.ChangeList(id,1);
+        script.ChangeList(id, 1);
     }
     public void HideOn()
     {
@@ -508,7 +509,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
             script.MuteSituation();
             muteid = 0;
-        }  
+        }
     }
     public void mute()
     {
