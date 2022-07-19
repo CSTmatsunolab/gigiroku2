@@ -112,11 +112,12 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 		}
     }
 
-    //「clear」ボタンを押すと呼びだ朝れるメソッド
-    public void Clearfjag()
-    {
-        monobitView.RPC("Clear", MonobitTargets.All);
-    }
+    // //「clear」ボタンを押すと呼びだ朝れるメソッド
+    // public void Clearfjag()
+    // {
+    //     monobitView.RPC("Clear", MonobitTargets.All);
+    // }
+    
     /// <summary>
     /// 太さ変更
     /// </summary>
