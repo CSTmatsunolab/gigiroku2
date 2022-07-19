@@ -6,6 +6,10 @@ TagManager:
   tags:
   - line
   - icon
+  - Canvas
+  - Plane
+  - CursorPointer
+  - UIelements
   layers:
   - Default
   - TransparentFX

@@ -13,6 +13,9 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
     public bool Selectflag = false;
     public GameObject teO;
     public GameObject dropdown;
+    public GameObject DeleteButton;
+    //public GameObject EnlargeButton;
+    //public GameObject ShrinkButton;
     private int touchCount = 0;
     
 
@@ -44,25 +47,15 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
         Selectflag = true;
         if (Selectflag == true)
         {
-            // Textコンポーネントを取得
-            chatComent = this.GetComponentInChildren<Text>();
             Debug.Log("Selectされました");
             scroll = Input.GetAxis("Mouse ScrollWheel");
         }
     }
-    /// <summary>
-    /// テキストのフォントサイズ変更及び削除
-    /// </summary>
     void Update()
     {
-        /* if (GameObject.Find("TextBox").GetComponent<InputField>().text != "")
-         {
-             Selectflag == false;
-         }*/
-        //Start();
         if (Selectflag == true)
         {
-            if (!monobitView.isMine) { return; }
+            //if (!monobitView.isMine) { return; }
             scroll = Input.GetAxis("Mouse ScrollWheel");
             Text textfont = this.GetComponentInChildren<Text>();
 
@@ -80,8 +73,38 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
                 }
                 else { textfont.fontSize = 32; }
             }
+            if (Input.GetMouseButtonDown(0))
+            {
+                Selectflag = false;
+                if (Selectflag == false)
+                {
+                    Debug.Log("falseですよ");
+
+                }
+                    touchCount++;
+                    //0.3秒後にHogeメソッドを呼び出す
+                     Invoke("DoubleclickJudg", 0.3f);
+            }
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                DeleteButton.SetActive(true);
+                dropdown.SetActive(true);   
+            }
+            else
+            {
+                DeleteButton.SetActive(false);
+                dropdown.SetActive(false);
+            }
+        }
+        
+        if (Selectflag == true && Input.GetKey(KeyCode.Backspace))
+        {
+            OnDestroy();
+            Selectflag = false;
+            Debug.Log("false&destroy");
         }
     }
+
    
     public RectTransform m_rectTransform = null;
 
@@ -98,8 +121,20 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
     /// <param name="e"></param>
     public void OnDrag(PointerEventData e)
     {
-        if (!monobitView.isMine) { return; }
+        monobitView.RequestOwnership();
+        //if (!monobitView.isMine) { return; }
         m_rectTransform.position += new Vector3(e.delta.x, e.delta.y, 0f);
+    }
+
+    public void DeleteButtonOnclick()
+    {
+        OnDestroy();
+        Selectflag = false;
+        Debug.Log("false&destroy");
+    }
+    void OnDestroy()
+    {
+        MonobitNetwork.Destroy(monobitView);
     }
 
 }
