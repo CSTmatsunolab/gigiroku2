@@ -187,12 +187,15 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
         //Debug.Log(mousediff);
         if(image.sizeDelta.x >= 20 &&  image.sizeDelta.y >= 20){
             image.sizeDelta = size + new Vector3(mousediff.x/moveScale.x,mousediff.y/moveScale.y,0);
+            monobitView.RPC("RecvZukeiSize", MonobitTargets.OthersBuffered, image.sizeDelta);
         }
         if(image.sizeDelta.x <= 20){
             image.sizeDelta = new Vector3(20f,image.sizeDelta.y,0);
+            monobitView.RPC("RecvZukeiSize", MonobitTargets.OthersBuffered, image.sizeDelta);
         }
         if(image.sizeDelta.y <= 20){
             image.sizeDelta = new Vector3(image.sizeDelta.x,20f,0);
+            monobitView.RPC("RecvZukeiSize", MonobitTargets.OthersBuffered, image.sizeDelta);
         }
         //image.sizeDelta = size + mousediff;
         // vecA = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.parent.position; // 上に同じく
@@ -210,6 +213,15 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
         // else{
         //     transform.parent.localRotation = rotation * Quaternion.Euler(0, 0, -angle); // 初期値との掛け算で相対的に回転させる
         // }
+        
+    }
+
+    [MunRPC]
+    public void RecvZukeiSize(Vector3 size)
+    {
+        RectTransform image = this.GetComponent<RectTransform>();
+        image.sizeDelta = size;
+        Debug.Log("サイズ変更");
     }
 
 

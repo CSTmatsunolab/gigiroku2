@@ -154,7 +154,7 @@ MonoBehaviour:
     m_LerpRate: 5
   m_SyncScale:
     m_EnableSync: 0
-    m_EnableInterpolate: 0
+    m_EnableInterpolate: 1
     m_LerpRate: 1
   m_SnapEnabled: 1
   m_SnapThreshold: 3
@@ -712,6 +712,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352672100759788427, guid: ff101fc7aff054894836ac69fbe7994b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3127221763680932801, guid: ff101fc7aff054894836ac69fbe7994b,
         type: 3}
