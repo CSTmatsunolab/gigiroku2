@@ -51,20 +51,15 @@ namespace MonobitEngine
          */
         void Awake()
         {
-            // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
-            if (GetComponentInParent<MonobitView>() != null)
-            {
-                m_MonobitView = GetComponentInParent<MonobitView>();
-            }
-            // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
-            else if (GetComponentInChildren<MonobitView>() != null)
-            {
-                m_MonobitView = GetComponentInChildren<MonobitView>();
-            }
-            // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
-            else
+            // 自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
+            if (GetComponent<MonobitView>() != null)
             {
                 m_MonobitView = GetComponent<MonobitView>();
+            }
+            // 自身のオブジェクトに存在しない場合、最上位の親オブジェクトに対して MonobitView コンポーネントを検索して設定する
+            else
+            {
+                m_MonobitView = transform.root.GetComponent<MonobitView>();
             }
         }
 
