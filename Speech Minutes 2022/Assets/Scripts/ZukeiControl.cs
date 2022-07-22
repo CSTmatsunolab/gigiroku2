@@ -16,6 +16,7 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
     public GameObject teO;
     public GameObject dropdown;
     public GameObject DeleteButton;
+    public GameObject SizeButton;
     //public GameObject EnlargeButton;
     //public GameObject ShrinkButton;
     private int touchCount = 0;
@@ -108,12 +109,15 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 DeleteButton.SetActive(true);
-                dropdown.SetActive(true);   
+                dropdown.SetActive(true); 
+                SizeButton.SetActive(true);
+
             }
             else
             {
                 DeleteButton.SetActive(false);
                 dropdown.SetActive(false);
+                SizeButton.SetActive(false);
             }
         }
         
@@ -182,7 +186,15 @@ public class ZukeiControl : MonobitEngine.MonoBehaviour, IDragHandler
         nowmouse = Input.mousePosition;
         mousediff = nowmouse - pos; //ある地点からのベクトルを求めるときはこう書くんだった
         //Debug.Log(mousediff);
-        image.transform.localScale = size + new Vector3(mousediff.x/moveScale.x,mousediff.y/moveScale.y,1);
+        if(image.transform.localScale.x >= 0.4f && image.transform.localScale.y >= 0.4f){
+            image.transform.localScale = size + new Vector3(mousediff.x/moveScale.x,mousediff.y/moveScale.y,1);
+        }
+        if(image.transform.localScale.x <= 0.4f){
+            image.transform.localScale = new Vector3(0.4f,image.transform.localScale.y,1);
+        }
+        if(image.transform.localScale.y <= 0.4f){
+            image.transform.localScale = new Vector3(image.transform.localScale.x,0.4f,1);
+        }
         // vecA = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.parent.position; // 上に同じく
         // // Vector2にしているのはz座標が悪さをしないようにするためです
 

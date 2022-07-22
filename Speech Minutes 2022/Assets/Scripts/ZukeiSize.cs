@@ -33,7 +33,8 @@ public class ZukeiSize : MonoBehaviour {
         nowmouse = Input.mousePosition;
         mousediff = nowmouse - pos; //ある地点からのベクトルを求めるときはこう書くんだった
         //Debug.Log(mousediff);
-        image.transform.localScale = size + new Vector3(mousediff.x/moveScale.x,mousediff.y/moveScale.y,0);
+
+        
         // vecA = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.parent.position; // 上に同じく
         // // Vector2にしているのはz座標が悪さをしないようにするためです
 

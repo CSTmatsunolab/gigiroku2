@@ -167,9 +167,9 @@ MonoBehaviour:
     m_EnableInterpolate: 0
     m_LerpRate: 5
   m_SyncScale:
-    m_EnableSync: 0
+    m_EnableSync: 1
     m_EnableInterpolate: 1
-    m_LerpRate: 1
+    m_LerpRate: 10
   m_SnapEnabled: 1
   m_SnapThreshold: 3
 --- !u!114 &3726972972512438651
@@ -233,6 +233,7 @@ MonoBehaviour:
   teO: {fileID: 0}
   dropdown: {fileID: 5428637581819236698}
   DeleteButton: {fileID: 4059511487644818936}
+  SizeButton: {fileID: 975208219030236099}
   image: {fileID: 1623849795217680175}
   m_rectTransform: {fileID: 2110309875318435685}
 --- !u!114 &3074338298252887978
