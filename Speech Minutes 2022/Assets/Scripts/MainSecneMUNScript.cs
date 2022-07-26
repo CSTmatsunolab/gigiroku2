@@ -200,7 +200,6 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         //monobitView.RPC("IconUpdate", MonobitTargets.AllBuffered);
         IconUpdatee();
         Debug.Log("IconUpDate Now");
-        GameObject newWhiteboard = MonobitNetwork.Instantiate("NewWhiteBoard_", Vector3.zero, Quaternion.identity, 0);
     }
 
     public void DebugButton()

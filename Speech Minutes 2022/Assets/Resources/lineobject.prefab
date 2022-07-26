@@ -51,7 +51,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 98561674317f145dd95d68b08dfdf554, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -148,7 +148,8 @@ MonoBehaviour:
   m_ObjectStreamSendBytes: 
   m_IsEncrypt: 1
   InternalObservedComponents: []
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 2265264249341105841}
   ownerId: 0
   group: 0
   prefixBackup: -1
@@ -194,4 +195,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineMaterial: {fileID: 2100000, guid: 98561674317f145dd95d68b08dfdf554, type: 2}
   lineColor: {r: 0, g: 0, b: 0, a: 0}
-  lineWidth: 1
+  lineWidth: 0.3
+  index_: 0
+  Mpos: {x: 0, y: 0, z: 0}
