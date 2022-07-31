@@ -308,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000024800334, y: -0.00006216008}
+  m_AnchoredPosition: {x: 0.00003806699, y: -0.000053677995}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &20385978
@@ -939,10 +939,10 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: cc620c048c81f49688bf17f6425b131e, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -7708,7 +7708,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1810702200}
+      - m_Target: {fileID: 1022205333683448765}
         m_MethodName: Mode
         m_Mode: 1
         m_Arguments:
@@ -11677,8 +11677,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1266175370}
   m_HandleRect: {fileID: 1266175368}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12067,7 +12067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1083913456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12086,7 +12086,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 379.40027, y: 130.69997}
-  m_SizeDelta: {x: -1270, y: -724.3489}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1083913457
 MonoBehaviour:
@@ -14269,7 +14269,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242396886}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 897153fa96862b34aa44951534a7c95b, type: 3}
   m_Name: 
@@ -14319,11 +14319,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: 1
+    - m_Text: "\u7D30"
       m_Image: {fileID: 0}
-    - m_Text: 2
+    - m_Text: "\u666E\u901A"
       m_Image: {fileID: 0}
-    - m_Text: 4
+    - m_Text: "\u592A"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14778,8 +14778,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1810702200}
-        m_MethodName: Clearfjag
+      - m_Target: {fileID: 1022205333683448765}
+        m_MethodName: clear
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17960,7 +17960,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490804192}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87dafc5b893af524ba7ede8df05036ce, type: 3}
   m_Name: 
@@ -18130,7 +18130,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: "\u7D30"
 --- !u!222 &1500985772
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26940,10 +26940,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRendererList: []
   lineMaterial: {fileID: 2100000, guid: 98561674317f145dd95d68b08dfdf554, type: 2}
-  lineColor: {r: 0, g: 0, b: 0, a: 0}
   lineWidth: 0.58
   parent: {fileID: 1022205333683448738}
   mousePosition_: {x: 0, y: 0, z: 0}
+  penmode: 0
+  Buttontext: {fileID: 1410750830}
+  pencolor: {r: 0, g: 0, b: 0, a: 0}
+  colordropdown: {fileID: 1490804195}
+  widthdropdown: {fileID: 1242396889}
+  colorname: 
 --- !u!224 &1614677669348938549
 RectTransform:
   m_ObjectHideFlags: 0
