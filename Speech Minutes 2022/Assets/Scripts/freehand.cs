@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using MonobitEngine;
 using System.Linq;
+using UnityEngine.UI;
+
 public class freehand : MonobitEngine.MonoBehaviour
 {
     /// <summary>
@@ -16,7 +18,7 @@ public class freehand : MonobitEngine.MonoBehaviour
     /// <summary>
     /// 描く線の色
     /// </summary>
-    public Color lineColor;
+    //public Color lineColor;
     /// <summary>
     /// 描く線の太さ
     /// </summary>
@@ -25,6 +27,17 @@ public class freehand : MonobitEngine.MonoBehaviour
     public Transform parent;
     GameObject obj;
     public Vector3 mousePosition_;
+
+    public bool penmode = false;
+
+    public Text Buttontext;
+
+    public Color pencolor;
+
+    public Dropdown colordropdown;
+    public Dropdown widthdropdown;
+
+    public string colorname;
 
     void Awake()
     {
@@ -38,20 +51,23 @@ public class freehand : MonobitEngine.MonoBehaviour
             // ルームに入室している場合
             if (MonobitNetwork.inRoom)
             {
-                if (Input.GetMouseButtonDown(1))
+                if (penmode)
                 {
-                    UndoLine();
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        UndoLine();
+                    }
+                    // ボタンが押された時に線オブジェクトの追加を行う
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        this.AddLineObject();
+                    }
+                    // ボタンが押されている時、LineRendererに位置データの設定を指定していく
+                    /*if (Input.GetMouseButton(0))
+                    {
+                        //this.AddPositionDataToLineRendererList();
+                    }*/
                 }
-                // ボタンが押された時に線オブジェクトの追加を行う
-                if (Input.GetMouseButtonDown(0))
-                {
-                    this.AddLineObject();
-                }
-                // ボタンが押されている時、LineRendererに位置データの設定を指定していく
-                /*if (Input.GetMouseButton(0))
-                {
-                    //this.AddPositionDataToLineRendererList();
-                }*/
             }
         }
 
@@ -62,6 +78,8 @@ public class freehand : MonobitEngine.MonoBehaviour
     /// </summary>
     private void AddLineObject()
     {
+        colorset();
+        widthset();
         // 追加するオブジェクトをインスタンス
         //GameObject lineObject = new GameObject();
         GameObject lineObject = MonobitNetwork.Instantiate("lineobject", Vector3.zero, Quaternion.identity, 0);
@@ -86,10 +104,87 @@ public class freehand : MonobitEngine.MonoBehaviour
         // マテリアルを初期化
         //lineRendererList.Last().material = this.lineMaterial;
         // 線の色を初期化
-        lineRendererList.Last().material.color = this.lineColor;
+        lineRendererList.Last().material.color = pencolor;
         // 線の太さを初期化
-        lineRendererList.Last().startWidth = this.lineWidth;
-        lineRendererList.Last().endWidth = this.lineWidth;
+        lineRendererList.Last().startWidth = lineWidth;
+        lineRendererList.Last().endWidth = lineWidth;
+    }
+
+    public void Mode()
+    {
+        if (penmode)
+        {
+            penmode = false;
+            Debug.Log("PenMode:" + penmode);
+            Buttontext.text = "PenMode:false";
+        }
+        else
+        {
+            penmode = true;
+            Debug.Log("PenMode:" + penmode);
+            Buttontext.text = "PenMode:true";
+        }
+    }
+    void colorset()
+    {
+        if (colordropdown.value == 0)
+        {
+            pencolor = Color.black;
+            colorname = "black";
+        }
+
+        if (colordropdown.value == 1)
+        {
+            pencolor = Color.red;
+            colorname = "red";
+        }
+
+        if (colordropdown.value == 2)
+        {
+            pencolor = Color.blue;
+            colorname = "blue";
+        }
+
+        if (colordropdown.value == 3)
+        {
+            pencolor = Color.green;
+            colorname = "green";
+        }
+
+        if (colordropdown.value == 4)
+        {
+            pencolor = Color.yellow;
+            colorname = "yellow";
+        }
+
+        if (colordropdown.value == 5)
+        {
+            pencolor = Color.magenta;
+            colorname = "magenta";
+        }
+        if (colordropdown.value == 6)
+        {
+            pencolor = Color.white;
+            colorname = "white";
+        }
+    }
+
+    void widthset()
+    {
+        if (widthdropdown.value == 0)
+        {
+            lineWidth = 0.3f;
+        }
+
+        if (widthdropdown.value == 1)
+        {
+            lineWidth = 0.6f;
+        }
+
+        if (widthdropdown.value == 2)
+        {
+            lineWidth = 1.0f;
+        }
     }
     // スクリプト Boo の同期処理を、Observed Component Registration List に登録します。
     /*public void registercmp(GameObject obj)
@@ -164,5 +259,17 @@ public class freehand : MonobitEngine.MonoBehaviour
         {
             Debug.Log("線がないためUndoされませんでした");
         }
+    }
+    public void clear()
+    {
+        while (lineRendererList.Count != 0)
+        {
+            var lastLineRenderer = lineRendererList.Last();
+            //removecmp(lastLineRenderer.gameObject);
+            lastLineRenderer.GetComponent<WhiteBoardparameterSend>().OnDestroy();
+            //MonobitNetwork.Destroy(lastLineRenderer.gameObject);
+            lineRendererList.Remove(lastLineRenderer);
+        }
+
     }
 }

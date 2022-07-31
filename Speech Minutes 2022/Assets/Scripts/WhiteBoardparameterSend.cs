@@ -18,7 +18,7 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
     /// <summary>
     /// 描く線の色
     /// </summary>
-    public Color lineColor;
+    public Color pencolor;
     /// <summary>
     /// 描く線の太さ
     /// </summary>
@@ -44,20 +44,23 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
     {
         if (monobitView.isMine)
         {
-            if (Input.GetMouseButton(0) && freehand.lineRendererList.Last().gameObject == this.gameObject)
+            if (freehand.penmode)
             {
-                AddPositionData();
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                Vector3[] pos_Array = pos_list.ToArray();
-                monobitView.RPC("linecreat", MonobitTargets.OthersBuffered, pos_Array);
+                if (Input.GetMouseButton(0) && freehand.lineRendererList.Last().gameObject == this.gameObject)
+                {
+                    AddPositionData();
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    Vector3[] pos_Array = pos_list.ToArray();
+                    monobitView.RPC("linecreat", MonobitTargets.OthersBuffered, pos_Array, freehand.colorname, lineWidth);
+                }
             }
         }
 
     }
     [MunRPC]
-    public void linecreat(Vector3[] pos_Array)
+    public void linecreat(Vector3[] pos_Array, string colorname, float width)
     {
         Vector3[] Array = new Vector3[pos_Array.Length];
         for (int i = 0; i < pos_Array.Length; i++)
@@ -69,10 +72,11 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
         lineRenderer.numCapVertices = 10;
         lineRenderer.numCornerVertices = 10;
         // 線の色を初期化
-        lineRenderer.material.color = this.lineColor;
+        //lineRenderer.material.color = color;
+        colortartansform(colorname);
         // 線の太さを初期化
-        lineRenderer.startWidth = this.lineWidth;
-        lineRenderer.endWidth = this.lineWidth;
+        lineRenderer.startWidth = width;
+        lineRenderer.endWidth = width;
         this.lineRenderer.positionCount = pos_Array.Length;
         this.lineRenderer.SetPositions(Array);
     }
@@ -104,5 +108,42 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
     public void OnDestroy()
     {
         MonobitNetwork.Destroy(this.gameObject);
+    }
+
+    void colortartansform(string a)
+    {
+        if (a == "black")
+        {
+            lineRenderer.material.color = Color.black;
+        }
+
+        if (a == "red")
+        {
+            lineRenderer.material.color = Color.red;
+        }
+
+        if (a == "blue")
+        {
+            lineRenderer.material.color = Color.blue;
+        }
+
+        if (a == "green")
+        {
+            lineRenderer.material.color = Color.green;
+        }
+
+        if (a == "yellow")
+        {
+            lineRenderer.material.color = Color.yellow;
+        }
+
+        if (a == "magenta")
+        {
+            lineRenderer.material.color = Color.magenta;
+        }
+        if (a == "white")
+        {
+            lineRenderer.material.color = Color.white;
+        }
     }
 }
