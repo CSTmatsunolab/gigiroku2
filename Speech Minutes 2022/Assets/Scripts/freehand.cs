@@ -108,6 +108,7 @@ public class freehand : MonobitEngine.MonoBehaviour
         // 線の太さを初期化
         lineRendererList.Last().startWidth = lineWidth;
         lineRendererList.Last().endWidth = lineWidth;
+        lineRendererList.Last().sortingOrder = lineRendererList.Count();
     }
 
     public void Mode()

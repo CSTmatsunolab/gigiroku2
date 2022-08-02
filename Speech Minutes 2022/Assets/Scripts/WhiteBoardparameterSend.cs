@@ -25,12 +25,14 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
     public float lineWidth = 1.0f;
     LineRenderer lineRenderer;
 
-    public int index_;
+    //public int index_;
     public Vector3 Mpos;
     freehand freehand;
     List<Vector3> pos_list = new List<Vector3>();
     GameObject NewWhiteBoard;
     //int positioncount;
+
+    int i = 0;
 
 
     void Start()
@@ -42,25 +44,29 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
 
     void Update()
     {
-        if (monobitView.isMine)
+        if (i == 0)
         {
-            if (freehand.penmode)
+            if (monobitView.isMine)
             {
-                if (Input.GetMouseButton(0) && freehand.lineRendererList.Last().gameObject == this.gameObject)
+                if (freehand.penmode)
                 {
-                    AddPositionData();
-                }
-                if (Input.GetMouseButtonUp(0))
-                {
-                    Vector3[] pos_Array = pos_list.ToArray();
-                    monobitView.RPC("linecreat", MonobitTargets.OthersBuffered, pos_Array, freehand.colorname, lineWidth);
+                    if (Input.GetMouseButton(0) && freehand.lineRendererList.Last().gameObject == this.gameObject)
+                    {
+                        AddPositionData();
+                    }
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        Vector3[] pos_Array = pos_list.ToArray();
+                        monobitView.RPC("linecreat", MonobitTargets.OthersBuffered, pos_Array, freehand.colorname, freehand.lineWidth, freehand.lineRendererList.Count());
+                        i++;
+                    }
                 }
             }
         }
 
     }
     [MunRPC]
-    public void linecreat(Vector3[] pos_Array, string colorname, float width)
+    public void linecreat(Vector3[] pos_Array, string colorname, float width, int layer)
     {
         Vector3[] Array = new Vector3[pos_Array.Length];
         for (int i = 0; i < pos_Array.Length; i++)
@@ -69,15 +75,16 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
             Debug.Log(Array + "[" + i + "]" + "は" + Array[i]);
         }
         // Vector3[] pos_Array_rcv =pos_Array[];
-        lineRenderer.numCapVertices = 10;
-        lineRenderer.numCornerVertices = 10;
+        this.lineRenderer.numCapVertices = 10;
+        this.lineRenderer.numCornerVertices = 10;
         // 線の色を初期化
         //lineRenderer.material.color = color;
         colortartansform(colorname);
         // 線の太さを初期化
-        lineRenderer.startWidth = width;
-        lineRenderer.endWidth = width;
+        this.lineRenderer.startWidth = width;
+        this.lineRenderer.endWidth = width;
         this.lineRenderer.positionCount = pos_Array.Length;
+        this.lineRenderer.sortingOrder = layer;
         this.lineRenderer.SetPositions(Array);
     }
     private void AddPositionData()
@@ -114,36 +121,59 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
     {
         if (a == "black")
         {
-            lineRenderer.material.color = Color.black;
+            this.lineRenderer.material.color = Color.black;
+            /*lineRenderer.material = new Material(Shader.Find("Resources/textures/forWhiteBoard"));
+            
+            Material mat = Resources.Load<Material>("textures/forWhiteBoardblack");
+            lineRenderer.material = new Material(mat); // コピーを使う。*/
         }
 
         if (a == "red")
         {
-            lineRenderer.material.color = Color.red;
+            this.lineRenderer.material.color = Color.red;
+            /*lineRenderer.material = new Material(Shader.Find("Resources/textures/forWhiteBoard"));
+            */
+            //Material mat = Resources.Load<Material>("textures/forWhiteBoardred");
+            //lineRenderer.material = new Material(mat); // コピーを使う。
         }
 
         if (a == "blue")
         {
-            lineRenderer.material.color = Color.blue;
+            this.lineRenderer.material.color = Color.blue;
+            //lineRenderer.material = new Material(Shader.Find("Resources/textures/forWhiteBoard"));
+            //Material mat = Resources.Load<Material>("textures/forWhiteBoardblue");
+            //lineRenderer.material = new Material(mat); // コピーを使う。
         }
 
         if (a == "green")
         {
-            lineRenderer.material.color = Color.green;
+            this.lineRenderer.material.color = Color.green;
+            //lineRenderer.material = new Material(Shader.Find("Resources/textures/forWhiteBoard"));
+            //Material mat = Resources.Load<Material>("textures/forWhiteBoardgreen");
+            //lineRenderer.material = new Material(mat); // コピーを使う。
         }
 
         if (a == "yellow")
         {
-            lineRenderer.material.color = Color.yellow;
+            this.lineRenderer.material.color = Color.yellow;
+            //lineRenderer.material = new Material(Shader.Find("Resources/textures/forWhiteBoard"));
+            Material mat = Resources.Load<Material>("textures/forWhiteBoardyellow");
+            lineRenderer.material = new Material(mat); // コピーを使う。
         }
 
         if (a == "magenta")
         {
-            lineRenderer.material.color = Color.magenta;
+            this.lineRenderer.material.color = Color.magenta;
+            //lineRenderer.material = new Material(Shader.Find("Resources/textures/forWhiteBoard"));
+            //Material mat = Resources.Load<Material>("textures/forWhiteBoardpink");
+            //lineRenderer.material = new Material(mat); // コピーを使う。
         }
         if (a == "white")
         {
-            lineRenderer.material.color = Color.white;
+            this.lineRenderer.material.color = Color.white;
+            //lineRenderer.material = new Material(Shader.Find("Resources/textures/forWhiteBoard"));
+            //Material mat = Resources.Load<Material>("textures/forWhiteBoardwhite");
+            //lineRenderer.material = new Material(mat); // コピーを使う。
         }
     }
 }
