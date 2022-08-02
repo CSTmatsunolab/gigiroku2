@@ -26,7 +26,7 @@ public class MargeCsv : MonobitEngine.MonoBehaviour
         for (int i = 0; i < 9; i++)
         {
             MargePathName(i);
-            string ClearPath = Application.dataPath + MargefilePath;
+            string ClearPath = Application.streamingAssetsPath + MargefilePath;
             using (var fileStream = new FileStream(ClearPath, FileMode.Open))
             {
                 // ストリームの長さを0に設定します。
@@ -79,7 +79,7 @@ public class MargeCsv : MonobitEngine.MonoBehaviour
     public void RecvChat(string list, int i,int cnt)
     {
         MargePathName(i);
-        string CSVWriteFilePath = Application.dataPath + MargefilePath;
+        string CSVWriteFilePath = Application.streamingAssetsPath + MargefilePath;
         Debug.Log(MargefilePath);
         using (StreamWriter streamWriter = new StreamWriter(CSVWriteFilePath, true))
         {
@@ -110,7 +110,7 @@ public class MargeCsv : MonobitEngine.MonoBehaviour
         for (int i = 0; i < 9; i++)
         {
             InputPathName(i);
-            string CSVFilePath = Application.dataPath + InputPath;
+            string CSVFilePath = Application.streamingAssetsPath + InputPath;
             //書き込み先ファイルの指定
             var fs = new FileStream(CSVFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
@@ -149,7 +149,7 @@ public class MargeCsv : MonobitEngine.MonoBehaviour
         for (int i = 0; i < 9; i++)
         {
             MargePathName(i);
-            string SortFilePath = Application.dataPath + MargefilePath;
+            string SortFilePath = Application.streamingAssetsPath + MargefilePath;
             List<string> lists = new List<string>();
             using (FileStream fileStream = File.Open(SortFilePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {

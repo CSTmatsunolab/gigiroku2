@@ -40,7 +40,7 @@ public static class SavWav {
 
 		var filepath = Path.Combine(Application.streamingAssetsPath + @"/GoogleAPI", filename);
 
-		Debug.Log("音声ファイル作成完了");
+		//Debug.Log("音声ファイル作成完了");
 
 		// Make sure directory exists if user is saving to sub dir.
 		Directory.CreateDirectory(Path.GetDirectoryName(filepath));
