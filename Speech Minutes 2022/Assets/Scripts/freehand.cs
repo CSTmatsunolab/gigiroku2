@@ -174,15 +174,19 @@ public class freehand : MonobitEngine.MonoBehaviour
     {
         if (widthdropdown.value == 0)
         {
-            lineWidth = 0.3f;
+            lineWidth = 0.1f;
         }
 
         if (widthdropdown.value == 1)
         {
-            lineWidth = 0.6f;
+            lineWidth = 0.3f;
         }
 
         if (widthdropdown.value == 2)
+        {
+            lineWidth = 0.6f;
+        }
+        if (widthdropdown.value == 3)
         {
             lineWidth = 1.0f;
         }
