@@ -90,23 +90,34 @@ public class PixAccess : MonobitEngine.MonoBehaviour
         pixels.CopyTo(buffer, 0);
         /* script.bgColor = Color.white;
 		   //  texscript.texcolor = Color.black;*/
-        for (int x = 0; x < mainTexture.width; x++)
-        {
-            for (int y = 0; y < mainTexture.height; y++)
-            {
-                if (y < mainTexture.height)
-                {
-                    buffer.SetValue(Color.white, x + 512 * y);
-                }
-            }
-        }
+		for (int x = 0; x < mainTexture.width; x++)
+		{
+			for (int y = 0; y < mainTexture.height; y++)
+			{
+				if (y < mainTexture.height)
+				{
+					buffer.SetValue(Color.white, x+ 512 * y);
+				}
+			}
+		}
+	}
+
+	//「clear」ボタンを押すと呼びだ朝れるメソッド
+	public void Clearfjag()
+	{
+		monobitView.RPC("Clear", MonobitTargets.All);
+		GameObject[] sakujo = GameObject.FindGameObjectsWithTag("Zukei");
+		foreach (GameObject obj in sakujo) {
+    		Destroy (obj);
+		}
     }
 
-    //「clear」ボタンを押すと呼びだ朝れるメソッド
-    public void Clearfjag()
-    {
-        monobitView.RPC("Clear", MonobitTargets.All);
-    }
+    // //「clear」ボタンを押すと呼びだ朝れるメソッド
+    // public void Clearfjag()
+    // {
+    //     monobitView.RPC("Clear", MonobitTargets.All);
+    // }
+    
     /// <summary>
     /// 太さ変更
     /// </summary>
@@ -502,21 +513,27 @@ public class PixAccess : MonobitEngine.MonoBehaviour
 
         monobitView.RPC("objectCloorUpdate", MonobitTargets.All);
 
-        if (mode)
-        {
-            if (Input.GetKey("s"))
-            {
-                GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("ZukeiCanvas", Vector3.zero, Quaternion.identity, 0);
-                Debug.Log("複製完了");
-            }
-            //IsUGUIHit(Input.mousePosition);
-            if (Input.GetMouseButton(0) && targetUI == false)
-            {
-                //前回値がまだないなら現在の値を前回値として扱う
-                if (_prevPosition == Vector2.zero)
-                {
-                    _prevPosition = Input.mousePosition;
-                }
+		if (mode)
+		{
+			if(Input.GetKeyDown("s")){
+				GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("ZukeiCanvas", Vector3.zero, Quaternion.identity, 0);
+            	Debug.Log("複製完了");
+			}
+			if(Input.GetKeyDown("c")){
+				GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("CircleCanvas", Vector3.zero, Quaternion.identity, 0);
+            	Debug.Log("複製完了");
+			}
+			if(Input.GetKeyDown("t")){
+				GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("TriangleCanvas", Vector3.zero, Quaternion.identity, 0);
+            	Debug.Log("複製完了");
+			}
+			if (Input.GetMouseButton(0))
+			{
+				//前回値がまだないなら現在の値を前回値として扱う
+            	if (_prevPosition == Vector2.zero)
+            	{
+                	_prevPosition = Input.mousePosition;
+            	}
 
                 //線形補間に使う入力の終点座標
                 Vector2 endPosition = Input.mousePosition;
