@@ -53,6 +53,23 @@ public class freehand : MonobitEngine.MonoBehaviour
             {
                 if (penmode)
                 {
+
+                    if(Input.GetKeyDown("s"))
+                    {
+				        GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("ZukeiCanvas", Vector3.zero, Quaternion.identity, 0);
+            	        Debug.Log("複製完了");
+			        }
+			        if(Input.GetKeyDown("c"))
+                    {
+				        GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("CircleCanvas", Vector3.zero, Quaternion.identity, 0);
+            	        Debug.Log("複製完了");
+			        }
+			        if(Input.GetKeyDown("t"))
+                    {
+				        GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("TriangleCanvas", Vector3.zero, Quaternion.identity, 0);
+            	        Debug.Log("複製完了");
+                    }
+
                     if (Input.GetMouseButtonDown(1))
                     {
                         UndoLine();
