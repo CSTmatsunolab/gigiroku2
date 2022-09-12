@@ -9,7 +9,7 @@ public class GoogleAPI : MonoBehaviour
 {
     //サウンドデータの格納
     AudioClip tmp;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,26 +18,47 @@ public class GoogleAPI : MonoBehaviour
 
         // GoogleCredentialを取得
         System.Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", secretPath, EnvironmentVariableTarget.Process);
-       
+    }
+
+    //RecStartButtonが押された時の処理
+    public void RecStartButtonOnClick()
+    {
         //デバイス名を指定して録音を開始する
         tmp = Microphone.Start(Microphone.devices[0], true, 5, 44100);
 
         //マイクがオンになるまで待機
         while (Microphone.GetPosition(null) <= 0) { }
 
-        //設定した時間にメソッドを呼び出し設定した時間ごとにリピートする
+        //録音開始タイミングの出力
+        Debug.Log("音声認識スタート！");
+
+        //録音ファイルのループ作成
         InvokeRepeating(nameof(Audio), 4f, 5f);
     }
 
+    //RecStopButtonが押された時の処理
+    public void RecStopButtonOnClick()
+    {
+        //録音の終了
+        Microphone.End(Microphone.devices[0]);
+
+        //録音ファイルの作成を終了
+        CancelInvoke();
+    }
+
+    //wavファイル作成の非同期処理
     async void Audio()
     {
         //wavファイルの作成
         SavWav.Save("sample_voice", tmp);
+
+        //wavファイルをGoogleへ
         Task task = Task.Run(() => {
-            //Audio2();
+            Audio2();
         });
-       
     }
+
+    //音声認識の非同期処理
     void Audio2()
     {
         //サンプル音声ファイル読み込み
@@ -72,8 +93,9 @@ public class GoogleAPI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 }
+
 
