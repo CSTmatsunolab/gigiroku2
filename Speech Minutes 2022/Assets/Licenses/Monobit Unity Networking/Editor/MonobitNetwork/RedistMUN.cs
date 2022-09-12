@@ -130,7 +130,10 @@ namespace MonobitEngine
                     case MonobitEngineLibraryType.MonobitEngineLibraryType_for_Linux32:
                         {
                             // Linux 32bit
+#if UNITY_2019_2_OR_NEWER
+#else
                             SettingPlatform(plugin, false, new BuildTarget[] { BuildTarget.StandaloneLinux }, "x86");
+#endif
                         }
                         break;
                     case MonobitEngineLibraryType.MonobitEngineLibraryType_for_Linux64:
@@ -142,9 +145,13 @@ namespace MonobitEngine
                     case MonobitEngineLibraryType.MonobitEngineLibraryType_for_Linux:
                         {
                             // Linux AnyCPU
+#if UNITY_2019_2_OR_NEWER
+                            SettingPlatform(plugin, false, new BuildTarget[] { BuildTarget.StandaloneLinux64 });
+#else
                             SettingPlatform(plugin, false, new BuildTarget[] { BuildTarget.StandaloneLinux,
                                                                                BuildTarget.StandaloneLinux64,
                                                                                BuildTarget.StandaloneLinuxUniversal });
+#endif
                         }
                         break;
                     case MonobitEngineLibraryType.MonobitEngineLibraryType_for_WebGL:
@@ -218,9 +225,13 @@ namespace MonobitEngine
             // 一旦すべてのプラットフォーム依存を解除
             plugin.SetCompatibleWithPlatform(BuildTarget.Android,                  false);
             plugin.SetCompatibleWithPlatform(BuildTarget.iOS,                      false);
+#if UNITY_2019_2_OR_NEWER
+            plugin.SetCompatibleWithPlatform(BuildTarget.StandaloneLinux64,        false);
+#else
             plugin.SetCompatibleWithPlatform(BuildTarget.StandaloneLinux,          false);
             plugin.SetCompatibleWithPlatform(BuildTarget.StandaloneLinux64,        false);
             plugin.SetCompatibleWithPlatform(BuildTarget.StandaloneLinuxUniversal, false);
+#endif
 #if UNITY_2017_3_OR_NEWER
             plugin.SetCompatibleWithPlatform(BuildTarget.StandaloneOSX,            false);
 #else
@@ -256,6 +267,13 @@ namespace MonobitEngine
                                 }
                             }
                             break;
+#if UNITY_2019_2_OR_NEWER
+                        case BuildTarget.StandaloneLinux64:
+                            {
+                                plugin.SetPlatformData(BuildTarget.StandaloneLinux64, "CPU", "AnyCPU");
+                            }
+                            break;
+#else
                         case BuildTarget.StandaloneLinux:
                         case BuildTarget.StandaloneLinux64:
                         case BuildTarget.StandaloneLinuxUniversal:
@@ -280,6 +298,7 @@ namespace MonobitEngine
                                 }
                             }
                             break;
+#endif
 #if UNITY_2017_3_OR_NEWER
                         case BuildTarget.StandaloneOSX:
                             {

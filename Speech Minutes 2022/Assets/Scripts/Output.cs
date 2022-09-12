@@ -30,9 +30,9 @@ public class Output : MonobitEngine.MonoBehaviour
         for (int i = 0; i < 9; i++)
         {
             InputPathName(i);                                                   //CSVファイルの書き込み元ファイルを選択します
-            string CSVFilePath = Application.dataPath + InputPath;              //書き込み元ファイルの指定
+            string CSVFilePath = Application.streamingAssetsPath + InputPath;              //書き込み元ファイルの指定
             OutputPathName(i);                                                  //CSVファイルの書き込み先ファイルを選択します
-            string CSVWriteFilePath = Application.dataPath + OutputPath;        //書き込み先ファイルの指定
+            string CSVWriteFilePath = Application.streamingAssetsPath + OutputPath;        //書き込み先ファイルの指定
 
             var fs = new FileStream(CSVFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
