@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+using System;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
+
 public class vcmic : MonoBehaviour
 {
+
+
 [SerializeField] private string m_DeviceName;
+        public GameObject script;
     private const int SAMPLE_RATE = 48000;
     private const float MOVING_AVE_TIME = 0.05f;
 
@@ -44,7 +52,10 @@ public class vcmic : MonoBehaviour
         //バッファ内の平均振幅を取得（絶対値を平均する）
         float audioLevel = waveData.Average(Mathf.Abs);
         //m_Cube.transform.localScale = new Vector3(1, 1 + m_AmpGain * audioLevel, 1);
-    Debug.Log("get");
+        Debug.Log(audioLevel );
+        if(audioLevel > 0){
+            script.OnSpeech();
+        }
     }
     
     private void MicStart(string device) {
