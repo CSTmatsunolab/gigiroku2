@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class vcmike : MonoBehaviour
+public class vcmic : MonoBehaviour
 {
 [SerializeField] private string m_DeviceName;
     private const int SAMPLE_RATE = 48000;
