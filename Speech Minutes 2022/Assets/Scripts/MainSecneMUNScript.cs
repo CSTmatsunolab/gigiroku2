@@ -57,6 +57,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public int notmuteid;
     public int onVoiceid;
     IconCreate script;
+    //vcmic script;
     LineUpIcon lineupiconscript;
     int playercount = 0;
     public bool cameraswitch = false;
@@ -548,6 +549,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         {
             onVoiceid = id;
             script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+            //script.OnSpeech();
+            //onVoiceid = 0;
             script.NotMuteSituation();
             notmuteid = 0;
         }
@@ -557,6 +560,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     {
         onVoiceid = MonobitEngine.MonobitNetwork.player.ID;
         script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        //script.OnSpeech();
+        //onVoiceid = 0;
         script.NotMuteSituation();
         notmuteid = 0;
     }

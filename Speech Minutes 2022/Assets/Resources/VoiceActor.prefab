@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 11474668}
   - component: {fileID: 11444920}
   - component: {fileID: 114102070023809452}
-  - component: {fileID: 114660301227975378}
   m_Layer: 0
   m_Name: VoiceActor
   m_TagString: Untagged
@@ -73,8 +72,7 @@ AudioSource:
   m_GameObject: {fileID: 109764}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243721202525830740, guid: c5b987ec1e62e4c1f85cf51f35ed8e08,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -247,17 +245,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DeviceName: 
   m_AmpGain: 100
---- !u!114 &114660301227975378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
-  delegates: []

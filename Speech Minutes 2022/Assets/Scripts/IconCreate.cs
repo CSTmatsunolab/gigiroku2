@@ -18,6 +18,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public string UserName;
     public int MuteID;
     public int NotMuteID;
+    //public int OnVoiceID;
     MainSecneMUNScript script;
     private Sprite sprite;
     LineUpIcon lineupiconscript;
@@ -182,8 +183,10 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     {
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
         NotMuteID = script.onVoiceid;
+        //OnVoiceID = script.onVoiceid;
         MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/onVoice");
         //変更内容を他のユーザーに共有
+        //monobitView.RPC("onVoiceIconSync", MonobitTargets.OthersBuffered, OnVoiceID);
         monobitView.RPC("onVoiceIconSync", MonobitTargets.OthersBuffered, NotMuteID);
     }
 
@@ -296,7 +299,8 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public void onVoiceIconSync(int id)
     {
         NotMuteID = id;
-        MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteoff");
+        //OnVoiceID = id;
+        MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/onVoice");
     }
 
     /// <summary>
