@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -157,8 +157,8 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
         {
             this.lineRenderer.material.color = Color.yellow;
             //lineRenderer.material = new Material(Shader.Find("Resources/textures/forWhiteBoard"));
-            Material mat = Resources.Load<Material>("textures/forWhiteBoardyellow");
-            lineRenderer.material = new Material(mat); // コピーを使う。
+            // Material mat = Resources.Load<Material>("textures/forWhiteBoardyellow");
+            // lineRenderer.material = new Material(mat); // コピーを使う。
         }
 
         if (a == "magenta")
