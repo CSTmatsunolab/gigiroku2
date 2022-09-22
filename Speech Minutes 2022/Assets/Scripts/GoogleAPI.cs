@@ -4,11 +4,24 @@ using Google.Cloud.Speech.V1;
 using System.IO;
 using Google.Protobuf;
 using System.Threading.Tasks;
+using MonobitEngine;
+using UnityEngine.UI;
+using System.Threading;
 
-public class GoogleAPI : MonoBehaviour
+public class GoogleAPI : MonobitEngine.MonoBehaviour
 {
     //サウンドデータの格納
     AudioClip tmp;
+
+    //ログパネルのテキストの格納
+    [SerializeField]
+    public GameObject[] LogText;
+
+    //音声認識結果の文字
+    string recognition_word;
+
+    // メインスレッドに処理を戻すためのオブジェクト
+    private SynchronizationContext MainThread;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +31,9 @@ public class GoogleAPI : MonoBehaviour
 
         // GoogleCredentialを取得
         System.Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", secretPath, EnvironmentVariableTarget.Process);
+
+        //現在のスレッドを取得
+        MainThread = SynchronizationContext.Current;
     }
 
     //RecStartButtonが押された時の処理
@@ -85,15 +101,33 @@ public class GoogleAPI : MonoBehaviour
 
         foreach (SpeechRecognitionResult result in responce.Results)
         {
-            //テキストの出力
-            Debug.Log(result.Alternatives[0].Transcript);
+            //音声認識結果
+            recognition_word = result.Alternatives[0].Transcript;
+
+            // メインスレッドに処理を戻す
+            MainThread.Post(_ => RecognitionRPC(), null);
         }
+    }
+
+    //他の端末と共有させる
+    public void RecognitionRPC()
+    {
+        //RPCメッセージを送信
+        monobitView.RPC("WadaiPannelText", MonobitTargets.All, recognition_word);
+    }
+
+    //ログパネルのテキストに音声認識結果を表示
+    [MunRPC]
+    public void WadaiPannelText(string word)
+    {
+        LogText[0].GetComponent<Text>().text += Environment.NewLine;
+        LogText[0].GetComponent<Text>().text += word;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
 }
