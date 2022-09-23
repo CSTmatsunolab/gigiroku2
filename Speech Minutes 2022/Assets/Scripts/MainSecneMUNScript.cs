@@ -543,6 +543,11 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         notmuteid = 0;
     }
 
+
+        /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
     public void onVoice(int id)
     {
         if (MonobitEngine.MonobitNetwork.player.ID == id)
@@ -551,7 +556,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
             //script.OnSpeech();
             //onVoiceid = 0;
-            script.NotMuteSituation();
+            script.OnSpeech();
             notmuteid = 0;
         }
     }
@@ -562,7 +567,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
         //script.OnSpeech();
         //onVoiceid = 0;
-        script.NotMuteSituation();
+        script.OnSpeech();
         notmuteid = 0;
     }
 }

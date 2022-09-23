@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
 using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
-public class vcmic : MonoBehaviour
+
+
+
+using MonobitEngine;
+using UnityEngine.SceneManagement;
+
+
+
+public class vcmic : MonobitEngine.MonoBehaviour
 {
 
 
@@ -23,12 +32,16 @@ IconCreate script;
     
     private AudioSource m_MicAudioSource;
 
+        public int OnSpeechID;
+
    // [SerializeField] private GameObject m_Cube;
     [SerializeField, Range(10, 300)] private float m_AmpGain = 100;
 
     private void Awake() {
         m_MicAudioSource = GetComponent<AudioSource>();
     }
+
+
 
     void Start() {
         string targetDevice = "";
@@ -54,7 +67,13 @@ IconCreate script;
         float audioLevel = waveData.Average(Mathf.Abs);
         //m_Cube.transform.localScale = new Vector3(1, 1 + m_AmpGain * audioLevel, 1);
         Debug.Log(audioLevel );
+        
+
+
+
         if(audioLevel >= 0){
+            // monobitView.RPC("script.GetComponent<IconCreate>().OnSpeech", MonobitTargets.OthersBuffered, OnSpeechID);
+            // Player owner = MonobitView.Owner;
         script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
         script.GetComponent<IconCreate>().OnSpeech();
         //script.OnSpeech();
