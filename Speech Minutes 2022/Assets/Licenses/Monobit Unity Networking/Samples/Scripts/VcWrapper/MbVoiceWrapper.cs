@@ -140,6 +140,18 @@ public class MbVoiceWrapper : MonobitEngine.VoiceChat.MonobitVoice
 		PlaybackVoiceData(parameters, voice, voice_size, ! ReliableMode);
 	}
 
+	// // 送信処理開始前のコールバック
+	// public override void OnSendVoice(bool debugMode, object[] header, byte[] voice)
+	// {	
+    // 	/*
+    //  	* この場所に、独自のコールバック処理を記述してください
+    //  	*/
+ 
+    // 	// 最後に MonobitVoice.OnSendVoice() をコールしてください。
+    // 	base.OnSendVoice(debugMode, header, voice);
+	// }
+
+
 	/// <summary>
 	/// インスタンスの開始
 	/// </summary>

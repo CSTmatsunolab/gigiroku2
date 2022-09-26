@@ -42,6 +42,8 @@ IconCreate script;
         m_MicAudioSource = GetComponent<AudioSource>();
     }
 
+
+
     void Start() {
         string targetDevice = "";
         
@@ -76,6 +78,11 @@ IconCreate script;
         }
     }
     
+public void example(){
+    //ここに処理書こう
+
+}
+
     private void MicStart(string device) {
         if (device.Equals("")) return;
         
