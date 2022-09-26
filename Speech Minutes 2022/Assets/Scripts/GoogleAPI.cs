@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using Google.Cloud.Speech.V1;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using MonobitEngine;
 using UnityEngine.UI;
 using System.Threading;
-
+using System.Collections;
 public class GoogleAPI : MonobitEngine.MonoBehaviour
 {
     //サウンドデータの格納
@@ -23,6 +23,9 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     // メインスレッドに処理を戻すためのオブジェクト
     private SynchronizationContext MainThread;
 
+    public int NowBottonPushed = -1;
+
+    public ScrollRect[] ScrollRect;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
 
         //現在のスレッドを取得
         MainThread = SynchronizationContext.Current;
+
     }
 
     //RecStartButtonが押された時の処理
@@ -69,7 +73,8 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
         SavWav.Save("sample_voice", tmp);
 
         //wavファイルをGoogleへ
-        Task task = Task.Run(() => {
+        Task task = Task.Run(() =>
+        {
             Audio2();
         });
     }
@@ -113,21 +118,90 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     public void RecognitionRPC()
     {
         //RPCメッセージを送信
-        monobitView.RPC("WadaiPannelText", MonobitTargets.All, recognition_word);
+        monobitView.RPC("WadaiPannelText", MonobitTargets.All, recognition_word, NowBottonPushed);
     }
 
     //ログパネルのテキストに音声認識結果を表示
+    /* [MunRPC]
+     public void WadaiPannelText(string word,int nowpushnumber)
+     {
+         LogText[0].GetComponent<Text>().text += Environment.NewLine;
+         LogText[0].GetComponent<Text>().text += word;
+     }*/
+
     [MunRPC]
-    public void WadaiPannelText(string word)
+    public void WadaiPannelText(string word, int push)
     {
-        LogText[0].GetComponent<Text>().text += Environment.NewLine;
-        LogText[0].GetComponent<Text>().text += word;
+        Debug.Log("値 " + push);
+        if (push == -1)
+        {
+            LogText[8].GetComponent<Text>().text += Environment.NewLine;
+            LogText[8].GetComponent<Text>().text += word;
+        }
+        else
+        {
+            LogText[push].GetComponent<Text>().text += Environment.NewLine;
+            LogText[push].GetComponent<Text>().text += word;
+            ///ログが更新された時ログパネルのスクロールバーを一番下まで自動でスクロールさせる
+            StartCoroutine(ForceScrollDown(push));
+            //Debug.Log("ScrollPositionIsMoved");
+        }
+
+    }
+    IEnumerator ForceScrollDown(int push)
+    {
+
+        // 1フレーム待たないと完全に実行されない
+        yield return new WaitForEndOfFrame();
+        ScrollRect[push].verticalNormalizedPosition = 0.0f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void LogPanelShare(int number)
+    {
+
+        switch (number)
+        {
+            case 0:
+                NowBottonPushed = 0;
+                break;
+
+            case 1:
+                NowBottonPushed = 1;
+                break;
+
+            case 2:
+                NowBottonPushed = 2;
+                break;
+
+            case 3:
+                NowBottonPushed = 3;
+                break;
+
+            case 4:
+                NowBottonPushed = 4;
+                break;
+
+            case 5:
+                NowBottonPushed = 5;
+                break;
+
+            case 6:
+                NowBottonPushed = 6;
+                break;
+
+            case 7:
+                NowBottonPushed = 7;
+                break;
+
+
+        }
     }
 
 }
