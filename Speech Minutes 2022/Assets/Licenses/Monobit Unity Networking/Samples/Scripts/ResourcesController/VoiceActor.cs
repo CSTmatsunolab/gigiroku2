@@ -33,16 +33,57 @@ IconCreate script;
     
     private AudioSource m_MicAudioSource;
 
-        public int OnSpeechID;
+public int OnSpeechID;
+public bool Speechis;
 
    // [SerializeField] private GameObject m_Cube;
     [SerializeField, Range(10, 300)] private float m_AmpGain = 100;
 
-    private void Awake() {
-        m_MicAudioSource = GetComponent<AudioSource>();
+    // private void Awake() {
+    //     m_MicAudioSource = GetComponent<AudioSource>();
+    // }
+
+    public void example(){
+    //ここに処理書こう
+        Debug.Log("EXAMPLE");
+
+        if (!Speechis)
+        {
+            Speechis = true;
+            Debug.Log("true");
+        }
+        else if (Speechis)
+        {
+            Speechis = false;
+            Debug.Log("false");
     }
+        
+        // m_MicAudioSource = GetComponent<AudioSource>();
 
+        // // void Update(){
+        // Debug.Log("ex2");
+        // if (!m_MicAudioSource.isPlaying) return;
+        
+        // float[] waveData = new float[MOVING_AVE_SAMPLE];
+        // m_MicAudioSource.GetOutputData(waveData, 0);
 
+        // //バッファ内の平均振幅を取得（絶対値を平均する）
+        // float audioLevel = waveData.Average(Mathf.Abs);
+        // //m_Cube.transform.localScale = new Vector3(1, 1 + m_AmpGain * audioLevel, 1);
+        // Debug.Log(audioLevel );
+        
+        // if(audioLevel >= 0){
+        // // monobitView.RPC("script.GetComponent<IconCreate>().OnSpeech", MonobitTargets.OthersBuffered, OnSpeechID);
+        // // Player owner = MonobitView.Owner;
+        // script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        // script.GetComponent<IconCreate>().OnSpeech();
+        // //script.OnSpeech();
+        // Debug.Log("audio");
+        // // }
+ 
+        // }
+
+    }
 
     void Start() {
         string targetDevice = "";
@@ -56,32 +97,43 @@ IconCreate script;
         
         Debug.Log($"=== Device Set: {targetDevice} ===");
         MicStart(targetDevice);
+
+        Speechis = false;
     }
 
     void Update() {
-        if (!m_MicAudioSource.isPlaying) return;
-        
-        float[] waveData = new float[MOVING_AVE_SAMPLE];
-        m_MicAudioSource.GetOutputData(waveData, 0);
+        // Debug.Log("Update");
 
-        //バッファ内の平均振幅を取得（絶対値を平均する）
-        float audioLevel = waveData.Average(Mathf.Abs);
-        //m_Cube.transform.localScale = new Vector3(1, 1 + m_AmpGain * audioLevel, 1);
-        Debug.Log(audioLevel );
-        if(audioLevel >= 0){
-            // monobitView.RPC("script.GetComponent<IconCreate>().OnSpeech", MonobitTargets.OthersBuffered, OnSpeechID);
-            // Player owner = MonobitView.Owner;
-        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
-        script.GetComponent<IconCreate>().OnSpeech();
-        //script.OnSpeech();
-        Debug.Log("audio");
+        
+            Debug.Log("Speechis == true");
+        
+            if (!m_MicAudioSource.isPlaying) return;
+        
+            float[] waveData = new float[MOVING_AVE_SAMPLE];
+            m_MicAudioSource.GetOutputData(waveData, 0);
+
+            //バッファ内の平均振幅を取得（絶対値を平均する）
+            float audioLevel = waveData.Average(Mathf.Abs);
+            //m_Cube.transform.localScale = new Vector3(1, 1 + m_AmpGain * audioLevel, 1);
+            Debug.Log(audioLevel );
+
+        if(Speechis){
+            if(audioLevel >= 0){
+                // monobitView.RPC("script.GetComponent<IconCreate>().OnSpeech", MonobitTargets.OthersBuffered, OnSpeechID);
+                // Player owner = MonobitView.Owner;
+                script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+                 script.GetComponent<IconCreate>().OnSpeech();
+                //script.OnSpeech();
+                Debug.Log("audio");
+            }
+
+        }else if(!Speechis){
+                // Debug.Log("false判定");
         }
+
     }
     
-public void example(){
-    //ここに処理書こう
 
-}
 
     private void MicStart(string device) {
         if (device.Equals("")) return;
