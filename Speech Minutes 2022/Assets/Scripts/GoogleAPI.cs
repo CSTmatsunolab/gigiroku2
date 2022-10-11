@@ -8,6 +8,13 @@ using MonobitEngine;
 using UnityEngine.UI;
 using System.Threading;
 using System.Collections;
+
+
+
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using MonobitEngine.VoiceChat;
+
 public class GoogleAPI : MonobitEngine.MonoBehaviour
 {
     //サウンドデータの格納
@@ -27,6 +34,14 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
 
     public ScrollRect[] ScrollRect;
     // Start is called before the first frame update
+
+    //public GameObject go;
+    private MonobitMicrophone Mc = null;
+    //public AudioClip Mc;
+    public AudioClip AC;
+
+
+
     void Start()
     {
         // サービスアカウントの鍵ファイルパス
@@ -44,7 +59,12 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     public void RecStartButtonOnClick()
     {
         //デバイス名を指定して録音を開始する
-        tmp = Microphone.Start(Microphone.devices[0], true, 5, 44100);
+        //tmp = Microphone.Start(Microphone.devices[0], true, 5, 44100);
+
+        GameObject go = MonobitNetwork.Instantiate("VoiceActor", Vector3.zero, Quaternion.identity, 0);
+        Mc = go.GetComponent<MonobitMicrophone>();  
+        AC = Mc.GetAudioClip();
+        tmp = AC;
         //ボイスチャットと音声認識を同時に使えない問題　について
 
         //マイクがオンになるまで待機

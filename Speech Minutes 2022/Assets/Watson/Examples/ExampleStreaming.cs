@@ -825,6 +825,7 @@ namespace IBM.Watsson.Examples
 
             GameObject go = MonobitNetwork.Instantiate("VoiceActor", Vector3.zero, Quaternion.identity, 0);
             myVoice = go.GetComponent<MonobitVoice>();
+            //MainsenceMUNと2つになってる
 
             Mc = go.GetComponent<MonobitMicrophone>();
             AC = Mc.GetAudioClip();
