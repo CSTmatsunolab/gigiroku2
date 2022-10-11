@@ -45,6 +45,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     {
         //デバイス名を指定して録音を開始する
         tmp = Microphone.Start(Microphone.devices[0], true, 5, 44100);
+        //ボイスチャットと音声認識を同時に使えない問題　について
 
         //マイクがオンになるまで待機
         while (Microphone.GetPosition(null) <= 0) { }
