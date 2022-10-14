@@ -33,6 +33,9 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     public int NowBottonPushed = -1;
 
     public ScrollRect[] ScrollRect;
+    MainSecneMUNScript mainSecneMUNScript;
+
+    GameObject MUN;
     // Start is called before the first frame update
 
     //public GameObject go;
@@ -44,6 +47,9 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
 
     void Start()
     {
+        MUN = GameObject.Find("MUN");
+        mainSecneMUNScript = MUN.GetComponent<MainSecneMUNScript>();
+        tmp = mainSecneMUNScript.AC;
         // サービスアカウントの鍵ファイルパス
         string secretPath = Application.streamingAssetsPath + @"/GoogleAPI/secretkey.json";
 
