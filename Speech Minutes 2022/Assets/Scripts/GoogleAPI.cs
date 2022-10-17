@@ -43,13 +43,13 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     //public AudioClip Mc;
     public AudioClip AC;
 
-
+    GameObject go;
 
     void Start()
     {
-        MUN = GameObject.Find("MUN");
-        mainSecneMUNScript = MUN.GetComponent<MainSecneMUNScript>();
-        tmp = mainSecneMUNScript.AC;
+        // MUN = GameObject.Find("MUN");
+        // mainSecneMUNScript = MUN.GetComponent<MainSecneMUNScript>();
+        // tmp = mainSecneMUNScript.AC;
         // サービスアカウントの鍵ファイルパス
         string secretPath = Application.streamingAssetsPath + @"/GoogleAPI/secretkey.json";
 
@@ -67,11 +67,17 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
         //デバイス名を指定して録音を開始する
         //tmp = Microphone.Start(Microphone.devices[0], true, 5, 44100);
 
-        GameObject go = MonobitNetwork.Instantiate("VoiceActor", Vector3.zero, Quaternion.identity, 0);
-        Mc = go.GetComponent<MonobitMicrophone>();  
-        AC = Mc.GetAudioClip();
-        tmp = AC;
+        //GameObject go = MonobitNetwork.Instantiate("VoiceActor", Vector3.zero, Quaternion.identity, 0);
+        // Mc = go.GetComponent<MonobitMicrophone>();  
+        // AC = Mc.GetAudioClip();
+        //tmp = AC;
         //ボイスチャットと音声認識を同時に使えない問題　について
+
+        go = GameObject.Find("VoiceActor(Clone)");
+        // myVoice = go.GetComponent<MonobitVoice>();
+        Mc = go.GetComponent<MonobitMicrophone>();
+        tmp = Mc.GetAudioClip();
+        
 
         //マイクがオンになるまで待機
         while (Microphone.GetPosition(null) <= 0) { }

@@ -179,7 +179,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         {
             vcPlayerInfo.Add(player, (Int32)EnableVC.DISABLE);
         }
-        GameObject go = MonobitNetwork.Instantiate("VoiceActor", Vector3.zero, Quaternion.identity, 0);
+        GameObject go = MonobitNetwork.Instantiate("VoiceActor", Vector3.zero, Quaternion.identity, 0,null,false,true,false);//ここをいじった
 
         myVoice = go.GetComponent<MonobitVoice>();
         Mc = go.GetComponent<MonobitMicrophone>();
