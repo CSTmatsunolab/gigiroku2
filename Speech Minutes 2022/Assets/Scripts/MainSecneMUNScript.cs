@@ -55,7 +55,9 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public string Iconname;
     public int muteid;
     public int notmuteid;
+    public int onVoiceid;
     IconCreate script;
+    //vcmic script;
     LineUpIcon lineupiconscript;
     int playercount = 0;
     public bool cameraswitch = false;
@@ -381,6 +383,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             }
         }
     }
+
+
     /// <summary>
     /// 初期化
     /// </summary>
@@ -537,6 +541,34 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         notmuteid = MonobitEngine.MonobitNetwork.player.ID;
         script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
         script.NotMuteSituation();
+        notmuteid = 0;
+    }
+
+
+        /// <summary>
+    /// 初期化
+    /// </summary>
+    [MunRPC]
+    public void onVoice(int id)
+    {
+        if (MonobitEngine.MonobitNetwork.player.ID == id)
+        {
+            onVoiceid = id;
+            script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+            //script.OnSpeech();
+            //onVoiceid = 0;
+            script.OnSpeech();
+            notmuteid = 0;
+        }
+    }
+
+        public void onVoice()
+    {
+        onVoiceid = MonobitEngine.MonobitNetwork.player.ID;
+        script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
+        //script.OnSpeech();
+        //onVoiceid = 0;
+        script.OnSpeech();
         notmuteid = 0;
     }
 }
