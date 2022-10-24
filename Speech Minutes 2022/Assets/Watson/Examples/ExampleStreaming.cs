@@ -687,264 +687,265 @@ namespace IBM.Watsson.Examples
 
 
 
-        ///MainSceneMUNScriptからの移行
-        ///
+//         ///MainSceneMUNScriptからの移行
+//         ///
 
-        [SerializeField]
-        private Text RoomNameText;
+//         [SerializeField]
+//         private Text RoomNameText;
 
-        [SerializeField]
-        private Text PlayerList;
+//         [SerializeField]
+//         private Text PlayerList;
 
-        [SerializeField]
-        private GameObject MuteLine;
+//         [SerializeField]
+//         private GameObject MuteLine;
 
-        public bool Mute = true;
-
-
-        /** ルーム名. */
-        private string roomName = "";
-
-        /** ルーム内のプレイヤーに対するボイスチャット送信可否設定. */
-        private Dictionary<MonobitPlayer, Int32> vcPlayerInfo = new Dictionary<MonobitPlayer, int>();
-
-        /** 自身が所有するボイスアクターのMonobitViewコンポーネント. */
-        private MonobitVoice myVoice = null;
-
-        private bool first = true;
-
-        private MonobitMicrophone Mc = null;
-
-        public AudioClip AC;
+//         public bool Mute = true;
 
 
-        /** ボイスチャット送信可否設定の定数. */
-        private enum EnableVC
-        {
-            ENABLE = 0,         /**< 有効. */
-            DISABLE = 1,        /**< 無効. */
-        }
+//         /** ルーム名. */
+//         private string roomName = "";
 
-        /** チャット発言ログ. */
-        List<string> chatLog = new List<string>();
+//         /** ルーム内のプレイヤーに対するボイスチャット送信可否設定. */
+//         private Dictionary<MonobitPlayer, Int32> vcPlayerInfo = new Dictionary<MonobitPlayer, int>();
 
-        /**
-        * RPC 受信関数.
-        */
+//         /** 自身が所有するボイスアクターのMonobitViewコンポーネント. */
+//         private MonobitVoice myVoice = null;
 
+//         private bool first = true;
 
-        private void Update()
-        {
-            now = DateTime.Now;
-            timeStamp = now.ToString("yyyy/MM/dd HH:mm:ss");
-            logtime = now.ToLongTimeString();
+//         private MonobitMicrophone Mc = null;
 
-            //MUNサーバに接続している場合
-            if (MonobitNetwork.isConnect)
-            {
-                // ルームに入室している場合
-                if (MonobitNetwork.inRoom)
-                {
-
-                    roomName = MonobitNetwork.room.name;
-                    RoomNameText.text = "roomName : " + roomName;
-                    PlayerList.text = "PlayerList : ";
+//         public AudioClip AC;
 
 
-                    //Debug.Log("PlayerList:");
-                    foreach (MonobitPlayer player in MonobitNetwork.playerList)
-                    {
-                        PlayerList.text = PlayerList.text + player.name + " ";
-                    }
+//         /** ボイスチャット送信可否設定の定数. */
+//         private enum EnableVC
+//         {
+//             ENABLE = 0,         /**< 有効. */
+//             DISABLE = 1,        /**< 無効. */
+//         }
+
+//         /** チャット発言ログ. */
+//         List<string> chatLog = new List<string>();
+
+//         /**
+//         * RPC 受信関数.
+//         */
 
 
-                    /*if (Mute)
-                    {
-                        List<MonobitPlayer> playerList = new List<MonobitPlayer>(vcPlayerInfo.Keys);
-                        List<MonobitPlayer> vcTargets = new List<MonobitPlayer>();
-                        foreach (MonobitPlayer player in playerList)
-                        {
-                            vcPlayerInfo[player] = (Int32)EnableVC.DISABLE;
-                            Debug.Log("vcPlayerInfo[" + player + "] = " + vcPlayerInfo[player]);
-                            Debug.Log(player.ToString());
+//         private void Update()
+//         {
+//             now = DateTime.Now;
+//             timeStamp = now.ToString("yyyy/MM/dd HH:mm:ss");
+//             logtime = now.ToLongTimeString();
 
-                            // ボイスチャットの送信可のプレイヤー情報を登録する
-                            if (vcPlayerInfo[player] == (Int32)EnableVC.ENABLE)
-                            {
-                                vcTargets.Add(player);
-                            }
-                        }
-                        // ボイスチャットの送信可否設定を反映させる
-                        myVoice.SetMulticastTarget(vcTargets.ToArray());
-                    }
-                    */
-                    if (Mute)
-                    {
-                        /*List<MonobitPlayer> playerList = new List<MonobitPlayer>(vcPlayerInfo.Keys);
-                        List<MonobitPlayer> vcTargets = new List<MonobitPlayer>();
-                        foreach (MonobitPlayer player in playerList)
-                        {
-                            vcPlayerInfo[player] = (Int32)EnableVC.DISABLE;
-                            Debug.Log("vcPlayerInfo[" + player + "] = " + vcPlayerInfo[player]);
-                            // ボイスチャットの送信可のプレイヤー情報を登録する
-                            if (vcPlayerInfo[player] == (Int32)EnableVC.ENABLE)
-                            {
-                                vcTargets.Add(player);
-                            }
-                        }*/
-                        // ボイスチャットの送信可否設定を反映させる
-                        myVoice.SetMulticastTarget(new Int32[] { });
-                        myVoice.SendStreamType = StreamType.MULTICAST;
-                    }
-                    if (!Mute)
-                    {
-                        myVoice.SendStreamType = StreamType.BROADCAST;
-                    }
-                }
-            }
-        }
+//             //MUNサーバに接続している場合
+//             if (MonobitNetwork.isConnect)
+//             {
+//                 // ルームに入室している場合
+//                 if (MonobitNetwork.inRoom)
+//                 {
 
-        public void LeaveRoom()
-        {
-            MonobitNetwork.LeaveRoom();
-            //Debug.Log("ルームから退出しました");
-            //ここでスタートのシーンに遷移する
-            SceneManager.LoadScene("StartScene");
-        }
+//                     roomName = MonobitNetwork.room.name;
+//                     RoomNameText.text = "roomName : " + roomName;
+//                     PlayerList.text = "PlayerList : ";
 
-        // 自身がルーム入室に成功したときの処理
-        public void OnJoinedRoom()
-        {
-            vcPlayerInfo.Clear();
-            vcPlayerInfo.Add(MonobitNetwork.player, (Int32)EnableVC.DISABLE);
 
-            foreach (MonobitPlayer player in MonobitNetwork.otherPlayersList)
-            {
-                vcPlayerInfo.Add(player, (Int32)EnableVC.ENABLE);
-            }
+//                     //Debug.Log("PlayerList:");
+//                     foreach (MonobitPlayer player in MonobitNetwork.playerList)
+//                     {
+//                         PlayerList.text = PlayerList.text + player.name + " ";
+//                     }
 
-            GameObject go = MonobitNetwork.Instantiate("VoiceActor", Vector3.zero, Quaternion.identity, 0);
-            myVoice = go.GetComponent<MonobitVoice>();
 
-            Mc = go.GetComponent<MonobitMicrophone>();
-            AC = Mc.GetAudioClip();
+//                     /*if (Mute)
+//                     {
+//                         List<MonobitPlayer> playerList = new List<MonobitPlayer>(vcPlayerInfo.Keys);
+//                         List<MonobitPlayer> vcTargets = new List<MonobitPlayer>();
+//                         foreach (MonobitPlayer player in playerList)
+//                         {
+//                             vcPlayerInfo[player] = (Int32)EnableVC.DISABLE;
+//                             Debug.Log("vcPlayerInfo[" + player + "] = " + vcPlayerInfo[player]);
+//                             Debug.Log(player.ToString());
 
-            if (myVoice != null)
-            {
-                myVoice.SetMicrophoneErrorHandler(OnMicrophoneError);
-                myVoice.SetMicrophoneRestartHandler(OnMicrophoneRestart);
-            }
-        }
+//                             // ボイスチャットの送信可のプレイヤー情報を登録する
+//                             if (vcPlayerInfo[player] == (Int32)EnableVC.ENABLE)
+//                             {
+//                                 vcTargets.Add(player);
+//                             }
+//                         }
+//                         // ボイスチャットの送信可否設定を反映させる
+//                         myVoice.SetMulticastTarget(vcTargets.ToArray());
+//                     }
+//                     */
+//                     if (Mute)
+//                     {
+//                         /*List<MonobitPlayer> playerList = new List<MonobitPlayer>(vcPlayerInfo.Keys);
+//                         List<MonobitPlayer> vcTargets = new List<MonobitPlayer>();
+//                         foreach (MonobitPlayer player in playerList)
+//                         {
+//                             vcPlayerInfo[player] = (Int32)EnableVC.DISABLE;
+//                             Debug.Log("vcPlayerInfo[" + player + "] = " + vcPlayerInfo[player]);
+//                             // ボイスチャットの送信可のプレイヤー情報を登録する
+//                             if (vcPlayerInfo[player] == (Int32)EnableVC.ENABLE)
+//                             {
+//                                 vcTargets.Add(player);
+//                             }
+//                         }*/
+//                         // ボイスチャットの送信可否設定を反映させる
+//                         myVoice.SetMulticastTarget(new Int32[] { });
+//                         myVoice.SendStreamType = StreamType.MULTICAST;
+//                     }
+//                     if (!Mute)
+//                     {
+//                         myVoice.SendStreamType = StreamType.BROADCAST;
+//                     }
+//                 }
+//             }
+//         }
 
-        public void DebugButton()
-        {
-            Debug.Log("myVoice = " + myVoice);
-            Debug.Log("Mc = " + Mc);
+//         public void LeaveRoom()
+//         {
+//             MonobitNetwork.LeaveRoom();
+//             //Debug.Log("ルームから退出しました");
+//             //ここでスタートのシーンに遷移する
+//             SceneManager.LoadScene("StartScene");
+//         }
 
-            Debug.Log("");
-        }
+//         // 自身がルーム入室に成功したときの処理
+//         public void OnJoinedRoom()
+//         {
+//             vcPlayerInfo.Clear();
+//             vcPlayerInfo.Add(MonobitNetwork.player, (Int32)EnableVC.DISABLE);
 
-        // 誰かがルームにログインしたときの処理
-        public void OnOtherPlayerConnected(MonobitPlayer newPlayer)
-        {
-            Debug.Log("入ったよ");
-            if (MonobitNetwork.isHost)
-            {
-                monobitView.RPC("Wdikyo", MonobitTargets.All, NowBottonPushed);
-            }
-            if (!vcPlayerInfo.ContainsKey(newPlayer))
-            {
-                vcPlayerInfo.Add(newPlayer, (Int32)EnableVC.ENABLE);
-            }
-        }
+//             foreach (MonobitPlayer player in MonobitNetwork.otherPlayersList)
+//             {
+//                 vcPlayerInfo.Add(player, (Int32)EnableVC.ENABLE);
+//             }
 
-        // 誰かがルームからログアウトしたときの処理
-        public virtual void OnOtherPlayerDisconnected(MonobitPlayer otherPlayer)
-        {
-            if (vcPlayerInfo.ContainsKey(otherPlayer))
-            {
-                vcPlayerInfo.Remove(otherPlayer);
-            }
-        }
+//             GameObject go = MonobitNetwork.Instantiate("VoiceActor", Vector3.zero, Quaternion.identity, 0);
+//             myVoice = go.GetComponent<MonobitVoice>();
+//             //MainsenceMUNと2つになってる
 
-        /// <summary>
-        /// マイクのエラーハンドリング用デリゲート
-        /// </summary>
-        /// <returns>
-        /// true : 内部にてStopCaptureを実行しループを抜けます。
-        /// false: StopCaptureを実行せずにループを抜けます。
-        /// </returns>
-        public bool OnMicrophoneError()
-        {
-            UnityEngine.Debug.LogError("Error: Microphone Error !!!");
-            return true;
-        }
+//             Mc = go.GetComponent<MonobitMicrophone>();
+//             AC = Mc.GetAudioClip();
 
-        /// <summary>
-        /// マイクのリスタート用デリゲート
-        /// </summary>
-        /// <remarks>
-        /// 呼び出された時点ではすでにStopCaptureされています。
-        /// </remarks>
-        public void OnMicrophoneRestart()
-        {
-            UnityEngine.Debug.LogWarning("Info: Microphone Restart !!!");
-        }
+//             if (myVoice != null)
+//             {
+//                 myVoice.SetMicrophoneErrorHandler(OnMicrophoneError);
+//                 myVoice.SetMicrophoneRestartHandler(OnMicrophoneRestart);
+//             }
+//         }
 
-        /*public void muteButtonOnclicked()
-        {
-            //MUNサーバに接続している場合
-            if (MonobitNetwork.isConnect)
-            {
-                // ルームに入室している場合
-                if (MonobitNetwork.inRoom)
-                {
-                    Mute = !Mute;
-                    if (Mute)
-                    {
-                        myVoice.SendStreamType = StreamType.MULTICAST;
-                        MuteLine.SetActive(true);
-                    }
+//         public void DebugButton()
+//         {
+//             Debug.Log("myVoice = " + myVoice);
+//             Debug.Log("Mc = " + Mc);
 
-                    else
-                    {
-                        myVoice.SendStreamType = StreamType.BROADCAST;
-                        MuteLine.SetActive(false);
+//             Debug.Log("");
+//         }
 
-                    }
-                }
-            }
-        }
-        */
-        //ミュートボタンが押されたときに呼び出されるメソッド
-        public void muteButtonOnclicked()
-        {
-            //MUNサーバに接続している場合
-            if (MonobitNetwork.isConnect)
-            {
-                // ルームに入室している場合
-                if (MonobitNetwork.inRoom)
-                {
-                    Mute = !Mute;
-                    if (Mute)
-                    {
-                        //ミュート設定
-                        //myVoice.SendStreamType = StreamType.MULTICAST;
-                        MuteLine.SetActive(true);
-                    }
-                    else
-                    {
-                        //ミュート解除
-                        //myVoice.SendStreamType = StreamType.BROADCAST;
-                        MuteLine.SetActive(false);
-                    }
-                }
-            }
-        }
+//         // 誰かがルームにログインしたときの処理
+//         public void OnOtherPlayerConnected(MonobitPlayer newPlayer)
+//         {
+//             Debug.Log("入ったよ");
+//             if (MonobitNetwork.isHost)
+//             {
+//                 monobitView.RPC("Wdikyo", MonobitTargets.All, NowBottonPushed);
+//             }
+//             if (!vcPlayerInfo.ContainsKey(newPlayer))
+//             {
+//                 vcPlayerInfo.Add(newPlayer, (Int32)EnableVC.ENABLE);
+//             }
+//         }
 
-        public void OnclickedDebugButoon()
-        {
+//         // 誰かがルームからログアウトしたときの処理
+//         public virtual void OnOtherPlayerDisconnected(MonobitPlayer otherPlayer)
+//         {
+//             if (vcPlayerInfo.ContainsKey(otherPlayer))
+//             {
+//                 vcPlayerInfo.Remove(otherPlayer);
+//             }
+//         }
 
-        }
-    }
+//         /// <summary>
+//         /// マイクのエラーハンドリング用デリゲート
+//         /// </summary>
+//         /// <returns>
+//         /// true : 内部にてStopCaptureを実行しループを抜けます。
+//         /// false: StopCaptureを実行せずにループを抜けます。
+//         /// </returns>
+//         public bool OnMicrophoneError()
+//         {
+//             UnityEngine.Debug.LogError("Error: Microphone Error !!!");
+//             return true;
+//         }
+
+//         /// <summary>
+//         /// マイクのリスタート用デリゲート
+//         /// </summary>
+//         /// <remarks>
+//         /// 呼び出された時点ではすでにStopCaptureされています。
+//         /// </remarks>
+//         public void OnMicrophoneRestart()
+//         {
+//             UnityEngine.Debug.LogWarning("Info: Microphone Restart !!!");
+//         }
+
+//         /*public void muteButtonOnclicked()
+//         {
+//             //MUNサーバに接続している場合
+//             if (MonobitNetwork.isConnect)
+//             {
+//                 // ルームに入室している場合
+//                 if (MonobitNetwork.inRoom)
+//                 {
+//                     Mute = !Mute;
+//                     if (Mute)
+//                     {
+//                         myVoice.SendStreamType = StreamType.MULTICAST;
+//                         MuteLine.SetActive(true);
+//                     }
+
+//                     else
+//                     {
+//                         myVoice.SendStreamType = StreamType.BROADCAST;
+//                         MuteLine.SetActive(false);
+
+//                     }
+//                 }
+//             }
+//         }
+//         */
+//         //ミュートボタンが押されたときに呼び出されるメソッド
+//         public void muteButtonOnclicked()
+//         {
+//             //MUNサーバに接続している場合
+//             if (MonobitNetwork.isConnect)
+//             {
+//                 // ルームに入室している場合
+//                 if (MonobitNetwork.inRoom)
+//                 {
+//                     Mute = !Mute;
+//                     if (Mute)
+//                     {
+//                         //ミュート設定
+//                         //myVoice.SendStreamType = StreamType.MULTICAST;
+//                         MuteLine.SetActive(true);
+//                     }
+//                     else
+//                     {
+//                         //ミュート解除
+//                         //myVoice.SendStreamType = StreamType.BROADCAST;
+//                         MuteLine.SetActive(false);
+//                     }
+//                 }
+//             }
+//         }
+
+//         public void OnclickedDebugButoon()
+//         {
+
+//         }
+     }
 }
