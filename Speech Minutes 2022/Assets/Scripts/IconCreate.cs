@@ -18,8 +18,6 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     public string UserName;
     public int MuteID;
     public int NotMuteID;
-    public int OnSpeechID;
-    //public int OnVoiceID;
     MainSecneMUNScript script;
     private Sprite sprite;
     LineUpIcon lineupiconscript;
@@ -178,19 +176,6 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         //変更内容を他のユーザーに共有
         monobitView.RPC("NotMuteIconSync", MonobitTargets.OthersBuffered, NotMuteID);
     }
-
-    //発言中アイコンに変更
-    public void OnSpeech()
-    {
-        script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
-        OnSpeechID = script.onVoiceid;
-        //OnVoiceID = script.onVoiceid;
-        MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/onVoice");
-        //変更内容を他のユーザーに共有
-        //monobitView.RPC("onVoiceIconSync", MonobitTargets.OthersBuffered, OnVoiceID);
-        monobitView.RPC("onVoiceIconSync", MonobitTargets.OthersBuffered, OnSpeechID);
-    }
-
     //カメラパネルを表示
     public void CameraOn()
     {
@@ -296,20 +281,6 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         NotMuteID = id;
         MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteoff");
     }
-    //発言中アイコン同期
-    public void onVoiceIconSync(int id)
-    {
-        NotMuteID = id;
-        //OnVoiceID = id;
-        MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/onVoice");
-    }
-    public void OnSpeechIconSync(int id)
-    {
-        OnSpeechID = id;
-        //OnVoiceID = id;
-        MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/onVoice");
-    }
-
     /// <summary>
     /// 初期化
     /// </summary>
