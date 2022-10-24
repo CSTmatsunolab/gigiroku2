@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -308,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000033297594, y: -0.000008519707}
+  m_AnchoredPosition: {x: -0.000050823437, y: -0.000045431647}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &20385978
@@ -3431,11 +3431,6 @@ MonoBehaviour:
   mun: {fileID: 1782908607}
   inputField: {fileID: 0}
   dropdown: {fileID: 0}
-  RoomNameText: {fileID: 1452743819}
-  PlayerList: {fileID: 487300997}
-  MuteLine: {fileID: 0}
-  Mute: 1
-  AC: {fileID: 0}
 --- !u!4 &335903908
 Transform:
   m_ObjectHideFlags: 0
@@ -10995,6 +10990,7 @@ MonoBehaviour:
   - {fileID: 496493096}
   - {fileID: 1656304640}
   - {fileID: 268249014}
+  AC: {fileID: 0}
 --- !u!82 &989395834
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11906,8 +11902,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1266175370}
   m_HandleRect: {fileID: 1266175368}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999976
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 394559642, guid: 2191622386f6bd04db792cb238978bd5, type: 3}
   m_Name: MonobitServerSettings
   m_EditorClassIdentifier: 
-  HostType: 1
+  HostType: 4
   HostProtocol: 0
-  AuthID: 
+  AuthID: 44e78771-c239-4fd4-9082-e0470a9635f1-7108f208
   SelfServerAddress: 
   m_SelfServerPortString: 
   m_SelfServerPort: 0
-  MunCloudEndpointAddress: 
-  MunCloudAppID: 
+  MunCloudEndpointAddress: http://endpoint.cloud.monobitengine.com
+  MunCloudAppID: bc8e4cad3c7430f1e982b8e56a31efb0
   MunCloudConnectionTimeOut: 20000
   EnableAutoJoinLobby: 0
   EnableLobbyStatistics: 0
