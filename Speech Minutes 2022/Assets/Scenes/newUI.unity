@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -308,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000033297594, y: -0.000008519707}
+  m_AnchoredPosition: {x: -0.00010506327, y: 0.000055354423}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &20385978
@@ -3431,11 +3431,6 @@ MonoBehaviour:
   mun: {fileID: 1782908607}
   inputField: {fileID: 0}
   dropdown: {fileID: 0}
-  RoomNameText: {fileID: 1452743819}
-  PlayerList: {fileID: 487300997}
-  MuteLine: {fileID: 0}
-  Mute: 1
-  AC: {fileID: 0}
 --- !u!4 &335903908
 Transform:
   m_ObjectHideFlags: 0
@@ -10995,6 +10990,9 @@ MonoBehaviour:
   - {fileID: 496493096}
   - {fileID: 1656304640}
   - {fileID: 268249014}
+  AC: {fileID: 0}
+  WadaiText: {fileID: 562009142}
+  RoomNameText: {fileID: 1452743817}
 --- !u!82 &989395834
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11906,8 +11904,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1266175370}
   m_HandleRect: {fileID: 1266175368}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9999997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -25427,9 +25425,20 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1782908611}
         m_MethodName: ClickFlag
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 989395833}
+        m_MethodName: csvflie
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

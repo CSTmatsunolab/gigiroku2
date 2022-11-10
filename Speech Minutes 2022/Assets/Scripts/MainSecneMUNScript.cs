@@ -104,7 +104,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 int i2 = int.Parse(s2);
                 string s3 = rn.Substring(0, i2);
                 string s4 = rn.Substring(i2, i1);
-                RoomNameText.text = "roomName : " + s3;
+                RoomNameText.text = "roomName:" + s3;
                 PlayerList.text = "PlayerList : ";
                 //Debug.Log("PlayerList:");
                 foreach (MonobitPlayer player in MonobitNetwork.playerList)

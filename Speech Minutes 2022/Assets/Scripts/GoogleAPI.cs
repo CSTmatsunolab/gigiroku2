@@ -8,12 +8,11 @@ using MonobitEngine;
 using UnityEngine.UI;
 using System.Threading;
 using System.Collections;
-
-
-
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+using System.Text;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using MonobitEngine.VoiceChat;
+
 
 public class GoogleAPI : MonobitEngine.MonoBehaviour
 {
@@ -33,7 +32,6 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     public int NowBottonPushed = -1;
 
     public ScrollRect[] ScrollRect;
-    MainSecneMUNScript mainSecneMUNScript;
 
     GameObject MUN;
     // Start is called before the first frame update
@@ -43,13 +41,24 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     //public AudioClip Mc;
     public AudioClip AC;
 
+    public GameObject WadaiText;
+    public GameObject RoomNameText;
+
+    string LogDataFilePath;
+    string LogDataFilePath1;
+
     GameObject go;
+
+    string nowwadai;
+    string roomname;
+    String result1;
+    String result2;
+    String result3="";
+    int namenumber;
+    int namenumber2;
 
     void Start()
     {
-        // MUN = GameObject.Find("MUN");
-        // mainSecneMUNScript = MUN.GetComponent<MainSecneMUNScript>();
-        // tmp = mainSecneMUNScript.AC;
         // サービスアカウントの鍵ファイルパス
         string secretPath = Application.streamingAssetsPath + @"/GoogleAPI/secretkey.json";
 
@@ -59,20 +68,53 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
         //現在のスレッドを取得
         MainThread = SynchronizationContext.Current;
 
+
+        //LogDataFilePath1 = Application.streamingAssetsPath + @"/LogDatas/LogData1.txt";
+        //using (var fileStream = new FileStream(LogDataFilePath1, FileMode.Open))
+        //{
+        //    fileStream.SetLength(0);
+        //}
+        LogDataFilePath1 = Application.streamingAssetsPath + @"/LogDatas/LogData2.txt";
+        using (var fileStream = new FileStream(LogDataFilePath1, FileMode.Open))
+        {
+            fileStream.SetLength(0);
+        }
+        LogDataFilePath1 = Application.streamingAssetsPath + @"/LogDatas/LogData3.txt";
+        using (var fileStream = new FileStream(LogDataFilePath1, FileMode.Open))
+        {
+            fileStream.SetLength(0);
+        }
+        LogDataFilePath1 = Application.streamingAssetsPath + @"/LogDatas/LogData4.txt";
+        using (var fileStream = new FileStream(LogDataFilePath1, FileMode.Open))
+        {
+            fileStream.SetLength(0);
+        }
+        LogDataFilePath1 = Application.streamingAssetsPath + @"/LogDatas/LogData5.txt";
+        using (var fileStream = new FileStream(LogDataFilePath1, FileMode.Open))
+        {
+            fileStream.SetLength(0);
+        }
+        LogDataFilePath1 = Application.streamingAssetsPath + @"/LogDatas/LogData6.txt";
+        using (var fileStream = new FileStream(LogDataFilePath1, FileMode.Open))
+        {
+            fileStream.SetLength(0);
+        }
+        LogDataFilePath1 = Application.streamingAssetsPath + @"/LogDatas/LogData7.txt";
+        using (var fileStream = new FileStream(LogDataFilePath1, FileMode.Open))
+        {
+            fileStream.SetLength(0);
+        }
+        LogDataFilePath1 = Application.streamingAssetsPath + @"/LogDatas/LogData8.txt";
+        using (var fileStream = new FileStream(LogDataFilePath1, FileMode.Open))
+        {
+            fileStream.SetLength(0);
+        }
+
     }
 
     //RecStartButtonが押された時の処理
     public void RecStartButtonOnClick()
     {
-        //デバイス名を指定して録音を開始する
-        //tmp = Microphone.Start(Microphone.devices[0], true, 5, 44100);
-
-        //GameObject go = MonobitNetwork.Instantiate("VoiceActor", Vector3.zero, Quaternion.identity, 0);
-        // Mc = go.GetComponent<MonobitMicrophone>();  
-        // AC = Mc.GetAudioClip();
-        //tmp = AC;
-        //ボイスチャットと音声認識を同時に使えない問題　について
-
         go = GameObject.Find("VoiceActor(Clone)");
         // myVoice = go.GetComponent<MonobitVoice>();
         Mc = go.GetComponent<MonobitMicrophone>();
@@ -154,14 +196,6 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
         monobitView.RPC("WadaiPannelText", MonobitTargets.All, recognition_word, NowBottonPushed);
     }
 
-    //ログパネルのテキストに音声認識結果を表示
-    /* [MunRPC]
-     public void WadaiPannelText(string word,int nowpushnumber)
-     {
-         LogText[0].GetComponent<Text>().text += Environment.NewLine;
-         LogText[0].GetComponent<Text>().text += word;
-     }*/
-
     [MunRPC]
     public void WadaiPannelText(string word, int push)
     {
@@ -175,11 +209,47 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
         {
             LogText[push].GetComponent<Text>().text += Environment.NewLine;
             LogText[push].GetComponent<Text>().text += word;
+            
             ///ログが更新された時ログパネルのスクロールバーを一番下まで自動でスクロールさせる
             StartCoroutine(ForceScrollDown(push));
-            //Debug.Log("ScrollPositionIsMoved");
-        }
 
+            switch (push)
+            {
+                case 0:
+                    LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData1.txt";
+                    break;
+
+                case 1:
+                    LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData2.txt";
+                    break;
+
+                case 2:
+                    LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData3.txt";
+                    break;
+
+                case 3:
+                    LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData4.txt";
+                    break;
+
+                case 4:
+                    LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData5.txt";
+                    break;
+
+                case 5:
+                    LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData6.txt";
+                    break;
+
+                case 6:
+                    LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData7.txt";
+                    break;
+
+                case 7:
+                    LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData8.txt";
+                    break;
+            }
+
+            File.AppendAllText(LogDataFilePath, MonobitNetwork.playerName + "," + word + "\n");
+        }
     }
     IEnumerator ForceScrollDown(int push)
     {
@@ -232,9 +302,72 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
             case 7:
                 NowBottonPushed = 7;
                 break;
+        }
+    }
 
+    public void csvflie()
+    {
+        // DateTime.Nowをコンソール表示する
+        DateTime dt = DateTime.Now;
+        Document doc = new Document();
+        PdfWriter.GetInstance(doc, new FileStream("01_Hello.pdf", FileMode.Create));
+        doc.Open();
+
+        nowwadai = WadaiText.GetComponent<Text>().text;
+        nowwadai = nowwadai.Replace("現在の話題：","");
+        iTextSharp.text.Font fnt1 = new iTextSharp.text.Font(BaseFont.CreateFont(Application.streamingAssetsPath + @"/msgothic.ttc,0", BaseFont.IDENTITY_H, true), 20);
+        Paragraph title = new Paragraph(nowwadai + "議事録", fnt1);
+        title.Alignment = Element.ALIGN_CENTER;
+        doc.Add(title);
+        
+
+        iTextSharp.text.Font fnt2 = new iTextSharp.text.Font(BaseFont.CreateFont(Application.streamingAssetsPath + @"/msgothic.ttc,0", BaseFont.IDENTITY_H, true), 13);
+        iTextSharp.text.Font fnt3 = new iTextSharp.text.Font(BaseFont.CreateFont(Application.streamingAssetsPath + @"/msgothic.ttc,0", BaseFont.IDENTITY_H, true), 10);
+        doc.Add(new Paragraph("", fnt2));
+        doc.Add(new Paragraph("1. 日時    ", fnt2));
+        doc.Add(new Paragraph("     "+dt.Year + "年" + dt.Month + "月" + dt.Day + "日", fnt3));
+
+        roomname = RoomNameText.GetComponent<Text>().text;
+        roomname = roomname.Replace("roomName:", "");
+        doc.Add(new Paragraph("2. 場所", fnt2));
+        doc.Add(new Paragraph("     オンライン(" + roomname + ")", fnt3));
+
+        doc.Add(new Paragraph("3. 出席者",fnt2));
+      
+        string str = "";
+        foreach (MonobitEngine.MonobitPlayer player in MonobitEngine.MonobitNetwork.playerList)
+        {
+            str += player.name + "\r\n";
+            doc.Add(new Paragraph("     "+str, fnt3));
 
         }
+
+        doc.Add(new Paragraph("4.議事録", fnt2));
+
+        string file = LogDataFilePath;
+        StreamReader sr = new StreamReader(file, Encoding.GetEncoding("UTF-8"));
+        while (sr.EndOfStream == false)
+        {
+            string line = sr.ReadLine();
+            int index = line.IndexOf(",");
+            result1 = line.Substring(0, index);
+            result2 = line.Substring(index+1);
+            if (result3 != result1)
+            {
+                doc.Add(new Phrase("    " + result1, fnt3));
+                result3 = result1;
+            }
+            else
+            {
+                string a="";
+                doc.Add(new Phrase("    "+a.PadRight(result1.Length*2,' '), fnt3));
+            }
+
+            namenumber =5-result1.Length;
+            doc.Add(new Phrase("    "+result2.PadLeft(namenumber,' ')+"\n", fnt3));
+        }
+        doc.Close();
+        Debug.Log("終了");
     }
 
 }
