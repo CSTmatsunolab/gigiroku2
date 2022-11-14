@@ -12,26 +12,26 @@ PluginImporter:
   validateReferences: 1
   platformData:
   - first:
-      '': Editor
+      : Editor
     second:
       enabled: 0
       settings:
         CPU: AnyCPU
         OS: OSX
   - first:
-      '': OSXIntel
+      : OSXIntel
     second:
       enabled: 1
       settings:
         CPU: AnyCPU
   - first:
-      '': OSXIntel64
+      : OSXIntel64
     second:
       enabled: 1
       settings:
         CPU: AnyCPU
   - first:
-      '': WP8
+      : WP8
     second:
       enabled: 0
       settings:

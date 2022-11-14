@@ -1,19 +1,58 @@
 fileFormatVersion: 2
 guid: 375270e7dcb45ee40980948b36270eb3
-timeCreated: 1477449716
-licenseType: Free
 PluginImporter:
-  serializedVersion: 1
+  externalObjects: {}
+  serializedVersion: 2
   iconMap: {}
   executionOrder: {}
+  defineConstraints: []
   isPreloaded: 0
   isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
   platformData:
-    Android:
+  - first:
+      : Editor
+    second:
+      enabled: 0
+      settings:
+        CPU: x86
+        OS: Windows
+  - first:
+      : OSXIntel
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      : OSXIntel64
+    second:
+      enabled: 1
+      settings:
+        CPU: None
+  - first:
+      : SamsungTV
+    second:
+      enabled: 0
+      settings:
+        STV_MODEL: STANDARD_15
+  - first:
+      : WP8
+    second:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
+        DontProcess: False
+        PlaceholderPath: 
+  - first:
+      Android: Android
+    second:
       enabled: 0
       settings:
         CPU: ARMv7
-    Any:
+  - first:
+      Any: 
+    second:
       enabled: 0
       settings:
         Exclude Android: 1
@@ -31,67 +70,81 @@ PluginImporter:
         Exclude Win64: 1
         Exclude iOS: 1
         Exclude tvOS: 1
-    Editor:
+  - first:
+      Editor: Editor
+    second:
       enabled: 1
       settings:
         CPU: x86
         DefaultValueInitialized: true
         OS: Windows
-    Linux:
+  - first:
+      Facebook: Win
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      Facebook: Win64
+    second:
+      enabled: 0
+      settings:
+        CPU: None
+  - first:
+      Standalone: Linux
+    second:
+      enabled: 0
+      settings:
+        CPU: x86
+  - first:
+      Standalone: Linux64
+    second:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
+  - first:
+      Standalone: LinuxUniversal
+    second:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
+  - first:
+      Standalone: OSXUniversal
+    second:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
+  - first:
+      Standalone: Win
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      Standalone: Win64
+    second:
+      enabled: 0
+      settings:
+        CPU: None
+  - first:
+      Windows Store Apps: WindowsStoreApps
+    second:
       enabled: 1
       settings:
         CPU: x86
-    Linux64:
-      enabled: 1
-      settings:
-        CPU: None
-    LinuxUniversal:
-      enabled: 1
-      settings:
-        CPU: AnyCPU
-    OSXIntel:
-      enabled: 1
-      settings:
-        CPU: AnyCPU
-    OSXIntel64:
-      enabled: 1
-      settings:
-        CPU: None
-    OSXUniversal:
-      enabled: 1
-      settings:
-        CPU: AnyCPU
-    SamsungTV:
-      enabled: 0
-      settings:
-        STV_MODEL: STANDARD_15
-    WP8:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
-        DontProcess: False
-        PlaceholderPath: 
-    Win:
-      enabled: 1
-      settings:
-        CPU: AnyCPU
-    Win64:
-      enabled: 0
-      settings:
-        CPU: None
-    WindowsStoreApps:
-      enabled: 0
-      settings:
-        CPU: AnyCPU
         DontProcess: False
         PlaceholderPath: 
         SDK: AnySDK
-    iOS:
+  - first:
+      iPhone: iOS
+    second:
       enabled: 0
       settings:
         CompileFlags: 
         FrameworkDependencies: 
-    tvOS:
+  - first:
+      tvOS: tvOS
+    second:
       enabled: 0
       settings:
         CompileFlags: 
