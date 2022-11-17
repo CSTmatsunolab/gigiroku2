@@ -11245,9 +11245,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603aedea942394e059e1c8970e3b5cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LogText: []
+  LogText:
+  - {fileID: 442734497}
+  - {fileID: 2010789897}
+  - {fileID: 921359794}
+  - {fileID: 1542989312}
+  - {fileID: 1034113477}
+  - {fileID: 1799531858}
+  - {fileID: 1986690652}
+  - {fileID: 1559566267}
   NowBottonPushed: -1
-  ScrollRect: []
+  ScrollRect:
+  - {fileID: 564804668}
+  - {fileID: 328506836}
+  - {fileID: 2099869086}
+  - {fileID: 1711878071}
+  - {fileID: 1306285878}
+  - {fileID: 496493096}
+  - {fileID: 1656304640}
+  - {fileID: 268249014}
   AC: {fileID: 0}
 --- !u!82 &989395834
 AudioSource:
@@ -23682,7 +23698,9 @@ MonoBehaviour:
   m_ObjectStreamSendBytes: 
   m_IsEncrypt: 1
   InternalObservedComponents: []
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 1810702204}
+  - {fileID: 1810702204}
   ownerId: 0
   group: 0
   prefixBackup: -1
