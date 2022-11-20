@@ -163,7 +163,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
             StartCoroutine(ForceScrollDown(push));
 
             //話題番号に応じたLogData.txtに音声認識結果を格納
-            File.AppendAllText(LogDataFilePath, MonobitNetwork.playerName + "," + word + "\n");
+            File.AppendAllText(LogDataFilePath, name + "," + word + "\n");
         }
     }
 
