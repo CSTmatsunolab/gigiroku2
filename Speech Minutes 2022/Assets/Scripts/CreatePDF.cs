@@ -173,8 +173,10 @@ public class CreatePDF : MonoBehaviour
         //ドキュメントを作成
         Document doc = new Document();
 
+        string fileName = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/Downloads/minutes.pdf";
+
         //pdfの名前の設定
-        PdfWriter.GetInstance(doc, new FileStream("minutes.pdf", FileMode.Create));
+        PdfWriter.GetInstance(doc, new FileStream(fileName, FileMode.Create));
 
         //ドキュメントを開く
         doc.Open();
