@@ -41,9 +41,17 @@ public class CreatePDF : MonoBehaviour
     //話題の格納
     public GameObject WadaiText;
 
+    string startHour;
+
+    string startMinute;
+
     // Start is called before the first frame update
     void Start()
     {
+        //現在の日付を取得
+        DateTime starttime = DateTime.Now;
+        startHour = starttime.Hour.ToString();
+        startMinute = starttime.Minute.ToString();
         //logdata(1~8).txtの中身をリセット
         ResetLogData();
     }
@@ -210,7 +218,7 @@ public class CreatePDF : MonoBehaviour
 
         //ドキュメントに日時の追加
         doc.Add(new Paragraph("1. 日時    ", fnt2));
-        doc.Add(new Paragraph("     " + dt.Year + "年" + dt.Month + "月" + dt.Day + "日", fnt3));
+        doc.Add(new Paragraph("     " + dt.Year + "年" + dt.Month + "月" + dt.Day + "日("+startHour+"時"+startMinute+"分〜"+dt.Hour+"時"+dt.Minute+"分)", fnt3));
 
         //部屋名の取得
         roomname = RoomNameText.GetComponent<Text>().text;
@@ -226,9 +234,9 @@ public class CreatePDF : MonoBehaviour
         doc.Add(new Paragraph("3. 出席者", fnt2));
         foreach (MonobitEngine.MonobitPlayer player in MonobitEngine.MonobitNetwork.playerList)
         {
-            attendance += player.name + "\r\n";
-            doc.Add(new Paragraph("     " + attendance, fnt3));
+            attendance += "     "+player.name+ "\n";
         }
+        doc.Add(new Paragraph(attendance, fnt3));
 
         //音声認識の議事録を作成
         doc.Add(new Paragraph("4.議事録", fnt2));
