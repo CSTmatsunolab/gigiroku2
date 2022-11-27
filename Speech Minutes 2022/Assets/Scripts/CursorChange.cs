@@ -28,7 +28,7 @@ public class CursorChange : MonobitEngine.MonoBehaviour
 
     public Button Onlybtn;
 
-    GameObject prefab;
+    //GameObject prefab;
     public void Start()
     {
 
@@ -45,7 +45,7 @@ public class CursorChange : MonobitEngine.MonoBehaviour
         {
             Only = false;
             Onlybtn.interactable = false;
-            prefab = MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
+            MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
             //prefab.transform.SetParent(canvas.transform, false);
             Debug.Log("CursorPointer複製");
             //Cursor.visible = false;
@@ -74,11 +74,11 @@ public class CursorChange : MonobitEngine.MonoBehaviour
 
     public void OnPD()
     {
-        Debug.Log("生きてますよ");
+        Debug.Log("生きてる");
         pointerjudge = 0;
         if (Alwaysbtn.interactable == false)
         {
-            prefab = MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
+            MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
             Debug.Log("CursorPointer複製");
 
         }
@@ -86,7 +86,7 @@ public class CursorChange : MonobitEngine.MonoBehaviour
 
     public void OnPU()
     {
-        Debug.Log("生きてますよ");
+        Debug.Log("生きてる");
         if (Alwaysbtn.interactable == false)
         {
             pointerjudge = 1;
