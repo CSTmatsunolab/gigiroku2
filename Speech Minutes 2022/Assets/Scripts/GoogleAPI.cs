@@ -36,7 +36,8 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     MonobitMicrophone Mc = null;
 
     //ログデータの格納
-    public string LogDataFilePath;
+    string LogDataFilePath;
+    
 
     GameObject go;
 
@@ -50,7 +51,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
         System.Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", secretPath, EnvironmentVariableTarget.Process);
 
         //現在のスレッドを取得
-        MainThread = SynchronizationContext.Current; 
+        MainThread = SynchronizationContext.Current;
     }
 
     //RecStartButtonが押された時の処理
@@ -148,7 +149,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
         if (push == -1)
         {
             //存在しないログに格納
-            LogText[9].GetComponent<Text>().text += word;
+            LogText[8].GetComponent<Text>().text += name+" "+word;
         }
         //話題番号が選択されている
         else
@@ -157,13 +158,13 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
             LogText[push].GetComponent<Text>().text += Environment.NewLine;
 
             //話題番号に応じたログパネルに表示
-            LogText[push].GetComponent<Text>().text += word;
+            LogText[push].GetComponent<Text>().text += name+" "+word;
             
             ///ログが更新された時ログパネルのスクロールバーを一番下まで自動でスクロールさせる
             StartCoroutine(ForceScrollDown(push));
 
             //話題番号に応じたLogData.txtに音声認識結果を格納
-            File.AppendAllText(LogDataFilePath, name + "," + word + "\n");
+            File.AppendAllText(Application.streamingAssetsPath + LogDataFilePath, name + "," + word + "\n");
         }
     }
 
@@ -195,7 +196,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
                 NowBottonPushed = 1;
 
                 //LogData1.txtのファイルパスを選択
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData1.txt";
+                LogDataFilePath = @"/LogDatas/LogData1.txt";
 
                 //swich文を抜ける
                 break;
@@ -203,44 +204,62 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
             //話題2が選択された
             case 2:
                 NowBottonPushed = 2;
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData2.txt";
+                LogDataFilePath = @"/LogDatas/LogData2.txt";
                 break;
 
             //話題3が選択された
             case 3:
                 NowBottonPushed = 3;
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData3.txt";
+                LogDataFilePath = @"/LogDatas/LogData3.txt";
                 break;
 
             //話題4が選択された
             case 4:
                 NowBottonPushed = 4;
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData4.txt";
+                LogDataFilePath = @"/LogDatas/LogData4.txt";
                 break;
 
             //話題5が選択された
             case 5:
                 NowBottonPushed = 5;
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData5.txt";
+                LogDataFilePath = @"/LogDatas/LogData5.txt";
                 break;
 
             //話題6が選択された
             case 6:
                 NowBottonPushed = 6;
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData6.txt";
+                LogDataFilePath = @"/LogDatas/LogData6.txt";
                 break;
 
             //話題7が選択された
             case 7:
                 NowBottonPushed = 7;
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData7.txt";
+                LogDataFilePath = @"/LogDatas/LogData7.txt";
                 break;
 
             //話題8が選択された
             case 8:
                 NowBottonPushed = 8;
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData8.txt";
+                LogDataFilePath = @"/LogDatas/LogData8.txt";
                 break;
-        } 
+        }
+        // メインスレッドに処理を戻す
+        MainThread.Post(_ => NowRPC(), null);
+
+    }
+
+    public void NowRPC()
+    {
+        //RPCメッセージを送信
+        monobitView.RPC("NowBotton", MonobitTargets.All, LogDataFilePath, NowBottonPushed);
+    }
+
+    [MunRPC]
+    public void NowBotton(string Path,int Botton)
+    {
+        NowBottonPushed = Botton;
+        LogDataFilePath = Path;
+        Debug.Log("NowBottonPushedGoogle*" + NowBottonPushed);
+        Debug.Log("LogDataFilePathGoogle*" + LogDataFilePath);
     }
 }

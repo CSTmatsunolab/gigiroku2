@@ -1,18 +1,20 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Threading;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using MonobitEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CreatePDF : MonoBehaviour
+public class CreatePDF : MonobitEngine.MonoBehaviour
 {
     //リセットファイルの格納
     string ResetFilePath;
 
     //ログデータの格納
-    string LogDataFilePath;
+    string LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData.txt";
 
     //現在の話題名の格納
     string nowwadai;
