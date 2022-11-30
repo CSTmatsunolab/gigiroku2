@@ -32,7 +32,7 @@ namespace IBM.Cloud.SDK.Authentication.Cp4d
     public class CloudPakForDataAuthenticator : Authenticator
     {
         // This is the suffix we'll need to add to the user-supplied URL to retrieve an access token.
-        private static string UrlSuffix = "/v1/preauth/validateAuth";
+        //private static string UrlSuffix = "/v1/preauth/validateAuth";
 
         // Configuration properties for this authenticator.
         public string Username { get; private set; }

@@ -24,7 +24,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public Dropdown usernamedropdown;
     public int usercnt = 0;
     [SerializeField]
-    int playerCount = 0;
+    //int playerCount = 0;
     int num;
     int x = Screen.width;
     int y = Screen.height;
@@ -36,7 +36,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     private Dictionary<MonobitPlayer, Int32> vcPlayerInfo = new Dictionary<MonobitPlayer, int>();
     /** 自身が所有するボイスアクターのMonobitViewコンポーネント. */
     private MonobitVoice myVoice = null;
-    private bool first = true;
+    //private bool first = true;
     private MonobitMicrophone Mc = null;
     public AudioClip AC;
 

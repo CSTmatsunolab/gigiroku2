@@ -13,7 +13,7 @@ public class voiceSample : MonoBehaviour
     //private PXCMAudioSource source;
     //private PXCMSpeechRecognition sr;
     //private PXCMSpeechRecognition.Handler handler;
-    bool Record = true;
+    //bool Record = true;
     public string filePath;
     string LogDataFilePath = @"/LogDatas/LogData.txt";       //Assets\以下の音声ファイルの書き込み先のファイル指定
     public Text text;

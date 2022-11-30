@@ -68,9 +68,9 @@ namespace IBM.Watsson.Examples
         private AudioClip _recording = null;
         private int _recordingBufferSize = 1;
         private int _recordingHZ = 22050;
-        bool OnRecord = true;
+        //bool OnRecord = true;
         public ScrollRect[] ScrollRect;
-        private int pp = 0;
+        //private int pp = 0;
 
 
         [SerializeField]
@@ -80,7 +80,7 @@ namespace IBM.Watsson.Examples
         //voice_Sample vS = new voice_Sample();
 
         // voicesampleからの移植
-        bool Record = true;
+        //bool Record = true;
         string filePath;
         string LogDataFilePath = @"/LogDatas/LogData.txt";       //Assets\以下の音声ファイルの書き込み先のファイル指定
 

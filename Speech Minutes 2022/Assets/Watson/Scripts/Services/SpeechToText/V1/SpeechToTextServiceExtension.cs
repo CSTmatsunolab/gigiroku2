@@ -105,7 +105,7 @@ namespace IBM.Watson.SpeechToText.V1
         private float _silenceDuration = 0.0f;
         private float _silenceCutoff = 1.0f;
 
-        private string _url = "https://stream.watsonplatform.net/speech-to-text/api";
+        //private string _url = "https://stream.watsonplatform.net/speech-to-text/api";
         #endregion
 
         #region Public Properties
@@ -473,9 +473,9 @@ namespace IBM.Watson.SpeechToText.V1
             if (_listenSocket == null)
             {
                 Dictionary<string, string> queryParams = new Dictionary<string, string>();
-                if (!string.IsNullOrEmpty(CustomizationId))
+                if (!string.IsNullOrEmpty(LanguageCustomizationId))
                 {
-                    queryParams["customization_id"] = CustomizationId;
+                    queryParams["customization_id"] = LanguageCustomizationId;
                 }
                 if (!string.IsNullOrEmpty(LanguageCustomizationId))
                 {

@@ -12,7 +12,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     int height = 60;
     int fps = 30;
     int s = 1;
-    int w= 0;
+    //int w= 0;
     Texture2D texture1;
     Texture2D texture2;
     Texture2D texture3;
@@ -35,7 +35,7 @@ public class WebCamController : MonobitEngine.MonoBehaviour
     public GameObject Panel3;
     public GameObject Panel4;
     public GameObject CameraPanel;
-    int cnt = 0;
+    //int cnt = 0;
     MainSecneMUNScript script;
     IEnumerator Init()
     {

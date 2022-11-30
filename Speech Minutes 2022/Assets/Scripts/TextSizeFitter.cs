@@ -8,8 +8,8 @@ public class TextSizeFitter : MonoBehaviour
     Text text;
     [SerializeField]
     GameObject Panel;
-    float Width = 56f;
-    float Height = 15f;
+    //float Width = 56f;
+    //float Height = 15f;
     float Bairitsu = 2.0f;
     
 
