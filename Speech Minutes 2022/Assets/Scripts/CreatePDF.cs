@@ -68,11 +68,11 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     public void ResetLogData()
     {
         //LogData1.txtのリセット
-        //ResetFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData1.txt";
-        //using (var fileStream = new FileStream(ResetFilePath, FileMode.Open))
-        //{
-        //    fileStream.SetLength(0);
-        //}
+        ResetFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData1.txt";
+        using (var fileStream = new FileStream(ResetFilePath, FileMode.Open))
+        {
+            fileStream.SetLength(0);
+        }
 
         //LogData2.txtのリセット
         ResetFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData2.txt";

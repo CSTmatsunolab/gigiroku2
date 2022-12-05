@@ -80,7 +80,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     public void RecStopButtonOnClick()
     {
         //録音の終了
-        Microphone.End(Microphone.devices[0]);
+        //Microphone.End(Microphone.devices[0]);
 
         //録音ファイルの作成を終了
         CancelInvoke();
