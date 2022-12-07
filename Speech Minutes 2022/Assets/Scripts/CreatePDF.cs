@@ -19,9 +19,6 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     //現在の話題名の格納
     string nowwadai;
 
-    //出席者名の格納
-    string attendance = "";
-
     //ルームの名前の格納
     public GameObject RoomNameText;
 
@@ -43,8 +40,10 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     //話題の格納
     public GameObject WadaiText;
 
+    //開始時間の格納
     string startHour;
 
+    //終了時間の格納
     string startMinute;
 
     // Start is called before the first frame update
@@ -52,8 +51,13 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     {
         //現在の日付を取得
         DateTime starttime = DateTime.Now;
+
+        //開始時間
         startHour = starttime.Hour.ToString();
+
+        //開始分
         startMinute = starttime.Minute.ToString();
+
         //logdata(1~8).txtの中身をリセット
         ResetLogData();
     }
@@ -68,11 +72,11 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     public void ResetLogData()
     {
         //LogData1.txtのリセット
-        ResetFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData1.txt";
-        using (var fileStream = new FileStream(ResetFilePath, FileMode.Open))
-        {
-            fileStream.SetLength(0);
-        }
+        //ResetFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData1.txt";
+        //using (var fileStream = new FileStream(ResetFilePath, FileMode.Open))
+        //{
+        //    fileStream.SetLength(0);
+        //}
 
         //LogData2.txtのリセット
         ResetFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData2.txt";
@@ -183,6 +187,7 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
         //ドキュメントを作成
         Document doc = new Document();
 
+        //出力先の定義(ダウンロード)
         string fileName = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/Downloads/minutes.pdf";
 
         //pdfの名前の設定
@@ -232,6 +237,9 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
         doc.Add(new Paragraph("2. 場所", fnt2));
         doc.Add(new Paragraph("     オンライン(" + roomname + ")", fnt3));
 
+        //出席者名の格納
+        string attendance = "";
+
         //出席者の取得を取得しドキュメントに追加
         doc.Add(new Paragraph("3. 出席者", fnt2));
         foreach (MonobitEngine.MonobitPlayer player in MonobitEngine.MonobitNetwork.playerList)
@@ -239,6 +247,7 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
             attendance += "     "+player.name+ "\n";
         }
         doc.Add(new Paragraph(attendance, fnt3));
+
 
         //音声認識の議事録を作成
         doc.Add(new Paragraph("4.議事録", fnt2));
@@ -258,6 +267,13 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
             speaker = line.Substring(0, index);
             content = line.Substring(index + 1);
 
+            //名前のバイト数を得る
+            Encoding en = Encoding.GetEncoding("Shift_JIS");
+            int count = en.GetByteCount(speaker);
+
+            //空文字の作成
+            string blank = "";
+
             //前の発言者と違う
             if (nowspeaker != speaker)
             {
@@ -266,20 +282,18 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
 
                 //現在の発言者の更新
                 nowspeaker = speaker;
+
             }
             //前の発言者と同じ
             else
             {
-                //空文字の作成
-                string blank = "";
-
                 //ドキュメントに空白を追加
-                doc.Add(new Phrase("    " + blank.PadRight(speaker.Length * 2, ' '), fnt3));
+                doc.Add(new Phrase("    " + blank.PadRight(count, ' '), fnt3));
             }
 
             //内容のスタート位置を統一する
-            namenumber = 5 - speaker.Length;
-            doc.Add(new Phrase("    " + content.PadLeft(namenumber, ' ') + "\n", fnt3));
+            namenumber = 10 - count;
+            doc.Add(new Phrase(blank.PadLeft(namenumber, ' ') + content+"\n", fnt3));
         }
 
         //ドキュメントを閉じる

@@ -38,7 +38,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     //ログデータの格納
     string LogDataFilePath;
     
-
+    //マイクの格納
     GameObject go;
 
     // Start is called before the first frame update
@@ -79,9 +79,6 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     //RecStopButtonが押された時の処理
     public void RecStopButtonOnClick()
     {
-        //録音の終了
-        //Microphone.End(Microphone.devices[0]);
-
         //録音ファイルの作成を終了
         CancelInvoke();
     }
