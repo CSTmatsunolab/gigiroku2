@@ -8,12 +8,8 @@ using MonobitEngine;
 using UnityEngine.UI;
 using System.Threading;
 using System.Collections;
-
-
-
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using MonobitEngine.VoiceChat;
+
 
 public class GoogleAPI : MonobitEngine.MonoBehaviour
 {
@@ -30,26 +26,24 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     // メインスレッドに処理を戻すためのオブジェクト
     private SynchronizationContext MainThread;
 
-    public int NowBottonPushed = -1;
+    //話題ボタンの管理
+    int NowBottonPushed = -1;
 
+    //スクロールの格納
     public ScrollRect[] ScrollRect;
-    MainSecneMUNScript mainSecneMUNScript;
 
-    GameObject MUN;
-    // Start is called before the first frame update
+    //MonobitMicrophoneコンポーネントの格納
+    MonobitMicrophone Mc = null;
 
-    //public GameObject go;
-    private MonobitMicrophone Mc = null;
-    //public AudioClip Mc;
-    public AudioClip AC;
+    //ログデータの格納
+    string LogDataFilePath= @"/LogDatas/LogData.txt";
 
+    //マイクの格納
     GameObject go;
 
+    // Start is called before the first frame update
     void Start()
     {
-        // MUN = GameObject.Find("MUN");
-        // mainSecneMUNScript = MUN.GetComponent<MainSecneMUNScript>();
-        // tmp = mainSecneMUNScript.AC;
         // サービスアカウントの鍵ファイルパス
         string secretPath = Application.streamingAssetsPath + @"/GoogleAPI/secretkey.json";
 
@@ -58,26 +52,19 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
 
         //現在のスレッドを取得
         MainThread = SynchronizationContext.Current;
-
     }
 
     //RecStartButtonが押された時の処理
     public void RecStartButtonOnClick()
     {
-        //デバイス名を指定して録音を開始する
-        //tmp = Microphone.Start(Microphone.devices[0], true, 5, 44100);
-
-        //GameObject go = MonobitNetwork.Instantiate("VoiceActor", Vector3.zero, Quaternion.identity, 0);
-        // Mc = go.GetComponent<MonobitMicrophone>();  
-        // AC = Mc.GetAudioClip();
-        //tmp = AC;
-        //ボイスチャットと音声認識を同時に使えない問題　について
-
+        //VoiceActor(Clone)のGameObjectを探す
         go = GameObject.Find("VoiceActor(Clone)");
-        // myVoice = go.GetComponent<MonobitVoice>();
+
+        //MonobitMicrophoneを取得
         Mc = go.GetComponent<MonobitMicrophone>();
+
+        //AudioClipの取得
         tmp = Mc.GetAudioClip();
-        
 
         //マイクがオンになるまで待機
         while (Microphone.GetPosition(null) <= 0) { }
@@ -92,9 +79,6 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     //RecStopButtonが押された時の処理
     public void RecStopButtonOnClick()
     {
-        //録音の終了
-        Microphone.End(Microphone.devices[0]);
-
         //録音ファイルの作成を終了
         CancelInvoke();
     }
@@ -151,92 +135,132 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     public void RecognitionRPC()
     {
         //RPCメッセージを送信
-        monobitView.RPC("WadaiPannelText", MonobitTargets.All, recognition_word, NowBottonPushed);
+        monobitView.RPC("WadaiPannelText", MonobitTargets.All, MonobitNetwork.playerName,recognition_word, NowBottonPushed);
     }
 
-    //ログパネルのテキストに音声認識結果を表示
-    /* [MunRPC]
-     public void WadaiPannelText(string word,int nowpushnumber)
-     {
-         LogText[0].GetComponent<Text>().text += Environment.NewLine;
-         LogText[0].GetComponent<Text>().text += word;
-     }*/
-
+    //ログパネルに音声認識結果の表示
     [MunRPC]
-    public void WadaiPannelText(string word, int push)
+    public void WadaiPannelText(string name,string word, int push)
     {
-        Debug.Log("値 " + push);
+        //話題が未選択
         if (push == -1)
         {
-            LogText[8].GetComponent<Text>().text += Environment.NewLine;
-            LogText[8].GetComponent<Text>().text += word;
+            //存在しないログに格納
+            LogText[0].GetComponent<Text>().text += name+" "+word;
         }
+        //話題番号が選択されている
         else
         {
+            //改行する
             LogText[push].GetComponent<Text>().text += Environment.NewLine;
-            LogText[push].GetComponent<Text>().text += word;
+
+            //話題番号に応じたログパネルに表示
+            LogText[push].GetComponent<Text>().text += name+" "+word;
+            
             ///ログが更新された時ログパネルのスクロールバーを一番下まで自動でスクロールさせる
             StartCoroutine(ForceScrollDown(push));
-            //Debug.Log("ScrollPositionIsMoved");
-        }
 
+            //話題番号に応じたLogData.txtに音声認識結果を格納
+            File.AppendAllText(Application.streamingAssetsPath + LogDataFilePath, name + "," + word + "\n");
+        }
     }
+
+    //ログパネルのスクロールの設定
     IEnumerator ForceScrollDown(int push)
     {
-
         // 1フレーム待たないと完全に実行されない
         yield return new WaitForEndOfFrame();
-        ScrollRect[push].verticalNormalizedPosition = 0.0f;
 
+        //スクロールの位置を1番下にする
+        ScrollRect[push].verticalNormalizedPosition = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //RPCメッセージを送信
+        monobitView.RPC("NowBotton", MonobitTargets.All, LogDataFilePath, NowBottonPushed);
     }
 
+    //どの話題が選択されたか
     public void LogPanelShare(int number)
     {
-
-        switch (number)
+        //ホストだったら
+        if (MonobitEngine.MonobitNetwork.isHost)
         {
-            case 0:
-                NowBottonPushed = 0;
-                break;
+            switch (number)
+            {
+                //話題1が選択された
+                case 1:
 
-            case 1:
-                NowBottonPushed = 1;
-                break;
+                    //現在選択されているのは話題1
+                    NowBottonPushed = 1;
 
-            case 2:
-                NowBottonPushed = 2;
-                break;
+                    //LogData1.txtのファイルパスを選択
+                    LogDataFilePath = @"/LogDatas/LogData1.txt";
 
-            case 3:
-                NowBottonPushed = 3;
-                break;
+                    //swich文を抜ける
+                    break;
 
-            case 4:
-                NowBottonPushed = 4;
-                break;
+                //話題2が選択された
+                case 2:
+                    NowBottonPushed = 2;
+                    LogDataFilePath = @"/LogDatas/LogData2.txt";
+                    break;
 
-            case 5:
-                NowBottonPushed = 5;
-                break;
+                //話題3が選択された
+                case 3:
+                    NowBottonPushed = 3;
+                    LogDataFilePath = @"/LogDatas/LogData3.txt";
+                    break;
 
-            case 6:
-                NowBottonPushed = 6;
-                break;
+                //話題4が選択された
+                case 4:
+                    NowBottonPushed = 4;
+                    LogDataFilePath = @"/LogDatas/LogData4.txt";
+                    break;
 
-            case 7:
-                NowBottonPushed = 7;
-                break;
+                //話題5が選択された
+                case 5:
+                    NowBottonPushed = 5;
+                    LogDataFilePath = @"/LogDatas/LogData5.txt";
+                    break;
 
+                //話題6が選択された
+                case 6:
+                    NowBottonPushed = 6;
+                    LogDataFilePath = @"/LogDatas/LogData6.txt";
+                    break;
 
+                //話題7が選択された
+                case 7:
+                    NowBottonPushed = 7;
+                    LogDataFilePath = @"/LogDatas/LogData7.txt";
+                    break;
+
+                //話題8が選択された
+                case 8:
+                    NowBottonPushed = 8;
+                    LogDataFilePath = @"/LogDatas/LogData8.txt";
+                    break;
+            }
+            // メインスレッドに処理を戻す
+            MainThread.Post(_ => NowRPC(), null);
         }
     }
 
+    //他の端末と共有
+    public void NowRPC()
+    {
+        //RPCメッセージを送信
+        monobitView.RPC("NowBotton", MonobitTargets.All, LogDataFilePath, NowBottonPushed);
+    }
+
+    //現在選ばれている話題
+    [MunRPC]
+    public void NowBotton(string Path,int Botton)
+    {
+        NowBottonPushed = Botton;
+        LogDataFilePath = Path;
+    }
 }
-
-
