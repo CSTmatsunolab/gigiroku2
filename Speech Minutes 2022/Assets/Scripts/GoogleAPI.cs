@@ -146,7 +146,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
         if (push == -1)
         {
             //存在しないログに格納
-            LogText[8].GetComponent<Text>().text += name+" "+word;
+            LogText[0].GetComponent<Text>().text += name+" "+word;
         }
         //話題番号が選択されている
         else
