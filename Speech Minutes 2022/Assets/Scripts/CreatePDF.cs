@@ -66,7 +66,7 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     void Update()
     {
         //RPCメッセージを送信
-        monobitView.RPC("a", MonobitTargets.All, LogDataFilePath);
+        monobitView.RPC("NowLogPath", MonobitTargets.All, LogDataFilePath);
     }
 
 
@@ -74,11 +74,11 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     public void ResetLogData()
     {
         //LogData1.txtのリセット
-        //ResetFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData1.txt";
-        //using (var fileStream = new FileStream(ResetFilePath, FileMode.Open))
-        //{
-        //    fileStream.SetLength(0);
-        //}
+        ResetFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData1.txt";
+        using (var fileStream = new FileStream(ResetFilePath, FileMode.Open))
+        {
+            fileStream.SetLength(0);
+        }
 
         //LogData2.txtのリセット
         ResetFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData2.txt";
@@ -133,64 +133,72 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     //話題ボタンが選択された
     public void LogPanelShare(int number)
     {
-        switch (number)
+        //ホストだったら
+        if (MonobitEngine.MonobitNetwork.isHost)
         {
-            //話題1ボタンが押された
-            case 1:
+            switch (number)
+            {
+                //話題1ボタンが押された
+                case 1:
 
-                //LogData1.txtのファイルパスを選択
-                LogDataFilePath = @"/LogDatas/LogData1.txt";
+                    //LogData1.txtのファイルパスを選択
+                    LogDataFilePath = @"/LogDatas/LogData1.txt";
 
-                //switch文を抜ける
-                break;
+                    //switch文を抜ける
+                    break;
 
-            //話題2ボタンが押された
-            case 2:
-                LogDataFilePath =@"/LogDatas/LogData2.txt";
-                break;
+                //話題2ボタンが押された
+                case 2:
+                    LogDataFilePath = @"/LogDatas/LogData2.txt";
+                    break;
 
-            //話題3ボタンが押された
-            case 3:
-                LogDataFilePath =  @"/LogDatas/LogData3.txt";
-                break;
+                //話題3ボタンが押された
+                case 3:
+                    LogDataFilePath = @"/LogDatas/LogData3.txt";
+                    break;
 
-            //話題4ボタンが押された
-            case 4:
-                LogDataFilePath = @"/LogDatas/LogData4.txt";
-                break;
+                //話題4ボタンが押された
+                case 4:
+                    LogDataFilePath = @"/LogDatas/LogData4.txt";
+                    break;
 
-            //話題5ボタンが押された
-            case 5:
-                LogDataFilePath = @"/LogDatas/LogData5.txt";
-                break;
+                //話題5ボタンが押された
+                case 5:
+                    LogDataFilePath = @"/LogDatas/LogData5.txt";
+                    break;
 
-            //話題6ボタンが押された
-            case 6:
-                LogDataFilePath = @"/LogDatas/LogData6.txt";
-                break;
+                //話題6ボタンが押された
+                case 6:
+                    LogDataFilePath = @"/LogDatas/LogData6.txt";
+                    break;
 
-            //話題7ボタンが押された
-            case 7:
-                LogDataFilePath = @"/LogDatas/LogData7.txt";
-                break;
+                //話題7ボタンが押された
+                case 7:
+                    LogDataFilePath = @"/LogDatas/LogData7.txt";
+                    break;
 
-            //話題8ボタンが押された
-            case 8:
-                LogDataFilePath = @"/LogDatas/LogData8.txt";
-                break;
+                //話題8ボタンが押された
+                case 8:
+                    LogDataFilePath = @"/LogDatas/LogData8.txt";
+                    break;
+            }
         }
+        //ファイルパスの変更を他の端末に共有
         NowRPC();
     }
 
+    //他の端末に共有
     public void NowRPC()
     {
         //RPCメッセージを送信
-        monobitView.RPC("a", MonobitTargets.All, LogDataFilePath);
+        monobitView.RPC("NowLogPath", MonobitTargets.All, LogDataFilePath);
     }
 
+    //現在の話題のテキストのファイルパスを共有
     [MunRPC]
-    public void a(string Path)
+    public void NowLogPath(string Path)
     {
+        //ファイルパスのnull対策
         if (Path != null)
         {
             LogDataFilePath = Path; 

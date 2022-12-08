@@ -185,6 +185,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     //どの話題が選択されたか
     public void LogPanelShare(int number)
     {
+        //ホストだったら
         if (MonobitEngine.MonobitNetwork.isHost)
         {
             switch (number)
