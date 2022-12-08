@@ -36,8 +36,8 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     MonobitMicrophone Mc = null;
 
     //ログデータの格納
-    string LogDataFilePath;
-    
+    string LogDataFilePath= @"/LogDatas/LogData.txt";
+
     //マイクの格納
     GameObject go;
 
@@ -178,85 +178,88 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //RPCメッセージを送信
+        monobitView.RPC("NowBotton", MonobitTargets.All, LogDataFilePath, NowBottonPushed);
     }
 
     //どの話題が選択されたか
     public void LogPanelShare(int number)
     {
-        switch (number)
+        if (MonobitEngine.MonobitNetwork.isHost)
         {
-            //話題1が選択された
-            case 1:
+            switch (number)
+            {
+                //話題1が選択された
+                case 1:
 
-                //現在選択されているのは話題1
-                NowBottonPushed = 1;
+                    //現在選択されているのは話題1
+                    NowBottonPushed = 1;
 
-                //LogData1.txtのファイルパスを選択
-                LogDataFilePath = @"/LogDatas/LogData1.txt";
+                    //LogData1.txtのファイルパスを選択
+                    LogDataFilePath = @"/LogDatas/LogData1.txt";
 
-                //swich文を抜ける
-                break;
+                    //swich文を抜ける
+                    break;
 
-            //話題2が選択された
-            case 2:
-                NowBottonPushed = 2;
-                LogDataFilePath = @"/LogDatas/LogData2.txt";
-                break;
+                //話題2が選択された
+                case 2:
+                    NowBottonPushed = 2;
+                    LogDataFilePath = @"/LogDatas/LogData2.txt";
+                    break;
 
-            //話題3が選択された
-            case 3:
-                NowBottonPushed = 3;
-                LogDataFilePath = @"/LogDatas/LogData3.txt";
-                break;
+                //話題3が選択された
+                case 3:
+                    NowBottonPushed = 3;
+                    LogDataFilePath = @"/LogDatas/LogData3.txt";
+                    break;
 
-            //話題4が選択された
-            case 4:
-                NowBottonPushed = 4;
-                LogDataFilePath = @"/LogDatas/LogData4.txt";
-                break;
+                //話題4が選択された
+                case 4:
+                    NowBottonPushed = 4;
+                    LogDataFilePath = @"/LogDatas/LogData4.txt";
+                    break;
 
-            //話題5が選択された
-            case 5:
-                NowBottonPushed = 5;
-                LogDataFilePath = @"/LogDatas/LogData5.txt";
-                break;
+                //話題5が選択された
+                case 5:
+                    NowBottonPushed = 5;
+                    LogDataFilePath = @"/LogDatas/LogData5.txt";
+                    break;
 
-            //話題6が選択された
-            case 6:
-                NowBottonPushed = 6;
-                LogDataFilePath = @"/LogDatas/LogData6.txt";
-                break;
+                //話題6が選択された
+                case 6:
+                    NowBottonPushed = 6;
+                    LogDataFilePath = @"/LogDatas/LogData6.txt";
+                    break;
 
-            //話題7が選択された
-            case 7:
-                NowBottonPushed = 7;
-                LogDataFilePath = @"/LogDatas/LogData7.txt";
-                break;
+                //話題7が選択された
+                case 7:
+                    NowBottonPushed = 7;
+                    LogDataFilePath = @"/LogDatas/LogData7.txt";
+                    break;
 
-            //話題8が選択された
-            case 8:
-                NowBottonPushed = 8;
-                LogDataFilePath = @"/LogDatas/LogData8.txt";
-                break;
+                //話題8が選択された
+                case 8:
+                    NowBottonPushed = 8;
+                    LogDataFilePath = @"/LogDatas/LogData8.txt";
+                    break;
+            }
+            // メインスレッドに処理を戻す
+            MainThread.Post(_ => NowRPC(), null);
         }
-        // メインスレッドに処理を戻す
-        MainThread.Post(_ => NowRPC(), null);
-
     }
 
+    //他の端末と共有
     public void NowRPC()
     {
         //RPCメッセージを送信
         monobitView.RPC("NowBotton", MonobitTargets.All, LogDataFilePath, NowBottonPushed);
     }
 
+    //現在選ばれている話題
     [MunRPC]
     public void NowBotton(string Path,int Botton)
     {
         NowBottonPushed = Botton;
         LogDataFilePath = Path;
-        Debug.Log("NowBottonPushedGoogle*" + NowBottonPushed);
-        Debug.Log("LogDataFilePathGoogle*" + LogDataFilePath);
     }
 }

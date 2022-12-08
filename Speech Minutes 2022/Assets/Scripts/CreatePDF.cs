@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Threading;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using MonobitEngine;
@@ -14,7 +13,7 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     string ResetFilePath;
 
     //ログデータの格納
-    string LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData.txt";
+    string LogDataFilePath = @"/LogDatas/LogData.txt";
 
     //現在の話題名の格納
     string nowwadai;
@@ -46,6 +45,7 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     //終了時間の格納
     string startMinute;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,8 +65,10 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //RPCメッセージを送信
+        monobitView.RPC("a", MonobitTargets.All, LogDataFilePath);
     }
+
 
     //logdata(1~8).txtの中身をリセット
     public void ResetLogData()
@@ -137,45 +139,66 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
             case 1:
 
                 //LogData1.txtのファイルパスを選択
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData1.txt";
+                LogDataFilePath = @"/LogDatas/LogData1.txt";
 
                 //switch文を抜ける
                 break;
 
             //話題2ボタンが押された
             case 2:
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData2.txt";
+                LogDataFilePath =@"/LogDatas/LogData2.txt";
                 break;
 
             //話題3ボタンが押された
             case 3:
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData3.txt";
+                LogDataFilePath =  @"/LogDatas/LogData3.txt";
                 break;
 
             //話題4ボタンが押された
             case 4:
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData4.txt";
+                LogDataFilePath = @"/LogDatas/LogData4.txt";
                 break;
 
             //話題5ボタンが押された
             case 5:
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData5.txt";
+                LogDataFilePath = @"/LogDatas/LogData5.txt";
                 break;
 
             //話題6ボタンが押された
             case 6:
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData6.txt";
+                LogDataFilePath = @"/LogDatas/LogData6.txt";
                 break;
 
             //話題7ボタンが押された
             case 7:
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData7.txt";
+                LogDataFilePath = @"/LogDatas/LogData7.txt";
                 break;
 
             //話題8ボタンが押された
             case 8:
-                LogDataFilePath = Application.streamingAssetsPath + @"/LogDatas/LogData8.txt";
+                LogDataFilePath = @"/LogDatas/LogData8.txt";
                 break;
+        }
+        NowRPC();
+    }
+
+    public void NowRPC()
+    {
+        //RPCメッセージを送信
+        monobitView.RPC("a", MonobitTargets.All, LogDataFilePath);
+    }
+
+    [MunRPC]
+    public void a(string Path)
+    {
+        if (Path != null)
+        {
+            LogDataFilePath = Path; 
+
+        }
+        else
+        {
+            return;
         }
     }
 
@@ -253,7 +276,7 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
         doc.Add(new Paragraph("4.議事録", fnt2));
 
         //話題番号のLogData.txrの取得
-        string file = LogDataFilePath;
+        string file = Application.streamingAssetsPath + LogDataFilePath;
 
         //txtデータをUTF-8で読み込み
         StreamReader sr = new StreamReader(file, Encoding.GetEncoding("UTF-8"));
