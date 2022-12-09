@@ -22755,7 +22755,7 @@ MonoBehaviour:
   canvas: {fileID: 1220727752}
   usernamedropdown: {fileID: 1528637425}
   usercnt: 0
-  playerCount: 0
+  num: 0
   usericon:
   - {fileID: 0}
   - {fileID: 0}
@@ -22813,7 +22813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277584237ad31144584195f79af03cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_viewIdField: 0
+  m_viewIdField: 1
   m_IsDontDestroyOnRoom: 0
   m_IsInstantiated: 0
   m_ObjectStreamCheckTime: 0

@@ -1,17 +1,18 @@
 fileFormatVersion: 2
 guid: 83f99c0e7db71754ba8927bbfb83c668
-timeCreated: 1531456013
-licenseType: Pro
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
   iconMap: {}
   executionOrder: {}
+  defineConstraints: []
   isPreloaded: 0
   isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
   platformData:
   - first:
-      '': Any
+      : Any
     second:
       enabled: 0
       settings:
@@ -20,6 +21,7 @@ PluginImporter:
         Exclude Linux: 1
         Exclude Linux64: 1
         Exclude LinuxUniversal: 1
+        Exclude Lumin: 1
         Exclude OSXIntel: 1
         Exclude OSXIntel64: 1
         Exclude OSXUniversal: 1
@@ -68,7 +70,7 @@ PluginImporter:
     second:
       enabled: 0
       settings:
-        CPU: x86_64
+        CPU: AnyCPU
   - first:
       Standalone: LinuxUniversal
     second:
@@ -110,8 +112,10 @@ PluginImporter:
     second:
       enabled: 1
       settings:
+        AddToEmbeddedBinaries: false
+        CPU: AnyCPU
         CompileFlags: 
-        FrameworkDependencies: 
+        FrameworkDependencies: CoreLocation;
   userData: 
   assetBundleName: 
   assetBundleVariant: 
