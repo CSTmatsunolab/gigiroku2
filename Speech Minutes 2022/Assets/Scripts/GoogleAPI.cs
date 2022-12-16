@@ -128,7 +128,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
         //録音データの設定
         RecognitionConfig config = new RecognitionConfig();
         config.Encoding = RecognitionConfig.Types.AudioEncoding.Linear16;
-        config.SampleRateHertz = 44100;
+        //config.SampleRateHertz = 44100;
         config.LanguageCode = "ja-JP";
 
         //クライアントの生成

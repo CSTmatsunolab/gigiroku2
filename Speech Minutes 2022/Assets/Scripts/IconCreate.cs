@@ -56,7 +56,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     void Start()
     {
         WebCamDevice[] devices = WebCamTexture.devices;
-        webcamTexture = new WebCamTexture(devices[0].name, 80, 60, this.fps);
+        webcamTexture = new WebCamTexture(devices[0].name, 640, 480, this.fps);
         webcamTexture.Play();
         StartCoroutine(Init());
         Panel.SetActive(false);
