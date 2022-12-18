@@ -826,7 +826,7 @@ MonoBehaviour:
   ownerId: 0
   group: 0
   prefixBackup: -1
-  ownershipTransfer: 0
+  ownershipTransfer: 1
   compressedStream: 0
 --- !u!114 &114516997039500424
 MonoBehaviour:

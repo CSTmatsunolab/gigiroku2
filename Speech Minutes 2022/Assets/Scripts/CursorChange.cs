@@ -35,7 +35,7 @@ public class CursorChange : MonobitEngine.MonoBehaviour
     }
     public void Update()
     {
-        Debug.Log(pointerjudge);
+        //Debug.Log(pointerjudge);
     }
     public void OnclickPointerButton_Always()
     {

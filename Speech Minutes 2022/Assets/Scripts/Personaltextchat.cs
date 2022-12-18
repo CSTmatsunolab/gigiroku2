@@ -49,26 +49,29 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
             text.GetComponent<Text>().text = MonobitEngine.MonobitNetwork.player.name + " " + inputField.text;
             text.GetComponent<Text>().text.Replace(" ", "\u00A0");*/
             GameObject text = Instantiate(textchatPrefab, content);
-            text.transform.GetChild(0).gameObject.GetComponent<Text>().text = name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + inputField.text;
+            text.transform.GetChild(0).gameObject.GetComponent<Text>().text = MonobitEngine.MonobitNetwork.player.name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + inputField.text;
             text.transform.GetChild(0).gameObject.GetComponent<Text>().text.Replace(" ", "\u00A0");
-            monobitView.RPC("Personalrcv", MonobitEngine.MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.ID, partnerID, inputField.text, System.DateTime.Now.ToString());
+            monobitView.RPC("Personalrcv", MonobitEngine.MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.ID, partnerID, inputField.text, MonobitEngine.MonobitNetwork.player.name);
             inputField.text = "";
         }
         else { return; }
     }
     [MunRPC]
-    public void Personalrcvv(int partner, int myid, string textcontent, string name)
+    public void Personalrcv(int partner, int myid, string textcontent, string name)
     {
         if (myid == MonobitEngine.MonobitNetwork.player.ID)
         {
+            Debug.Log("itsme...");
+            GameObject obj = GameObject.Find("chat" + partner.ToString()).transform.Find("Scroll View/Viewport/Content").gameObject;
+            RectTransform rect = obj.GetComponent<RectTransform>();
             //GameObject obj = GameObject.Find("chat" + partner.ToString());
-            GameObject text = Instantiate(textchatPrefab, content);
+            GameObject text = Instantiate(textchatPrefab, rect);
             text.transform.GetChild(0).gameObject.GetComponent<Text>().text = name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + textcontent;
             text.transform.GetChild(0).gameObject.GetComponent<Text>().text.Replace(" ", "\u00A0");
             //text.GetComponent<Text>().text = name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + textcontent;
             //text.GetComponent<Text>().text.Replace(" ", "\u00A0");
         }
-        else { return; }
+        else { Debug.Log("notme..."); }
 
     }
     public void OnClickCloseBtn()

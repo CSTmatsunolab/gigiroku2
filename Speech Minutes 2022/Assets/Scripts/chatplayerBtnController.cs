@@ -15,12 +15,19 @@ public class chatplayerBtnController : MonobitEngine.MonoBehaviour
 
     private void Start()
     {
-        tergetchatobj = Instantiate(Personaltextchat);
-        canvas = GameObject.Find("Canvas");
-        tergetchatobj.transform.SetParent(canvas.transform, false);
-        canvasGroup = tergetchatobj.GetComponent<CanvasGroup>();
-        tergetchatobj.name = "chat" + ButtonID.ToString();
-        tergetchatobj.GetComponent<Personaltextchat>().partnerID = ButtonID;
+        if (ButtonID == MonobitEngine.MonobitNetwork.player.ID)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            tergetchatobj = Instantiate(Personaltextchat);
+            canvas = GameObject.Find("Canvas");
+            tergetchatobj.transform.SetParent(canvas.transform, false);
+            canvasGroup = tergetchatobj.GetComponent<CanvasGroup>();
+            tergetchatobj.name = "chat" + ButtonID.ToString();
+            tergetchatobj.GetComponent<Personaltextchat>().partnerID = ButtonID;
+        }
 
     }
     // Start is called before the first frame update
@@ -29,6 +36,7 @@ public class chatplayerBtnController : MonobitEngine.MonoBehaviour
         //Debug.Log("OnOtherPlayerDisconnected : playerName = " + otherPlayer.name);
         if (otherPlayer.ID == ButtonID)
         {
+            Destroy(tergetchatobj);
             Destroy(this.gameObject);
         }
     }

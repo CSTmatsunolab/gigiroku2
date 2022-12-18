@@ -24,6 +24,8 @@ public class TextChat : MonobitEngine.MonoBehaviour
     DateTime dt;
     //public Text text;
 
+    // bool delay = false;
+
 
 
 
@@ -44,24 +46,28 @@ public class TextChat : MonobitEngine.MonoBehaviour
     {
 
     }
-    public void OnJoinedRoom()
+    /*public void OnJoinedRoom()
     {
         foreach (MonobitPlayer player in MonobitNetwork.playerList)
         {
+
             GameObject btn = Instantiate(chatplayerBtnPrefab, content2);
             btn.GetComponent<chatplayerBtnController>().ButtonID = player.ID;
             Debug.Log("buttonID" + btn.GetComponent<chatplayerBtnController>().ButtonID);
             btn.transform.GetChild(0).gameObject.GetComponent<Text>().text = player.name;
         }
-    }
+       //delay = true;
+    }*/
     public void OnOtherPlayerConnected(MonobitEngine.MonobitPlayer newPlayer)
     {
+
         GameObject btn = Instantiate(chatplayerBtnPrefab, content2);
         //chatplayerBtnController ID = btn.GetComponent<chatplayerBtnController>();
         btn.GetComponent<chatplayerBtnController>().ButtonID = newPlayer.ID;
         Debug.Log("buttonID" + btn.GetComponent<chatplayerBtnController>().ButtonID);
         btn.transform.GetChild(0).gameObject.GetComponent<Text>().text = newPlayer.name;
         //Debug.Log("OnOtherPlayerConnected : playerName = " + newPlayer.name );
+
     }
 
     public void OnClickSendBtn()
