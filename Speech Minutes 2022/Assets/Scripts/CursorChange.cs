@@ -5,103 +5,74 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using MonobitEngine;
 
-public class CursorChange : MonobitEngine.MonoBehaviour
+public class CursorChange :  MonobitEngine.MonoBehaviour
 {
 
-    [SerializeField]
+      [SerializeField]
     GameObject CursorImage;
 
     [SerializeField]
     GameObject canvas;
 
     public Texture2D RedCursor;
-
+    
     public int pointerjudge = 0;
 
     public GameObject Panel;
 
-    public bool Always = false;
+public void Start() {
 
-    public bool Only = false;
-
-    public Button Alwaysbtn;
-
-    public Button Onlybtn;
-
-    //GameObject prefab;
-    public void Start()
+}
+        public void OnclickPointerButton_Always()
     {
-
-    }
-    public void Update()
-    {
-        //Debug.Log(pointerjudge);
-    }
-    public void OnclickPointerButton_Always()
-    {
-        pointerjudge = 0;
-        Always = !Always;
-        if (Always == true)
+        /*
+        if(pointerjudge == 0)
         {
-            Only = false;
-            Onlybtn.interactable = false;
-            MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
+            Cursor.SetCursor(RedCursor,new Vector2(RedCursor.width / 2,RedCursor.height / 2), CursorMode.Auto);
+            pointerjudge = 1;
+        }
+        else
+        {
+            Cursor.SetCursor(null,Vector2.zero, CursorMode.Auto);
+            pointerjudge = 0;
+        }
+        */
+        if(pointerjudge == 0)
+        {
+            pointerjudge = 1;
+            Debug.Log(pointerjudge);
+            GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
             //prefab.transform.SetParent(canvas.transform, false);
-            Debug.Log("CursorPointer複製");
+            Debug.Log("CursorPointer複製完了");
             //Cursor.visible = false;
+            
+            
         }
         else
         {
-            pointerjudge = 1;
-            Onlybtn.interactable = true;
+             //Cursor.visible = true;
+             if(pointerjudge!=2)
+            pointerjudge = 0;
+            Debug.Log(pointerjudge);
         }
     }
-
-    public void OnclickPointerButton_Only()
+         public void OnclickPointerButton_Only()
     {
-        pointerjudge = 0;
-        Only = !Only;
-        if (Only == true)
-        {
-            Always = false;
-            Alwaysbtn.interactable = false;
-        }
-        else
-        {
-            Alwaysbtn.interactable = true;
+        if(pointerjudge!=2){
+        pointerjudge=2;
+        Debug.Log(pointerjudge);
+        }else{
+            pointerjudge = 0;
+            Debug.Log(pointerjudge);
         }
     }
+    
 
-    public void OnPD()
-    {
-        Debug.Log("生きてる");
-        pointerjudge = 0;
-        if (Alwaysbtn.interactable == false)
-        {
-            MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
-            Debug.Log("CursorPointer複製");
-
-        }
+    public void OnPointerEnter(){
+Panel.SetActive(true);
     }
 
-    public void OnPU()
-    {
-        Debug.Log("生きてる");
-        if (Alwaysbtn.interactable == false)
-        {
-            pointerjudge = 1;
-        }
-
-    }
-
-
-    public void OnPointerEnter()
-    {
-        Panel.SetActive(true);
-    }
-
-    public void OnPointerExit()
-    {
+    public void OnPointerExit(){
         Panel.SetActive(false);
     }
 }

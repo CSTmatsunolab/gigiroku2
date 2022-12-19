@@ -7,63 +7,64 @@ using MonobitEngine;
 
 public class CursorControll : MonobitEngine.MonoBehaviour
 {
-    GameObject Pointer;
+     GameObject Pointer;
     CursorChange CursorChange;
-    Vector3 mousePos;
-    public Text Text;
+    GameObject Plane;
+    CursorforOnlyDrawing CursorforOnlyDrawing;
+ Vector3 mousePos ;
+ public Text Text;
+        
 
+   void Start() {
+        if (monobitView.isMine){
+    mousePos=Input.mousePosition;
 
-    void Start()
-    {
-        if (monobitView.isMine)
-        {
-            Pointer = GameObject.Find("Pointer");
-            CursorChange = Pointer.GetComponent<CursorChange>();
-            // if (monobitView.isMine){
-            mousePos = Input.mousePosition;
-            Text.text = "";
-            //自分のユーザーネーム取得ののち送信
-            Text.text = MonobitEngine.MonobitNetwork.player.name;
-            string text_ = Text.text;
-            monobitView.RPC("UsernameForPointer", MonobitTargets.OthersBuffered, text_);
-            //}
+     Pointer = GameObject.Find("Pointer");
+    CursorChange = Pointer.GetComponent<CursorChange>();
+
+    Plane = GameObject.Find("Plane");
+    CursorforOnlyDrawing = Plane.GetComponent<CursorforOnlyDrawing>();
+    Text.text="";
+        //自分のユーザーネーム取得ののち送信
+        Text.text=MonobitEngine.MonobitNetwork.player.name;
+        string text_ = Text.text;
+        monobitView.RPC("UsernameForPointer", MonobitTargets.OthersBuffered, text_);
+
         }
-    }
-    [MunRPC]
+
+        
+  }
+  
+
+  
+
+   [MunRPC]
     public void UsernameForPointer(string text_)
     {
-        this.Text.text = text_;
+        Text.text = text_;
     }
-
+    
     // Update is called once per frame
-    void Update()
-    {
-        if (monobitView.isMine)
-        {
-
-            /* if(CursorChange.pointerjudge ==0){
-                 OnDestroy();
-                 Debug.Log("ポインタ削除済み");
-             }else if(CursorChange.pointerjudge ==4){
-                     CursorChange.pointerjudge=2;
-                     OnDestroy();
-                     Debug.Log("ポインタ削除済み");
-
-             }*/
-            if (CursorChange.pointerjudge == 1)
-            {
+    void Update () {
+        if (monobitView.isMine){
+        if(CursorChange.pointerjudge ==0){
+            OnDestroy();
+            Debug.Log("ポインタ削除済み");
+        }else if(CursorChange.pointerjudge ==4){
+                CursorChange.pointerjudge=2;
                 OnDestroy();
+                Debug.Log("ポインタ削除済み");
+                
             }
-            mousePos = Input.mousePosition;
-            this.transform.position = mousePos;
-            //Debug.Log(mousePos);
-
         }
-    }
+        
+         mousePos = Input.mousePosition;
+            this.transform.position=mousePos;
+             //Debug.Log(mousePos);
+        }
+           
 
-
-
-    public void OnDestroy()
+        public void OnDestroy()
     {
         MonobitNetwork.Destroy(monobitView);
     }
