@@ -101,7 +101,7 @@ PluginImporter:
         AddToEmbeddedBinaries: false
         CPU: AnyCPU
         CompileFlags: 
-        FrameworkDependencies: CoreTelephony;
+        FrameworkDependencies: CoreLocation;
   userData: 
   assetBundleName: 
   assetBundleVariant: 
