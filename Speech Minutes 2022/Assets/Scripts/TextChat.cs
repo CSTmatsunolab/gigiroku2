@@ -26,6 +26,8 @@ public class TextChat : MonobitEngine.MonoBehaviour
 
     // bool delay = false;
 
+    CanvasGroup chatred;
+    List<GameObject> chatlist = new List<GameObject>();
 
 
 
@@ -36,15 +38,14 @@ public class TextChat : MonobitEngine.MonoBehaviour
         textChatAlpha.alpha = 0;
         chatlistAlpha.alpha = 0;
         textChatAlpha.blocksRaycasts = false;
-        dt = DateTime.Now;
-
+        chatred = GameObject.Find("chatred").GetComponent<CanvasGroup>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //dt = DateTime.Now;
     }
     /*public void OnJoinedRoom()
     {
@@ -87,8 +88,16 @@ public class TextChat : MonobitEngine.MonoBehaviour
     public void TextChatrcv(string textcontent, string name)
     {
         GameObject text = Instantiate(textchatPrefab, content);
+        dt = DateTime.Now;
         text.transform.GetChild(0).gameObject.GetComponent<Text>().text = name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + textcontent;
         text.transform.GetChild(0).gameObject.GetComponent<Text>().text.Replace(" ", "\u00A0");
+        chatlist.Add(text);
+        text.GetComponent<TextCopy>().indexnum = chatlist.IndexOf(text);
+        text.GetComponent<TextCopy>().parentobj = this.gameObject;
+        if (textChatAlpha.alpha == 0)
+        {
+            chatred.alpha = 1;
+        }
         //text.GetComponent<Text>().text = name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + textcontent;
         //text.GetComponent<Text>().text.Replace(" ", "\u00A0");
     }
@@ -120,6 +129,18 @@ public class TextChat : MonobitEngine.MonoBehaviour
         chatlistAlpha.alpha = 0;
         chatlistAlpha.blocksRaycasts = false;
 
+    }
+
+    public void OnClickchaticon()
+    {
+        chatred.alpha = 0;
+    }
+
+
+    [MunRPC]
+    public void Delete(int indexnum)
+    {
+        Destroy(chatlist[indexnum]);
     }
 
 

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -24,6 +24,10 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
     public GameObject TextChatOrigin;
     DateTime dt;
 
+    CanvasGroup chatred;
+
+    List<GameObject> chatlist = new List<GameObject>();
+
     public Text chatname;
     private void Start()
     {
@@ -32,12 +36,12 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
         {
             if (player.ID == partnerID)
             {
-                chatname.text = player.name + "とのチャット";
+                chatname.text = player.name + "さんとのチャット";
             }
         }
         textChatAlpha.alpha = 0;
         textChatAlpha.blocksRaycasts = false;
-        dt = DateTime.Now;
+        chatred = GameObject.Find("chatred").GetComponent<CanvasGroup>();
     }
 
     public void OnClickSendBtn()
@@ -49,8 +53,12 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
             text.GetComponent<Text>().text = MonobitEngine.MonobitNetwork.player.name + " " + inputField.text;
             text.GetComponent<Text>().text.Replace(" ", "\u00A0");*/
             GameObject text = Instantiate(textchatPrefab, content);
+            dt = DateTime.Now;
             text.transform.GetChild(0).gameObject.GetComponent<Text>().text = MonobitEngine.MonobitNetwork.player.name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + inputField.text;
             text.transform.GetChild(0).gameObject.GetComponent<Text>().text.Replace(" ", "\u00A0");
+            chatlist.Add(text);
+            text.GetComponent<TextCopy>().indexnum = chatlist.IndexOf(text);
+            text.GetComponent<TextCopy>().parentobj = this.gameObject;
             monobitView.RPC("Personalrcv", MonobitEngine.MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.ID, partnerID, inputField.text, MonobitEngine.MonobitNetwork.player.name);
             inputField.text = "";
         }
@@ -66,8 +74,16 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
             RectTransform rect = obj.GetComponent<RectTransform>();
             //GameObject obj = GameObject.Find("chat" + partner.ToString());
             GameObject text = Instantiate(textchatPrefab, rect);
+            dt = DateTime.Now;
             text.transform.GetChild(0).gameObject.GetComponent<Text>().text = name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + textcontent;
             text.transform.GetChild(0).gameObject.GetComponent<Text>().text.Replace(" ", "\u00A0");
+            chatlist.Add(text);
+            text.GetComponent<TextCopy>().indexnum = chatlist.IndexOf(text);
+            text.GetComponent<TextCopy>().parentobj = this.gameObject;
+            if (textChatAlpha.alpha == 0)
+            {
+                chatred.alpha = 1;
+            }
             //text.GetComponent<Text>().text = name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + textcontent;
             //text.GetComponent<Text>().text.Replace(" ", "\u00A0");
         }
@@ -78,6 +94,17 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
     {
         textChatAlpha.alpha = 0;
         textChatAlpha.blocksRaycasts = false;
+    }
+
+    public void chatdelete(int indexnum)
+    {
+        monobitView.RPC("Delete2", MonobitEngine.MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.ID, partnerID, indexnum);
+
+    }
+    [MunRPC]
+    public void Delete2(int indexnum)
+    {
+        Destroy(chatlist[indexnum]);
     }
 
 }

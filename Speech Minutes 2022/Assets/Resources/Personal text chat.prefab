@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.34901962, g: 0.4901961, b: 0.77647066, a: 0.8039216}
+  m_Color: {r: 0.34901962, g: 0.4901961, b: 0.77647066, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -843,7 +843,7 @@ MonoBehaviour:
   firstrcv: 1
   partnerID: 0
   textChatAlpha: {fileID: 6144083070702858947}
-  textchatPrefab: {fileID: 4928619180259493618, guid: 740a9329ef2b3406fb158bca7fa0fe33,
+  textchatPrefab: {fileID: 6848311398838526954, guid: 3f52a5ba59e1e45c397284cf7fc6372d,
     type: 3}
   content: {fileID: 6537572759979371307}
   inputField: {fileID: 8286342483991617388}
