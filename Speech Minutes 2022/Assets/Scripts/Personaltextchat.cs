@@ -98,13 +98,16 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
 
     public void chatdelete(int indexnum)
     {
-        monobitView.RPC("Delete2", MonobitEngine.MonobitTargets.Others, MonobitEngine.MonobitNetwork.player.ID, partnerID, indexnum);
-
+        monobitView.RPC("Delete2", MonobitEngine.MonobitTargets.Others, partnerID, indexnum);
+        Destroy(chatlist[indexnum]);
     }
     [MunRPC]
-    public void Delete2(int indexnum)
+    public void Delete2(int myid, int indexnum)
     {
-        Destroy(chatlist[indexnum]);
+        if (myid == MonobitEngine.MonobitNetwork.player.ID)
+        {
+            Destroy(chatlist[indexnum]);
+        }
     }
 
 }
