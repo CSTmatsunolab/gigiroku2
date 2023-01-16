@@ -13,6 +13,7 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
     int dropdown2;
     public Text text2;
     int NowBottonPushed = -1;
+    public Text Text;
 
 
     //Dropdownを格納する変数
@@ -32,6 +33,7 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
     /// </summary>
     private void Update()
     {
+        Text.text = inputField.text;
         if (MonobitEngine.MonobitNetwork.isHost)
         {
             monobitView.RPC("wdikyouyuu", MonobitTargets.All,NowBottonPushed, text2.text,text[0].text,text[1].text,

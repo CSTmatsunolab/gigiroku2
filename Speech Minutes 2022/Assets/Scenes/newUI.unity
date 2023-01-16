@@ -308,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000005911738, y: -0.000053250627}
+  m_AnchoredPosition: {x: 0.00014349361, y: -0.000018220157}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &20385978
@@ -966,7 +966,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -375, y: -50}
+  m_AnchoredPosition: {x: -375, y: -49.99994}
   m_SizeDelta: {x: -850, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &92115312
@@ -4292,7 +4292,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5fe45998d2e4a48cb8435c0b3a258dbf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4412c46f153fe4e02b5a6c33b1a4e168, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6941,6 +6941,7 @@ MonoBehaviour:
   - {fileID: 295698439}
   - {fileID: 563109413}
   text2: {fileID: 562009144}
+  Text: {fileID: 1633471407}
   dropdown: {fileID: 1768247750}
 --- !u!114 &573485234
 MonoBehaviour:
@@ -8839,7 +8840,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -95.63918, y: -0.000030515483}
+  m_AnchoredPosition: {x: -95.63912, y: 0.00003421203}
   m_SizeDelta: {x: 184, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &693284897
@@ -9704,7 +9705,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: cc620c048c81f49688bf17f6425b131e, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 3
@@ -12535,7 +12536,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1266175368}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999996
+  m_Size: 0.99999976
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15529,7 +15530,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: cc620c048c81f49688bf17f6425b131e, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 0
@@ -20091,8 +20092,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 592196444}
   m_HandleRect: {fileID: 592196443}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21532,12 +21533,12 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: cc620c048c81f49688bf17f6425b131e, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
-    m_RichText: 0
+    m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
@@ -23063,6 +23064,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   text2: {fileID: 0}
+  Text: {fileID: 0}
   dropdown: {fileID: 1768247750}
 --- !u!114 &1768247750
 MonoBehaviour:
