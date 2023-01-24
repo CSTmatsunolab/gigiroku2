@@ -21,7 +21,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     MainSecneMUNScript script;
     private Sprite sprite;
     LineUpIcon lineupiconscript;
-    public List<int> IconStateList = new List<int> { 0,0,0,0,0,0,0,0,0,0 };
+    public List<int> IconStateList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     int width = 80;
     int height = 60;
@@ -49,17 +49,18 @@ public class IconCreate : MonobitEngine.MonoBehaviour
                 rawImage.GetComponent<RawImage>().texture = texture;
                 break;
             }
+
             yield return null;
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        WebCamDevice[] devices = WebCamTexture.devices;
-        webcamTexture = new WebCamTexture(devices[0].name, 80, 60, this.fps);
-        webcamTexture.Play();
-        StartCoroutine(Init());
-        Panel.SetActive(false);
+        //WebCamDevice[] devices = WebCamTexture.devices;
+        //webcamTexture = new WebCamTexture(devices[0].name, 80, 60, this.fps);
+        //webcamTexture.Play();
+        //StartCoroutine(Init());
+        //Panel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -95,7 +96,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
         UserID = script.Iconid;
         //ユーザーアイコンのテクスチャは9通り
-        switch (UserID%9)
+        switch (UserID % 9)
         {
             case 0:
                 IconImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/Icon0");
@@ -193,11 +194,11 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         monobitView.RPC("CameraOffSync", MonobitTargets.OthersBuffered);
     }
     //カメラ画像をテクスチャにセット
-    public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a,int id)
+    public void Video(int x, int y, Byte r, Byte g, Byte b, Byte a, int id)
     {
         try
         {
-            if(UserID == id)
+            if (UserID == id)
             {
                 Color32 ccc = new Color32(r, g, b, 255);
                 color[x / 8 + y / 8 * width] = ccc;
@@ -213,7 +214,7 @@ public class IconCreate : MonobitEngine.MonoBehaviour
         {
         }
         //変更内容を他のユーザーに共有
-        monobitView.RPC("VideoSync", MonobitTargets.OthersBuffered, x, y, r, g, b, a,id);
+        monobitView.RPC("VideoSync", MonobitTargets.OthersBuffered, x, y, r, g, b, a, id);
 
     }
     /// <summary>
@@ -404,9 +405,9 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     /// </summary>
     [MunRPC]
     //カメラ画像をテクスチャにセット
-    public void VideoSync(int x, int y, Byte r, Byte g, Byte b, Byte a,int id)
+    public void VideoSync(int x, int y, Byte r, Byte g, Byte b, Byte a, int id)
     {
-        if(UserID == id)
+        if (UserID == id)
         {
             try
             {
