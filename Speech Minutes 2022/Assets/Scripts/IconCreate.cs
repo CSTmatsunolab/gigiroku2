@@ -56,11 +56,11 @@ public class IconCreate : MonobitEngine.MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //WebCamDevice[] devices = WebCamTexture.devices;
-        //webcamTexture = new WebCamTexture(devices[0].name, 80, 60, this.fps);
-        //webcamTexture.Play();
-        //StartCoroutine(Init());
-        //Panel.SetActive(false);
+        WebCamDevice[] devices = WebCamTexture.devices;
+        webcamTexture = new WebCamTexture(devices[0].name, 80, 60, this.fps);
+        webcamTexture.Play();
+        StartCoroutine(Init());
+        Panel.SetActive(false);
     }
 
     // Update is called once per frame
