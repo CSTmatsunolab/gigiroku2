@@ -311,6 +311,11 @@ public class freehand : MonobitEngine.MonoBehaviour
     }
     public void figureclearbtn()
     {
+        monobitView.RPC("figurelistclear", MonobitTargets.All);
+    }
+    [MunRPC]
+    public void figurelistclear()
+    {
         if (figurelist.Count != 0)
         {
             for (int i = figurelist.Count - 1; i >= 0; i--)
@@ -318,13 +323,8 @@ public class freehand : MonobitEngine.MonoBehaviour
                 GameObject obj = figurelist[i];
                 MonobitNetwork.Destroy(obj);
             }
-            monobitView.RPC("figurelistclear", MonobitTargets.All);
+            figurelist.Clear();
         }
         else { return; }
-    }
-    [MunRPC]
-    public void figurelistclear()
-    {
-        figurelist.Clear();
     }
 }
