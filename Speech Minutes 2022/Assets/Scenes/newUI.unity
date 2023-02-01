@@ -308,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000022781447, y: -0.00008065365}
+  m_AnchoredPosition: {x: -0.000028256343, y: -0.000070381}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &20385978
@@ -19373,6 +19373,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: "\u6D88\u3057\u30B4\u30E0"
       m_Image: {fileID: 0}
+    - m_Text: "\u30AA\u30EC\u30F3\u30B8"
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -28734,7 +28736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.34901962, g: 0.4901961, b: 0.77647066, a: 1}
+  m_Color: {r: 1, g: 0.69236135, b: 0.15686274, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -30220,7 +30222,7 @@ MonoBehaviour:
   content: {fileID: 5879032212067477115}
   content2: {fileID: 693284896}
   inputField: {fileID: 8778531597944558140}
-  newcount: {fileID: 0}
+  newcount: {fileID: 117452442}
   count: 0
 --- !u!225 &6802881216643563411
 CanvasGroup:
