@@ -10,6 +10,10 @@ public class Loading : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (Application.streamingAssetsPath.Contains("/private/var/folders/"))
+        {
+            SceneManager.LoadScene("CheckAplication");
+        }
         WebCamDevice[] devices = WebCamTexture.devices;
         webcamTexture = new WebCamTexture(devices[0].name, 640, 480, 30);
         StartCoroutine(LoadScene());
