@@ -38,6 +38,7 @@ public class freehand : MonobitEngine.MonoBehaviour
     public Dropdown widthdropdown;
 
     public string colorname;
+    List<GameObject> figurelist = new List<GameObject>();
 
     void Awake()
     {
@@ -58,21 +59,25 @@ public class freehand : MonobitEngine.MonoBehaviour
                     {
                         GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("ZukeiCanvas", Vector3.zero, Quaternion.identity, 0);
                         Debug.Log("複製完了");
+                        figurelist.Add(prefab);
                     }
                     if (Input.GetKeyDown("c"))
                     {
                         GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("CircleCanvas", Vector3.zero, Quaternion.identity, 0);
                         Debug.Log("複製完了");
+                        figurelist.Add(prefab);
                     }
                     if (Input.GetKeyDown("t"))
                     {
                         GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("TriangleCanvas", Vector3.zero, Quaternion.identity, 0);
                         Debug.Log("複製完了");
+                        figurelist.Add(prefab);
                     }
                     if (Input.GetKeyDown("e"))
                     {
                         GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("Star", Vector3.zero, Quaternion.identity, 0);
                         Debug.Log("複製完了");
+                        figurelist.Add(prefab);
                     }
 
                     if (Input.GetMouseButtonDown(1))
@@ -303,5 +308,23 @@ public class freehand : MonobitEngine.MonoBehaviour
             lineRendererList.Remove(lastLineRenderer);
         }
 
+    }
+    public void figureclearbtn()
+    {
+        if (figurelist.Count != 0)
+        {
+            for (int i = figurelist.Count - 1; i >= 0; i--)
+            {
+                GameObject obj = figurelist[i];
+                MonobitNetwork.Destroy(obj);
+            }
+            monobitView.RPC("figurelistclear", MonobitTargets.All);
+        }
+        else { return; }
+    }
+    [MunRPC]
+    public void figurelistclear()
+    {
+        figurelist.Clear();
     }
 }
