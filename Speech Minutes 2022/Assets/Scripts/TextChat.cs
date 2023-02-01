@@ -20,6 +20,10 @@ public class TextChat : MonobitEngine.MonoBehaviour
 
     public InputField inputField;
 
+    public Text newcount;
+
+    public int count;
+
 
     DateTime dt;
     //public Text text;
@@ -45,7 +49,14 @@ public class TextChat : MonobitEngine.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //dt = DateTime.Now;
+        if (inputField.isFocused)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                OnClickSendBtn();
+            }
+            //dt = DateTime.Now;
+        }
     }
     /*public void OnJoinedRoom()
     {
@@ -76,11 +87,14 @@ public class TextChat : MonobitEngine.MonoBehaviour
         // ルームに入室している場合
         if (MonobitNetwork.inRoom)
         {
-            /*GameObject text = Instantiate(textchatPrefab, content);
-            text.GetComponent<Text>().text = MonobitEngine.MonobitNetwork.player.name + " " + inputField.text;
-            text.GetComponent<Text>().text.Replace(" ", "\u00A0");*/
-            monobitView.RPC("TextChatrcv", MonobitTargets.AllBuffered, inputField.text, MonobitEngine.MonobitNetwork.player.name);
-            inputField.text = "";
+            if (Input.GetKey(KeyCode.Return))
+            {
+                /*GameObject text = Instantiate(textchatPrefab, content);
+                text.GetComponent<Text>().text = MonobitEngine.MonobitNetwork.player.name + " " + inputField.text;
+                text.GetComponent<Text>().text.Replace(" ", "\u00A0");*/
+                monobitView.RPC("TextChatrcv", MonobitTargets.AllBuffered, inputField.text, MonobitEngine.MonobitNetwork.player.name);
+                inputField.text = "";
+            }
         }
         else { return; }
     }
@@ -96,6 +110,8 @@ public class TextChat : MonobitEngine.MonoBehaviour
         text.GetComponent<TextCopy>().parentobj = this.gameObject;
         if (textChatAlpha.alpha == 0)
         {
+            count++;
+            newcount.text = count.ToString();
             chatred.alpha = 1;
         }
         //text.GetComponent<Text>().text = name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + textcontent;
@@ -133,6 +149,8 @@ public class TextChat : MonobitEngine.MonoBehaviour
 
     public void OnClickchaticon()
     {
+        newcount.text = "";
+        count = 0;
         chatred.alpha = 0;
     }
 

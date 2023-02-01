@@ -54,20 +54,25 @@ public class freehand : MonobitEngine.MonoBehaviour
                 if (penmode)
                 {
 
-                    if(Input.GetKeyDown("s"))
+                    if (Input.GetKeyDown("s"))
                     {
-				        GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("ZukeiCanvas", Vector3.zero, Quaternion.identity, 0);
-            	        Debug.Log("複製完了");
-			        }
-			        if(Input.GetKeyDown("c"))
+                        GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("ZukeiCanvas", Vector3.zero, Quaternion.identity, 0);
+                        Debug.Log("複製完了");
+                    }
+                    if (Input.GetKeyDown("c"))
                     {
-				        GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("CircleCanvas", Vector3.zero, Quaternion.identity, 0);
-            	        Debug.Log("複製完了");
-			        }
-			        if(Input.GetKeyDown("t"))
+                        GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("CircleCanvas", Vector3.zero, Quaternion.identity, 0);
+                        Debug.Log("複製完了");
+                    }
+                    if (Input.GetKeyDown("t"))
                     {
-				        GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("TriangleCanvas", Vector3.zero, Quaternion.identity, 0);
-            	        Debug.Log("複製完了");
+                        GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("TriangleCanvas", Vector3.zero, Quaternion.identity, 0);
+                        Debug.Log("複製完了");
+                    }
+                    if (Input.GetKeyDown("e"))
+                    {
+                        GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("Star", Vector3.zero, Quaternion.identity, 0);
+                        Debug.Log("複製完了");
                     }
 
                     if (Input.GetMouseButtonDown(1))
@@ -184,6 +189,11 @@ public class freehand : MonobitEngine.MonoBehaviour
         {
             pencolor = Color.white;
             colorname = "white";
+        }
+        if (colordropdown.value == 7)
+        {
+            pencolor = new Color(255f / 255f, 165f / 255f, 0f / 255f);
+            colorname = "orange";
         }
     }
 

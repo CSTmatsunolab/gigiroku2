@@ -28,10 +28,13 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
 
     List<GameObject> chatlist = new List<GameObject>();
 
+    TextChat textChat;
+
     public Text chatname;
     private void Start()
     {
         TextChatOrigin = GameObject.Find("TextChat");
+        textChat = TextChatOrigin.GetComponent<TextChat>();
         foreach (MonobitPlayer player in MonobitNetwork.playerList)
         {
             if (player.ID == partnerID)
@@ -42,6 +45,17 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
         textChatAlpha.alpha = 0;
         textChatAlpha.blocksRaycasts = false;
         chatred = GameObject.Find("chatred").GetComponent<CanvasGroup>();
+    }
+    void Update()
+    {
+        if (inputField.isFocused)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                OnClickSendBtn();
+            }
+            //dt = DateTime.Now;
+        }
     }
 
     public void OnClickSendBtn()
@@ -82,6 +96,8 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
             text.GetComponent<TextCopy>().parentobj = this.gameObject;
             if (textChatAlpha.alpha == 0)
             {
+                textChat.count++;
+                textChat.newcount.text = textChat.count.ToString();
                 chatred.alpha = 1;
             }
             //text.GetComponent<Text>().text = name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + textcontent;

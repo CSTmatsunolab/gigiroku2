@@ -175,5 +175,12 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
             //Material mat = Resources.Load<Material>("textures/forWhiteBoardwhite");
             //lineRenderer.material = new Material(mat); // コピーを使う。
         }
+        if (a == "orange")
+        {
+            this.lineRenderer.material.color = new Color(255f / 255f, 165f / 255f, 0f / 255f);
+            //lineRenderer.material = new Material(Shader.Find("Resources/textures/forWhiteBoard"));
+            //Material mat = Resources.Load<Material>("textures/forWhiteBoardwhite");
+            //lineRenderer.material = new Material(mat); // コピーを使う。
+        }
     }
 }
