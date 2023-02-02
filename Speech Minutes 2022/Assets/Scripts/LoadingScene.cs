@@ -17,9 +17,12 @@ public class LoadingScene : MonoBehaviour
     //エラー番号の管理
     public static int ErrorNumber=0;
 
+    public GameObject BackGround;
+
     // Start is called before the first frame update
     void Start()
     {
+        BackgroundColor();
         //使用するパス(Application.streamingAssetsPath)が変だったら
         if (Application.streamingAssetsPath.Contains("/private/var/folders/"))
         {
@@ -35,6 +38,31 @@ public class LoadingScene : MonoBehaviour
         webcamTexture = new WebCamTexture(devices[0].name, 640, 480, 30);
         //LoadingSceneの設定
         StartCoroutine(LoadScene());
+    }
+
+    void BackgroundColor()
+    {
+        int rondomcolor = Random.Range(1, 6);
+        if (rondomcolor == 1)
+        {
+            BackGround.GetComponent<Image>().color = new Color32(174, 162, 229, 255);  
+        }
+        else if(rondomcolor == 2)
+        {
+            BackGround.GetComponent<Image>().color = new Color32(229, 220, 162, 255);
+        }
+        else if (rondomcolor == 3)
+        {
+            BackGround.GetComponent<Image>().color = new Color32(175, 229, 162, 255);
+        }
+        else if (rondomcolor == 4)
+        {
+            BackGround.GetComponent<Image>().color = new Color32(162, 210, 229, 255);
+        }
+        else
+        {
+            BackGround.GetComponent<Image>().color = new Color32(229, 164, 162, 255);
+        }
     }
 
     // Update is called once per frame
