@@ -35,7 +35,24 @@ public class CursorChange : MonobitEngine.MonoBehaviour
     }
     public void Update()
     {
-        //Debug.Log(pointerjudge);
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Debug.Log(pointerjudge);
+            pointerjudge = 0;
+            if (Alwaysbtn.interactable == false)
+            {
+                MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
+                Debug.Log("CursorPointer複製");
+
+            }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (Alwaysbtn.interactable == false)
+            {
+                pointerjudge = 1;
+            }
+        }
     }
     public void OnclickPointerButton_Always()
     {
@@ -72,7 +89,7 @@ public class CursorChange : MonobitEngine.MonoBehaviour
         }
     }
 
-    public void OnPD()
+    /*public void OnPD()
     {
         Debug.Log("生きてる");
         pointerjudge = 0;
@@ -92,7 +109,7 @@ public class CursorChange : MonobitEngine.MonoBehaviour
             pointerjudge = 1;
         }
 
-    }
+    }*/
 
 
     public void OnPointerEnter()
