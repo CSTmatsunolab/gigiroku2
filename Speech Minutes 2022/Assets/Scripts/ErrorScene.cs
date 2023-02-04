@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class ErrorScene : MonoBehaviour
 {
-    //エラー1の説明画像
+    //エラー0の説明画像
     public GameObject Error0Image;
+    //エラー1の説明画像
     public GameObject Error1Image;
 
     // Start is called before the first frame update
@@ -18,16 +19,16 @@ public class ErrorScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //エラー番号1
-        if (LoadingScene.ErrorNumber == 1)
+        //エラー番号0
+        if (LoadingScene.ErrorNumber == 0)
+        {
+            //エラー0の説明画像の表示
+            Error0Image.SetActive(true);
+        }
+        else if(LoadingScene.ErrorNumber == 1)
         {
             //エラー1の説明画像の表示
             Error1Image.SetActive(true);
-        }
-        else
-        {
-            //エラー1の説明画像の表示
-            Error0Image.SetActive(true);
         }
     }
 }
