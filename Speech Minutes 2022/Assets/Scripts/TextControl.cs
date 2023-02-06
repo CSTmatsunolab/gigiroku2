@@ -273,4 +273,9 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         HideButton.SetActive(true);
         VisibleButton.SetActive(false);
     }
+
+    public void ReqAut(){
+        monobitView.RequestOwnership();
+        Debug.Log("Fusen 権限譲渡");
+    }
 }

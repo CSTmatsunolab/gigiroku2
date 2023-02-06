@@ -46,6 +46,7 @@ public class ChangeHost : MonobitEngine.MonoBehaviour
                 if (MonobitEngine.MonobitNetwork.isHost && MonobitEngine.MonobitNetwork.otherPlayersList.Length > 0)
                 {
                     MonobitEngine.MonobitNetwork.ChangeHost(MonobitEngine.MonobitNetwork.otherPlayersList[i]);
+                    //退出時、他プレイヤーにホスト渡し
                     Debug.Log("HereIsHostAuthority");
                 }
             }

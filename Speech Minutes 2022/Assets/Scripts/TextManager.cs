@@ -37,7 +37,7 @@ public class TextManager : MonobitEngine.MonoBehaviour
             //テキストがあればプレハブからオブジェクト生成
             //FusenPanel.gameObject.SetActive(true);
             //GameObject prefab = (GameObject)Instantiate(FusenPanel);
-            GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("FusenCanvas", Vector3.zero, Quaternion.identity, 0);
+            GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("FusenCanvas", Vector3.zero, Quaternion.identity, 0,null,false,true,true);
             Debug.Log("複製完了");
             //prefab.transform.SetParent(canvas.transform, false);
             Text prefabtext = prefab.GetComponentInChildren<Text>();
