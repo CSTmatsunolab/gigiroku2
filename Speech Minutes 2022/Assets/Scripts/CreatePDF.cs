@@ -210,7 +210,7 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
         }
     }
 
-    public void csvflie()
+    public void csvfile()
     {
         //現在の日付を取得
         DateTime dt = DateTime.Now;
@@ -279,6 +279,8 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
         }
         doc.Add(new Paragraph(attendance, fnt3));
 
+        //参加人数のカウント
+        doc.Add(new Paragraph("3.5. 参加人数", fnt2));
 
         //音声認識の議事録を作成
         doc.Add(new Paragraph("4.議事録", fnt2));
