@@ -19,6 +19,9 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     [SerializeField]
     private GameObject UserIcon;
     [SerializeField]
+
+    private GameObject FusenPanel;
+    [SerializeField]
     GameObject canvas;
     [SerializeField]
     public Dropdown usernamedropdown;
@@ -56,6 +59,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public int muteid;
     public int notmuteid;
     IconCreate script;
+
+    TextControl script2;
     LineUpIcon lineupiconscript;
     int playercount = 0;
     public bool cameraswitch = false;
@@ -107,6 +112,9 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
                 RoomNameText.text = "roomName:" + s3;
                 PlayerList.text = "PlayerList : ";
                 //Debug.Log("PlayerList:");
+
+                
+
                 foreach (MonobitPlayer player in MonobitNetwork.playerList)
                 {
                     PlayerList.text = PlayerList.text + player.name + " ";
@@ -212,6 +220,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     // 誰かがルームにログインしたときの処理
     public void OnOtherPlayerConnected(MonobitPlayer newPlayer)
     {
+        PosChange();//入ってきたら移動する
         //rawImage1.GetComponent<WebCamController>().StandBy();
         if (!vcPlayerInfo.ContainsKey(newPlayer))
         {
@@ -538,5 +547,10 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
         script = GameObject.Find("UserIcon").GetComponent<IconCreate>();
         script.NotMuteSituation();
         notmuteid = 0;
+    }
+
+    public void PosChange(){
+        script2 = GameObject.Find("FusenPanel").GetComponent<TextControl>();
+        script2.PosFusenChange();
     }
 }

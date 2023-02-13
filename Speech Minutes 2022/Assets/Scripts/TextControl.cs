@@ -23,7 +23,10 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     public GameObject VisibleButton;
     public GameObject DeleteButton;
     private int touchCount = 0;
-    
+    MainSecneMUNScript script;
+
+    //public FusenPanel fusenPanel;
+
 
     void Start()
     {
@@ -278,4 +281,20 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         monobitView.RequestOwnership();
         Debug.Log("Fusen 権限譲渡");
     }
+
+    public void PosFusenChange(){
+        //script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
+
+        //script2 = fusenPanel.GetComponent<FusenPanel>();
+        transform.localPosition = new Vector3(-550, -100, 0);//現在は固定座標
+    }
+
+    //  public void NotMuteSituation()
+    // {
+        
+    //     NotMuteID = script.notmuteid;
+    //     MuteImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("textures/muteoff");
+    //     //変更内容を他のユーザーに共有
+    //     monobitView.RPC("NotMuteIconSync", MonobitTargets.OthersBuffered, NotMuteID);
+    // }
 }
