@@ -218,6 +218,8 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
                     //LogData1.txtのファイルパスを選択
                     LogDataFilePath = @"/LogDatas/LogData1.txt";
 
+                    a = number;
+
                     //swich文を抜ける
                     break;
 
@@ -232,6 +234,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
                     }
                     NowBottonPushed = 2;
                     LogDataFilePath = @"/LogDatas/LogData2.txt";
+                    a = number;
                     break;
 
                 //話題3が選択された
@@ -245,6 +248,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
                     }
                     NowBottonPushed = 3;
                     LogDataFilePath = @"/LogDatas/LogData3.txt";
+                    a = number;
                     break;
 
                 //話題4が選択された
@@ -258,6 +262,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
                     }
                     NowBottonPushed = 4;
                     LogDataFilePath = @"/LogDatas/LogData4.txt";
+                    a = number;
                     break;
 
                 //話題5が選択された
@@ -271,6 +276,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
                     }
                     NowBottonPushed = 5;
                     LogDataFilePath = @"/LogDatas/LogData5.txt";
+                    a = number;
                     break;
 
                 //話題6が選択された
@@ -284,6 +290,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
                     }
                     NowBottonPushed = 6;
                     LogDataFilePath = @"/LogDatas/LogData6.txt";
+                    a = number;
                     break;
 
                 //話題7が選択された
@@ -297,6 +304,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
                     }
                     NowBottonPushed = 7;
                     LogDataFilePath = @"/LogDatas/LogData7.txt";
+                    a = number;
                     break;
 
                 //話題8が選択された
@@ -310,9 +318,10 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
                     }
                     NowBottonPushed = 8;
                     LogDataFilePath = @"/LogDatas/LogData8.txt";
+                    a = number;
                     break;
+                    
             }
-            a = number;
             Debug.Log(NowBottonPushed);
             // メインスレッドに処理を戻す
             MainThread.Post(_ => NowRPC(), null);
