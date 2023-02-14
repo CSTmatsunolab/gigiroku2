@@ -27,7 +27,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     private SynchronizationContext MainThread;
 
     //話題ボタンの管理
-    int NowBottonPushed = -1;
+    public static int NowBottonPushed = -1;
 
     //スクロールの格納
     public ScrollRect[] ScrollRect;
@@ -36,14 +36,19 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     MonobitMicrophone Mc = null;
 
     //ログデータの格納
-    string LogDataFilePath= @"/LogDatas/LogData.txt";
+    public static string LogDataFilePath= @"/LogDatas/LogData.txt";
 
     //マイクの格納
     GameObject go;
 
+    int a = 0;
+
+    Hashtable Host;
+
     // Start is called before the first frame update
     void Start()
     {
+
         // サービスアカウントの鍵ファイルパス
         string secretPath = Application.streamingAssetsPath + @"/GoogleAPI/secretkey.json";
 
@@ -52,6 +57,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
 
         //現在のスレッドを取得
         MainThread = SynchronizationContext.Current;
+  
     }
 
     //RecStartButtonが押された時の処理
@@ -178,6 +184,12 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ホストだったら
+        if (!MonobitEngine.MonobitNetwork.isHost)
+        {
+            return;
+        }
+        
         //RPCメッセージを送信
         monobitView.RPC("NowBotton", MonobitTargets.All, LogDataFilePath, NowBottonPushed);
     }
@@ -188,11 +200,18 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
         //ホストだったら
         if (MonobitEngine.MonobitNetwork.isHost)
         {
+            
             switch (number)
             {
                 //話題1が選択された
                 case 1:
-
+                    if (a == number)
+                    {
+                        NowBottonPushed = -1;
+                        LogDataFilePath = @"/LogDatas/LogData.txt";
+                        a = 0;
+                        break;
+                    }
                     //現在選択されているのは話題1
                     NowBottonPushed = 1;
 
@@ -204,46 +223,97 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
 
                 //話題2が選択された
                 case 2:
+                    if (a == number)
+                    {
+                        NowBottonPushed = -1;
+                        LogDataFilePath = @"/LogDatas/LogData.txt";
+                        a = 0;
+                        break;
+                    }
                     NowBottonPushed = 2;
                     LogDataFilePath = @"/LogDatas/LogData2.txt";
                     break;
 
                 //話題3が選択された
                 case 3:
+                    if (a == number)
+                    {
+                        NowBottonPushed = -1;
+                        LogDataFilePath = @"/LogDatas/LogData.txt";
+                        a = 0;
+                        break;
+                    }
                     NowBottonPushed = 3;
                     LogDataFilePath = @"/LogDatas/LogData3.txt";
                     break;
 
                 //話題4が選択された
                 case 4:
+                    if (a == number)
+                    {
+                        NowBottonPushed = -1;
+                        LogDataFilePath = @"/LogDatas/LogData.txt";
+                        a = 0;
+                        break;
+                    }
                     NowBottonPushed = 4;
                     LogDataFilePath = @"/LogDatas/LogData4.txt";
                     break;
 
                 //話題5が選択された
                 case 5:
+                    if (a == number)
+                    {
+                        NowBottonPushed = -1;
+                        LogDataFilePath = @"/LogDatas/LogData.txt";
+                        a = 0;
+                        break;
+                    }
                     NowBottonPushed = 5;
                     LogDataFilePath = @"/LogDatas/LogData5.txt";
                     break;
 
                 //話題6が選択された
                 case 6:
+                    if (a == number)
+                    {
+                        NowBottonPushed = -1;
+                        LogDataFilePath = @"/LogDatas/LogData.txt";
+                        a = 0;
+                        break;
+                    }
                     NowBottonPushed = 6;
                     LogDataFilePath = @"/LogDatas/LogData6.txt";
                     break;
 
                 //話題7が選択された
                 case 7:
+                    if (a == number)
+                    {
+                        NowBottonPushed = -1;
+                        LogDataFilePath = @"/LogDatas/LogData.txt";
+                        a = 0;
+                        break;
+                    }
                     NowBottonPushed = 7;
                     LogDataFilePath = @"/LogDatas/LogData7.txt";
                     break;
 
                 //話題8が選択された
                 case 8:
+                    if (a == number)
+                    {
+                        NowBottonPushed = -1;
+                        LogDataFilePath = @"/LogDatas/LogData.txt";
+                        a = 0;
+                        break;
+                    }
                     NowBottonPushed = 8;
                     LogDataFilePath = @"/LogDatas/LogData8.txt";
                     break;
             }
+            a = number;
+            Debug.Log(NowBottonPushed);
             // メインスレッドに処理を戻す
             MainThread.Post(_ => NowRPC(), null);
         }
