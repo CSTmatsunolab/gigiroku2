@@ -43,7 +43,9 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
 
     int a = 0;
 
-    Hashtable Host;
+    public Text wadaitittle;
+
+    public GameObject[] Button;
 
     // Start is called before the first frame update
     void Start()
@@ -341,5 +343,44 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     {
         NowBottonPushed = Botton;
         LogDataFilePath = Path;
+        switch (NowBottonPushed)
+        {
+            case 1:
+                wadaitittle.text = "現在の話題：" + Button[NowBottonPushed].GetComponentInChildren<Text>().text;
+                wadaitittle.color = new Color32(189, 193, 74, 255);
+                break;
+            case 2:
+                wadaitittle.text = "現在の話題：" + Button[NowBottonPushed].GetComponentInChildren<Text>().text;
+                wadaitittle.color = new Color32(195, 160, 65, 255);
+                break;
+            case 3:
+                wadaitittle.text = "現在の話題：" + Button[NowBottonPushed].GetComponentInChildren<Text>().text;
+                wadaitittle.color = new Color32(207, 89, 81, 255);
+                break;
+            case 4:
+                wadaitittle.text = "現在の話題：" + Button[NowBottonPushed].GetComponentInChildren<Text>().text;
+                wadaitittle.color = new Color32(207, 75, 200, 255);
+                break;
+            case 5:
+                wadaitittle.text = "現在の話題：" + Button[NowBottonPushed].GetComponentInChildren<Text>().text;
+                wadaitittle.color = new Color32(144, 82, 204, 255);
+                break;
+            case 6:
+                wadaitittle.text = "現在の話題：" + Button[NowBottonPushed].GetComponentInChildren<Text>().text;
+                wadaitittle.color = new Color32(74, 87, 202, 255);
+                break;
+            case 7:
+                wadaitittle.text = "現在の話題：" + Button[NowBottonPushed].GetComponentInChildren<Text>().text;
+                wadaitittle.color = new Color32(63, 197, 212, 255);
+                break;
+            case 8:
+                wadaitittle.text = "現在の話題：" + Button[NowBottonPushed].GetComponentInChildren<Text>().text;
+                wadaitittle.color = new Color32(62, 207, 69, 255);
+                break;
+            default:
+                wadaitittle.text = "話題未選択";
+                wadaitittle.color = new Color32(0, 0, 0, 255);
+                break;
+        }
     }
 }

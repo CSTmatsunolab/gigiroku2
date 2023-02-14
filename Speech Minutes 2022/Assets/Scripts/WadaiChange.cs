@@ -38,6 +38,7 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
         {
             monobitView.RPC("wdikyouyuu", MonobitTargets.All,NowBottonPushed, text2.text,text[0].text,text[1].text,
             text[2].text,text[3].text,text[4].text,text[5].text,text[6].text,text[7].text);
+
         }
         if(dropdown.value != dropdown2)
         {
@@ -257,8 +258,4 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
             }
         }
     }
-    
-
-
-
 }
