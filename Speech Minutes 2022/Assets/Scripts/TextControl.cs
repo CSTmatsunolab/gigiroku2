@@ -30,12 +30,14 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     
     //public FusenPanel fusenPanel;
 
-
+    public int number;    
 
     void Start()
     {
         //script3 = GameObject.Find("TextManager").GetComponent<TextManager>;
-       
+       number++;
+       prefab.name = "FusenPanel" + number.ToString();//prefab側で変えてしまおう
+
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         // Textコンポーネントを取得
