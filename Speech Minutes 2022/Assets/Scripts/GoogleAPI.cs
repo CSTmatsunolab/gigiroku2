@@ -47,6 +47,8 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
 
     public GameObject[] Button;
 
+    public GameObject WadaiElementsPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -186,12 +188,14 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ホストだったら
+        //ホストではなかったら
         if (!MonobitEngine.MonobitNetwork.isHost)
         {
+            WadaiElementsPanel.SetActive(false);
             return;
         }
-        
+        WadaiElementsPanel.SetActive(true);
+
         //RPCメッセージを送信
         monobitView.RPC("NowBotton", MonobitTargets.All, LogDataFilePath, NowBottonPushed);
     }

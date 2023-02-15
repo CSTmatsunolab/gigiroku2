@@ -220,7 +220,7 @@ public class WadaiChange : MonobitEngine.MonoBehaviour
     {
         text[va].text = tx;
         WadaiThemaText[va].text = tx;
-        GameObject.Find("wadaiInputField").GetComponent<InputField>().text = "";
+        //GameObject.Find("wadaiInputField").GetComponent<InputField>().text = "";
         if (NowBottonPushed == va)
         {
             text2.text = "現在の話題："+tx;
