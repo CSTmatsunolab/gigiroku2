@@ -78,7 +78,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 110, y: -220}
+  m_AnchoredPosition: {x: 190, y: -380}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!223 &8241280323035342599
@@ -221,6 +221,7 @@ MonoBehaviour:
   dropdown: {fileID: 0}
   VisibleButton: {fileID: 0}
   DeleteButton: {fileID: 0}
+  TextManeger: {fileID: 0}
   m_rectTransform: {fileID: 5373487601934570699}
 --- !u!1001 &4729464509682276454
 PrefabInstance:

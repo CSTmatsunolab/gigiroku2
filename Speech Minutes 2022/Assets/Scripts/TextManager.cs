@@ -13,6 +13,8 @@ public class TextManager : MonobitEngine.MonoBehaviour
     public Text display;
     public GameObject canvas;//キャンバス
 
+    public int number;
+
     void Start()
     {
         //Componentを扱えるようにする
@@ -33,12 +35,20 @@ public class TextManager : MonobitEngine.MonoBehaviour
     //テキストボックスへの入力が終わった時に呼び出すメソッド
     public void EndEdit()
     { 
+
+            
         if (GameObject.Find("TextBox").GetComponent<InputField>().text != "") {
             //テキストがあればプレハブからオブジェクト生成
             //FusenPanel.gameObject.SetActive(true);
             //GameObject prefab = (GameObject)Instantiate(FusenPanel);
+            
+            number++;
+
             GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("FusenCanvas", Vector3.zero, Quaternion.identity, 0,null,false,true,true);
             Debug.Log("複製完了");
+            
+            prefab.name = "FusenPanel" + number.ToString();
+            
             //prefab.transform.SetParent(canvas.transform, false);
             Text prefabtext = prefab.GetComponentInChildren<Text>();
             prefabtext.text = display.text;
@@ -63,4 +73,8 @@ public class TextManager : MonobitEngine.MonoBehaviour
         //インプットフィールドの中身を消す
         GameObject.Find("TextBox").GetComponent<InputField>().text = "";
     }
+
+    // public void NumberSend(int number){
+    //    return number;
+    // }
 }

@@ -22,14 +22,20 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     public GameObject dropdown;
     public GameObject VisibleButton;
     public GameObject DeleteButton;
+
+    public GameObject TextManeger;
     private int touchCount = 0;
     MainSecneMUNScript script;
-
+    TextManager script3;
+    
     //public FusenPanel fusenPanel;
+
 
 
     void Start()
     {
+        //script3 = GameObject.Find("TextManager").GetComponent<TextManager>;
+       
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         // Textコンポーネントを取得
@@ -80,6 +86,8 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     /// </summary>
     void Update()
     {
+        //int number = script3.number;
+        
         /* if (GameObject.Find("TextBox").GetComponent<InputField>().text != "")
          {
              Selectflag == false;
@@ -284,9 +292,49 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
 
     public void PosFusenChange(){
         //script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
-
         //script2 = fusenPanel.GetComponent<FusenPanel>();
-        transform.localPosition = new Vector3(-550, -100, 0);//現在は固定座標
+
+        //numberを持ってくる
+        Debug.Log("PosFusenChange");
+        // script3 = GameObject.Find("Send").GetComponent<TextManager>();//ここが無理っぽい
+        // Debug.Log(script3.number);
+        // script3 = GameObject.Find("Send").GetComponent<TextManager>();
+        // Debug.Log(script3.number);
+        // script3 = GameObject.Find("TextBox").GetComponent<TextManager>();
+        // Debug.Log(script3.number);
+        // script3 = GameObject.Find("TextManeger").GetComponent<TextManager>();
+        // Debug.Log(script3.number);
+
+        //座標取得回し
+        //foreach(int number){
+            //if(削除されていなければ){
+                //対象を指定し、
+            //}
+
+            //座標を持ってくる
+            Vector3 tmp = GameObject.Find("FusenPanel1").transform.position;//名前は変数に変更できる？
+            
+        //}
+
+        //座標を渡す
+        //foreach(){
+
+            //参考
+            // 値を変えてみる
+            // Vector3 pos = gameObject.transform.position;
+            // pos.x += 0.1f;
+            // gameObject.transform.position = pos;// transform.positionにセットし直す
+
+            tmp.x += 0.1f;
+            GameObject.Find("FusenPanel1").transform.position = tmp;
+            //GameObject.Find("FusenPanel1").transform.position = new Vector3(tmp.x + 0.1f, tmp.y + 0.1f, tmp.z + 0.1f);
+            
+            
+            //transform.localPosition = new Vector3(-550, -100, 0);//現在は固定座標
+        //}
+        //座標取得
+
+    
     }
 
     //  public void NotMuteSituation()
