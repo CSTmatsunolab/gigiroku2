@@ -298,8 +298,10 @@ public class freehand : MonobitEngine.MonoBehaviour
             // foreachは配列の要素の数だけループします。
             foreach (GameObject cube in cubes) {
                 // 消す！
-                Destroy(cube);
+                MonobitNetwork.Destroy(cube);
+
             }
+
         }
 
     }
