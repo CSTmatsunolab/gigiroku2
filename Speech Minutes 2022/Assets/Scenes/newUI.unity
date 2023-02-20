@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -308,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000011472105, y: 0.000008012983}
+  m_AnchoredPosition: {x: 0.00004699804, y: 0.000057089896}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &20385978
@@ -966,7 +966,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -375, y: -49.99994}
+  m_AnchoredPosition: {x: -375, y: -50}
   m_SizeDelta: {x: -850, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &92115312
@@ -8937,7 +8937,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -95.63927, y: 0}
+  m_AnchoredPosition: {x: -95.63918, y: -0.00005270367}
   m_SizeDelta: {x: 184, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &693284897
@@ -11713,6 +11713,7 @@ MonoBehaviour:
   - {fileID: 1986690652}
   - {fileID: 1559566267}
   ScrollRect:
+  - {fileID: 0}
   - {fileID: 564804668}
   - {fileID: 328506836}
   - {fileID: 2099869086}
@@ -11721,6 +11722,18 @@ MonoBehaviour:
   - {fileID: 496493096}
   - {fileID: 1656304640}
   - {fileID: 268249014}
+  wadaitittle: {fileID: 562009144}
+  Button:
+  - {fileID: 0}
+  - {fileID: 789410237}
+  - {fileID: 1148428927}
+  - {fileID: 667529475}
+  - {fileID: 635960806}
+  - {fileID: 1095098722}
+  - {fileID: 1332191421}
+  - {fileID: 1615024559}
+  - {fileID: 1904629390}
+  WadaiElementsPanel: {fileID: 431766664}
 --- !u!82 &989395834
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12632,8 +12645,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1266175370}
   m_HandleRect: {fileID: 1266175368}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99999994
+  m_Value: 1
+  m_Size: 0.99999976
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -20190,7 +20203,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 592196443}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999996
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -29842,7 +29855,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -140.89989, y: 0}
+  m_AnchoredPosition: {x: -140.90007, y: 0}
   m_SizeDelta: {x: 0.2000122, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6149886273543809076
