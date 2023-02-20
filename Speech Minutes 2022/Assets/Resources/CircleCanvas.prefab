@@ -90,6 +90,19 @@ MonoBehaviour:
   SizeButton: {fileID: 5647823338454224270}
   image: {fileID: 1623849795217680175}
   m_rectTransform: {fileID: 2110309875318435685}
+--- !u!114 &2820646491465983033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4059511487644818936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9683a4fca04bf4cf2917e3dbdf29bc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultScale: {x: 1, y: 1, z: 1}
 --- !u!114 &1701262138932860522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +116,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 8702993008721001250}
+--- !u!114 &3216922870730253044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428637581819236698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9683a4fca04bf4cf2917e3dbdf29bc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultScale: {x: 1, y: 1, z: 1}
 --- !u!1 &5647823338454224270
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9683a4fca04bf4cf2917e3dbdf29bc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultScale: {x: 0, y: 0, z: 0}
+  defaultScale: {x: 1, y: 1, z: 1}
 --- !u!1 &8702993008721001250
 GameObject:
   m_ObjectHideFlags: 0
