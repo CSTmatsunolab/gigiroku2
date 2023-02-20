@@ -61,13 +61,13 @@ MonoBehaviour:
     m_EnableInterpolate: 1
     m_LerpRate: 10
   m_SyncRotation:
-    m_EnableSync: 1
+    m_EnableSync: 0
     m_EnableInterpolate: 0
     m_LerpRate: 5
   m_SyncScale:
-    m_EnableSync: 0
-    m_EnableInterpolate: 0
-    m_LerpRate: 1
+    m_EnableSync: 1
+    m_EnableInterpolate: 1
+    m_LerpRate: 10
   m_SnapEnabled: 1
   m_SnapThreshold: 3
 --- !u!114 &7342524183081790404
