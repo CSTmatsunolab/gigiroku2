@@ -13,11 +13,7 @@ public class TextManager : MonobitEngine.MonoBehaviour
     public Text display;
     public GameObject canvas;//キャンバス
 
-<<<<<<< Updated upstream
     public int number;
-=======
-    
->>>>>>> Stashed changes
 
     void Start()
     {
@@ -50,13 +46,8 @@ public class TextManager : MonobitEngine.MonoBehaviour
 
             GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("FusenCanvas", Vector3.zero, Quaternion.identity, 0,null,false,true,true);
             Debug.Log("複製完了");
-<<<<<<< Updated upstream
             
             prefab.name = "FusenPanel" + number.ToString();
-=======
-            script = GameObject.Find("FusenCanvas(Clone)").GetComponent<TextControl>();//生成時はこの名前のはず
-            script.FusenCount++;
->>>>>>> Stashed changes
             
             //prefab.transform.SetParent(canvas.transform, false);
             Text prefabtext = prefab.GetComponentInChildren<Text>();

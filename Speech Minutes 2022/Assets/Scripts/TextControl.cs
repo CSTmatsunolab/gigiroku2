@@ -25,12 +25,8 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
 
     public GameObject TextManeger;
     private int touchCount = 0;
-<<<<<<< Updated upstream
     MainSecneMUNScript script;
     TextManager script3;
-=======
-    public int FusenCount = 0;
->>>>>>> Stashed changes
     
     //public FusenPanel fusenPanel;
 
