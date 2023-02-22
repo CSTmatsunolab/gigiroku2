@@ -966,7 +966,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -375, y: -49.99994}
+  m_AnchoredPosition: {x: -375, y: -50}
   m_SizeDelta: {x: -850, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &92115312
@@ -11713,6 +11713,7 @@ MonoBehaviour:
   - {fileID: 1986690652}
   - {fileID: 1559566267}
   ScrollRect:
+  - {fileID: 0}
   - {fileID: 564804668}
   - {fileID: 328506836}
   - {fileID: 2099869086}
@@ -11721,6 +11722,18 @@ MonoBehaviour:
   - {fileID: 496493096}
   - {fileID: 1656304640}
   - {fileID: 268249014}
+  wadaitittle: {fileID: 562009144}
+  Button:
+  - {fileID: 0}
+  - {fileID: 789410237}
+  - {fileID: 1148428927}
+  - {fileID: 667529475}
+  - {fileID: 635960806}
+  - {fileID: 1095098722}
+  - {fileID: 1332191421}
+  - {fileID: 1615024559}
+  - {fileID: 1904629390}
+  WadaiElementsPanel: {fileID: 431766664}
 --- !u!82 &989395834
 AudioSource:
   m_ObjectHideFlags: 0

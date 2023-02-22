@@ -44,19 +44,35 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
 
     //終了時間の格納
     string startMinute;
+    bool FirstWadai1OnClick = false;
+    bool FirstWadai2OnClick = false;
+    bool FirstWadai3OnClick = false;
+    bool FirstWadai4OnClick = false;
+    bool FirstWadai5OnClick = false;
+    bool FirstWadai6OnClick = false;
+    bool FirstWadai7OnClick = false;
+    bool FirstWadai8OnClick = false;
+    DateTime StartWadai1;
+    DateTime StartWadai2;
+    DateTime StartWadai3;
+    DateTime StartWadai4;
+    DateTime StartWadai5;
+    DateTime StartWadai6;
+    DateTime StartWadai7;
+    DateTime StartWadai8;
 
 
     // Start is called before the first frame update
     void Start()
     {
         //現在の日付を取得
-        DateTime starttime = DateTime.Now;
+        //DateTime starttime = DateTime.Now;
 
         //開始時間
-        startHour = starttime.Hour.ToString();
+        //startHour = starttime.Hour.ToString();
 
         //開始分
-        startMinute = starttime.Minute.ToString();
+        //startMinute = starttime.Minute.ToString();
 
         //logdata(1~8).txtの中身をリセット
         ResetLogData();
@@ -133,6 +149,7 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
     //話題ボタンが選択された
     public void LogPanelShare(int number)
     {
+        
         //ホストだったら
         if (MonobitEngine.MonobitNetwork.isHost)
         {
@@ -143,43 +160,130 @@ public class CreatePDF : MonobitEngine.MonoBehaviour
 
                     //LogData1.txtのファイルパスを選択
                     LogDataFilePath = @"/LogDatas/LogData1.txt";
+                    if (FirstWadai1OnClick == false)
+                    {
+                        //現在の日付を取得
+                        StartWadai1 = DateTime.Now;
+                        FirstWadai1OnClick = true;
+                    }
+                    //開始時間
+                    startHour = StartWadai1.Hour.ToString();
 
+                    //開始分
+                    startMinute = StartWadai1.Minute.ToString();
                     //switch文を抜ける
                     break;
 
                 //話題2ボタンが押された
                 case 2:
                     LogDataFilePath = @"/LogDatas/LogData2.txt";
+                    if (FirstWadai2OnClick == false)
+                    {
+                        //現在の日付を取得
+                        StartWadai2 = DateTime.Now;
+                        FirstWadai2OnClick = true;
+                    }
+                    //開始時間
+                    startHour = StartWadai2.Hour.ToString();
+
+                    //開始分
+                    startMinute = StartWadai2.Minute.ToString();
                     break;
 
                 //話題3ボタンが押された
                 case 3:
                     LogDataFilePath = @"/LogDatas/LogData3.txt";
+                    if (FirstWadai3OnClick == false)
+                    {
+                        //現在の日付を取得
+                        StartWadai3 = DateTime.Now;
+                        FirstWadai3OnClick = true;
+                    }
+                    //開始時間
+                    startHour = StartWadai3.Hour.ToString();
+
+                    //開始分
+                    startMinute = StartWadai3.Minute.ToString();
                     break;
 
                 //話題4ボタンが押された
                 case 4:
                     LogDataFilePath = @"/LogDatas/LogData4.txt";
+                    if (FirstWadai4OnClick == false)
+                    {
+                        //現在の日付を取得
+                        StartWadai4 = DateTime.Now;
+                        FirstWadai4OnClick = true;
+                    }
+                    //開始時間
+                    startHour = StartWadai4.Hour.ToString();
+
+                    //開始分
+                    startMinute = StartWadai4.Minute.ToString();
                     break;
 
                 //話題5ボタンが押された
                 case 5:
                     LogDataFilePath = @"/LogDatas/LogData5.txt";
+                    if (FirstWadai5OnClick == false)
+                    {
+                        //現在の日付を取得
+                        StartWadai5 = DateTime.Now;
+                        FirstWadai5OnClick = true;
+                    }
+                    //開始時間
+                    startHour = StartWadai5.Hour.ToString();
+
+                    //開始分
+                    startMinute = StartWadai5.Minute.ToString();
                     break;
 
                 //話題6ボタンが押された
                 case 6:
                     LogDataFilePath = @"/LogDatas/LogData6.txt";
+                    if (FirstWadai6OnClick == false)
+                    {
+                        //現在の日付を取得
+                        StartWadai6 = DateTime.Now;
+                        FirstWadai6OnClick = true;
+                    }
+                    //開始時間
+                    startHour = StartWadai6.Hour.ToString();
+
+                    //開始分
+                    startMinute = StartWadai6.Minute.ToString();
                     break;
 
                 //話題7ボタンが押された
                 case 7:
                     LogDataFilePath = @"/LogDatas/LogData7.txt";
+                    if (FirstWadai7OnClick == false)
+                    {
+                        //現在の日付を取得
+                        StartWadai7 = DateTime.Now;
+                        FirstWadai7OnClick = true;
+                    }
+                    //開始時間
+                    startHour = StartWadai7.Hour.ToString();
+
+                    //開始分
+                    startMinute = StartWadai7.Minute.ToString();
                     break;
 
                 //話題8ボタンが押された
                 case 8:
                     LogDataFilePath = @"/LogDatas/LogData8.txt";
+                    if (FirstWadai8OnClick == false)
+                    {
+                        //現在の日付を取得
+                        StartWadai8 = DateTime.Now;
+                        FirstWadai8OnClick = true;
+                    }
+                    //開始時間
+                    startHour = StartWadai8.Hour.ToString();
+
+                    //開始分
+                    startMinute = StartWadai8.Minute.ToString();
                     break;
             }
         }

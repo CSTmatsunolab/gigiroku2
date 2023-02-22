@@ -61,13 +61,13 @@ MonoBehaviour:
     m_EnableInterpolate: 1
     m_LerpRate: 10
   m_SyncRotation:
-    m_EnableSync: 1
+    m_EnableSync: 0
     m_EnableInterpolate: 0
     m_LerpRate: 5
   m_SyncScale:
-    m_EnableSync: 0
-    m_EnableInterpolate: 0
-    m_LerpRate: 1
+    m_EnableSync: 1
+    m_EnableInterpolate: 1
+    m_LerpRate: 10
   m_SnapEnabled: 1
   m_SnapThreshold: 3
 --- !u!114 &7342524183081790404
@@ -235,7 +235,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9683a4fca04bf4cf2917e3dbdf29bc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultScale: {x: 0, y: 0, z: 0}
+  defaultScale: {x: 1, y: 1, z: 1}
+--- !u!114 &448477559771180850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4059511487644818936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9683a4fca04bf4cf2917e3dbdf29bc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultScale: {x: 1, y: 1, z: 1}
 --- !u!114 &1701262138932860522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +262,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 8702993008721001250}
+--- !u!114 &3882638253837245373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428637581819236698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9683a4fca04bf4cf2917e3dbdf29bc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultScale: {x: 1, y: 1, z: 1}
 --- !u!1 &8702993008721001250
 GameObject:
   m_ObjectHideFlags: 0
