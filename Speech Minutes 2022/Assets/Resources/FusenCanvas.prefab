@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 1172389276496439285}
   m_Layer: 5
   m_Name: FusenCanvas
-  m_TagString: Untagged
+  m_TagString: Zukei
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 190, y: -380}
+  m_AnchoredPosition: {x: 30, y: -60}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!223 &8241280323035342599
@@ -222,6 +222,7 @@ MonoBehaviour:
   VisibleButton: {fileID: 0}
   DeleteButton: {fileID: 0}
   TextManeger: {fileID: 0}
+  number: 0
   m_rectTransform: {fileID: 5373487601934570699}
 --- !u!1001 &4729464509682276454
 PrefabInstance:
@@ -955,7 +956,7 @@ PrefabInstance:
     - target: {fileID: 3060007209032247408, guid: 4269700db5d67454581f948c665dbc07,
         type: 3}
       propertyPath: m_TagString
-      value: UIelements
+      value: Pos
       objectReference: {fileID: 0}
     - target: {fileID: 3750750813778185623, guid: 4269700db5d67454581f948c665dbc07,
         type: 3}

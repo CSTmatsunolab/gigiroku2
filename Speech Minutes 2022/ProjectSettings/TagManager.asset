@@ -10,6 +10,8 @@ TagManager:
   - Plane
   - CursorPointer
   - UIelements
+  - Zukei
+  - Pos
   layers:
   - Default
   - TransparentFX

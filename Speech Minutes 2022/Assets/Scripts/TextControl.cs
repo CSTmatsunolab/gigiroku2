@@ -26,7 +26,9 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     public GameObject TextManeger;
     private int touchCount = 0;
     MainSecneMUNScript script;
-    TextManager script3;
+    MainSecneMUNScript script2;
+    MainSecneMUNScript script3;
+    //TextManager script3;
     
     //public FusenPanel fusenPanel;
 
@@ -36,7 +38,7 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     {
         //script3 = GameObject.Find("TextManager").GetComponent<TextManager>;
        number++;
-       prefab.name = "FusenPanel" + number.ToString();//prefab側で変えてしまおう
+       //prefab.name = "FusenPanel" + number.ToString();//prefab側で変えてしまおう
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -293,6 +295,7 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
     }
 
     public void PosFusenChange(){
+        
         //script = GameObject.Find("MUN").GetComponent<MainSecneMUNScript>();
         //script2 = fusenPanel.GetComponent<FusenPanel>();
 
@@ -314,7 +317,18 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
             //}
 
             //座標を持ってくる
-            Vector3 tmp = GameObject.Find("FusenPanel1").transform.position;//名前は変数に変更できる？
+            GameObject[] cubes = GameObject.FindGameObjectsWithTag("Pos");
+ 
+            // GameObject型の変数cubeに、cubesの中身を順番に取り出す。
+            // foreachは配列の要素の数だけループします。
+            foreach (GameObject cube in cubes) {
+            Vector3 tmp = cube.transform.position;
+            tmp.x += 0.1f;
+            cube.transform.position = tmp;
+            Debug.Log("PosFusenChange1");
+            //MonobitNetwork.cube.transform.position;
+            }
+            //Vector3 tmp = GameObject.Find("FusenPanel1").transform.position;//名前は変数に変更できる？
             
         //}
 
@@ -327,8 +341,9 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
             // pos.x += 0.1f;
             // gameObject.transform.position = pos;// transform.positionにセットし直す
 
-            tmp.x += 0.1f;
-            GameObject.Find("FusenPanel1").transform.position = tmp;
+            // tmp.x += 0.1f;
+            // GameObject.Find("FusenPanel1").transform.position = tmp;
+
             //GameObject.Find("FusenPanel1").transform.position = new Vector3(tmp.x + 0.1f, tmp.y + 0.1f, tmp.z + 0.1f);
             
             
@@ -337,6 +352,19 @@ public class TextControl : MonobitEngine.MonoBehaviour, IDragHandler
         //座標取得
 
     
+    }
+
+public void PoszukeiChange(){
+        Debug.Log("zukeiChange");
+
+            //座標を持ってくる
+            GameObject[] cubes = GameObject.FindGameObjectsWithTag("Pos");
+            foreach (GameObject cube in cubes) {
+            Vector3 tmp = cube.transform.position;
+            tmp.x += 0.1f;
+            cube.transform.position = tmp;
+            Debug.Log("PoszukeiChange1");
+            }
     }
 
     //  public void NotMuteSituation()

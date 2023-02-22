@@ -47,7 +47,7 @@ public class TextManager : MonobitEngine.MonoBehaviour
             GameObject prefab = MonobitEngine.MonobitNetwork.Instantiate("FusenCanvas", Vector3.zero, Quaternion.identity, 0,null,false,true,true);
             Debug.Log("複製完了");
             
-            prefab.name = "FusenPanel" + number.ToString();
+            //prefab.name = "FusenPanel" + number.ToString();
             
             //prefab.transform.SetParent(canvas.transform, false);
             Text prefabtext = prefab.GetComponentInChildren<Text>();

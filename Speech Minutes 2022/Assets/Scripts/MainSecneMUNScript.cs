@@ -18,9 +18,13 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     private GameObject MuteLine;
     [SerializeField]
     private GameObject UserIcon;
+    
     [SerializeField]
-
     private GameObject FusenPanel;
+
+    [SerializeField]
+    private GameObject Image;
+
     [SerializeField]
     GameObject canvas;
     [SerializeField]
@@ -61,6 +65,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     IconCreate script;
 
     TextControl script2;
+    TextControl script3;
     LineUpIcon lineupiconscript;
     int playercount = 0;
     public bool cameraswitch = false;
@@ -220,7 +225,7 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     // 誰かがルームにログインしたときの処理
     public void OnOtherPlayerConnected(MonobitPlayer newPlayer)
     {
-        PosChange();//入ってきたら移動する
+        //PosChange();//入ってきたら移動する
         //rawImage1.GetComponent<WebCamController>().StandBy();
         if (!vcPlayerInfo.ContainsKey(newPlayer))
         {
@@ -236,6 +241,8 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
             monobitView.RPC("SendAllWadaiThema", MonobitTargets.All, WadaiThema[0].GetComponent<Text>().text, WadaiThema[1].GetComponent<Text>().text,
             WadaiThema[2].GetComponent<Text>().text, WadaiThema[3].GetComponent<Text>().text, WadaiThema[4].GetComponent<Text>().text,
             WadaiThema[5].GetComponent<Text>().text, WadaiThema[6].GetComponent<Text>().text, WadaiThema[7].GetComponent<Text>().text);
+            PosChange();//入ってきたら移動する
+            PosChange2();
         }
     }
     //ルーム入室時に話題のログの中身を統一させるメソッド
@@ -552,5 +559,9 @@ public class MainSecneMUNScript : MonobitEngine.MonoBehaviour
     public void PosChange(){
         script2 = GameObject.Find("FusenPanel").GetComponent<TextControl>();
         script2.PosFusenChange();
+    }
+    public void PosChange2(){
+        script3 = GameObject.Find("Image").GetComponent<TextControl>();
+        script3.PoszukeiChange();
     }
 }

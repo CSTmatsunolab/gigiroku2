@@ -729,6 +729,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Image
       objectReference: {fileID: 0}
+    - target: {fileID: 3127221763680932801, guid: ff101fc7aff054894836ac69fbe7994b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pos
+      objectReference: {fileID: 0}
     - target: {fileID: 8616481327870681655, guid: ff101fc7aff054894836ac69fbe7994b,
         type: 3}
       propertyPath: m_Sprite
