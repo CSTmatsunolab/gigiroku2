@@ -308,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00004699804, y: 0.000057089896}
+  m_AnchoredPosition: {x: 0.00002584402, y: -0.00010198072}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &20385978
@@ -8937,7 +8937,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -95.63918, y: -0.00005270367}
+  m_AnchoredPosition: {x: -95.639275, y: -0.000045776367}
   m_SizeDelta: {x: 184, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &693284897
@@ -20203,7 +20203,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 592196443}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999996
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -28916,7 +28916,6 @@ MonoBehaviour:
   lineWidth: 0.58
   parent: {fileID: 1022205333683448738}
   mousePosition_: {x: 0, y: 0, z: 0}
-  penmode: 0
   Buttontext: {fileID: 1410750830}
   pencolor: {r: 0, g: 0, b: 0, a: 0}
   colordropdown: {fileID: 1490804195}

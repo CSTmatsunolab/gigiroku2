@@ -28,7 +28,7 @@ public class freehand : MonobitEngine.MonoBehaviour
     GameObject obj;
     public Vector3 mousePosition_;
 
-    public bool penmode = false;
+    static public bool penmode = false;
 
     public Text Buttontext;
 

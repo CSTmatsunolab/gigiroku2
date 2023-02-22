@@ -37,13 +37,16 @@ public class CursorChange : MonobitEngine.MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+
             //Debug.Log(pointerjudge);
             pointerjudge = 0;
             if (Alwaysbtn.interactable == false)
             {
-                MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
-                Debug.Log("CursorPointer複製");
-
+                if (freehand.penmode == true)
+                {
+                    MonobitEngine.MonobitNetwork.Instantiate("CursorPointer", Vector3.zero, Quaternion.identity, 0);
+                    Debug.Log("CursorPointer複製");
+                }
             }
         }
         if (Input.GetMouseButtonUp(0))
@@ -80,11 +83,13 @@ public class CursorChange : MonobitEngine.MonoBehaviour
         Only = !Only;
         if (Only == true)
         {
+            Debug.Log("true");
             Always = false;
             Alwaysbtn.interactable = false;
         }
         else
         {
+            Debug.Log("false");
             Alwaysbtn.interactable = true;
         }
     }
