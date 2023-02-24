@@ -60,7 +60,7 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
                     if (Input.GetMouseButtonUp(0))
                     {
                         Vector3[] pos_Array = pos_list.ToArray();
-                        monobitView.RPC("linecreat", MonobitTargets.OthersBuffered, pos_Array, freehand.colorname, freehand.lineWidth, freehand.lineRendererList.Count());
+                        monobitView.RPC("linecreat", MonobitTargets.Others, pos_Array, freehand.colorname, freehand.lineWidth, freehand.lineRendererList.Count());
                         buffcolorname = freehand.colorname;
                         bufflinewidth = freehand.lineWidth;
                         bufflayer = freehand.lineRendererList.Count();
@@ -192,7 +192,7 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
     public void OnOtherPlayerConnected(MonobitEngine.MonobitPlayer newPlayer)
     {
         Vector3[] pos_Array = pos_list.ToArray();
-        monobitView.RPC("linecreat2", MonobitTargets.OthersBuffered, newPlayer.ID, pos_Array, buffcolorname, bufflinewidth, bufflayer);
+        monobitView.RPC("linecreat2", MonobitTargets.Others, newPlayer.ID, pos_Array, buffcolorname, bufflinewidth, bufflayer);
 
     }
 
