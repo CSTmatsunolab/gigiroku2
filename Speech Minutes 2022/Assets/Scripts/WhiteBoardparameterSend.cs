@@ -31,6 +31,9 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
     List<Vector3> pos_list = new List<Vector3>();
     GameObject NewWhiteBoard;
     //int positioncount;
+    string buffcolorname;
+    float bufflinewidth;
+    int bufflayer;
 
     int i = 0;
 
@@ -58,6 +61,9 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
                     {
                         Vector3[] pos_Array = pos_list.ToArray();
                         monobitView.RPC("linecreat", MonobitTargets.OthersBuffered, pos_Array, freehand.colorname, freehand.lineWidth, freehand.lineRendererList.Count());
+                        buffcolorname = freehand.colorname;
+                        bufflinewidth = freehand.lineWidth;
+                        bufflayer = freehand.lineRendererList.Count();
                         i++;
                     }
                 }
@@ -183,4 +189,37 @@ public class WhiteBoardparameterSend : MonobitEngine.MonoBehaviour
             //lineRenderer.material = new Material(mat); // コピーを使う。
         }
     }
+    public void OnOtherPlayerConnected(MonobitEngine.MonobitPlayer newPlayer)
+    {
+        Vector3[] pos_Array = pos_list.ToArray();
+        monobitView.RPC("linecreat2", MonobitTargets.OthersBuffered, newPlayer.ID, pos_Array, buffcolorname, bufflinewidth, bufflayer);
+
+    }
+
+    [MunRPC]
+    public void linecreat2(int id, Vector3[] pos_Array, string colorname, float width, int layer)
+    {
+        if (id == MonobitEngine.MonobitNetwork.player.ID)
+        {
+            Vector3[] Array = new Vector3[pos_Array.Length];
+            for (int i = 0; i < pos_Array.Length; i++)
+            {
+                Array[i] = pos_Array[i];
+                Debug.Log(Array + "[" + i + "]" + "は" + Array[i]);
+            }
+            // Vector3[] pos_Array_rcv =pos_Array[];
+            this.lineRenderer.numCapVertices = 10;
+            this.lineRenderer.numCornerVertices = 10;
+            // 線の色を初期化
+            //lineRenderer.material.color = color;
+            colortartansform(colorname);
+            // 線の太さを初期化
+            this.lineRenderer.startWidth = width;
+            this.lineRenderer.endWidth = width;
+            this.lineRenderer.positionCount = pos_Array.Length;
+            this.lineRenderer.sortingOrder = layer;
+            this.lineRenderer.SetPositions(Array);
+        }
+    }
+
 }
