@@ -82,7 +82,7 @@ public class TextChat : MonobitEngine.MonoBehaviour
             // monobitView.RPC("TextChatrcv", MonobitTargets.AllBuffered, inputField.text, MonobitEngine.MonobitNetwork.player.name);
             GameObject text = Instantiate(textchatPrefab, content);
             dt = DateTime.Now;
-            text.transform.GetChild(0).gameObject.GetComponent<Text>().text = name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + inputField.text;
+            text.transform.GetChild(0).gameObject.GetComponent<Text>().text = MonobitEngine.MonobitNetwork.player.name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + inputField.text;
             text.transform.GetChild(0).gameObject.GetComponent<Text>().text.Replace(" ", "\u00A0");
             chatlist.Add(text);
             text.GetComponent<TextCopy>().indexnum = chatlist.IndexOf(text);
