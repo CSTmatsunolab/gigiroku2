@@ -80,7 +80,7 @@ public class TextChat : MonobitEngine.MonoBehaviour
             text.GetComponent<Text>().text = MonobitEngine.MonobitNetwork.player.name + " " + inputField.text;
             text.GetComponent<Text>().text.Replace(" ", "\u00A0");*/
             // monobitView.RPC("TextChatrcv", MonobitTargets.AllBuffered, inputField.text, MonobitEngine.MonobitNetwork.player.name);
-            monobitView.RPC("TextChatrcv", MonobitTargets.OthersBuffered, inputField.text, MonobitEngine.MonobitNetwork.player.name);
+            monobitView.RPC("TextChatrcv", MonobitTargets.All, inputField.text, MonobitEngine.MonobitNetwork.player.name);
             inputField.text = "";
         }
         else { return; }
