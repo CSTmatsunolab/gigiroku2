@@ -87,7 +87,7 @@ public class TextChat : MonobitEngine.MonoBehaviour
             chatlist.Add(text);
             text.GetComponent<TextCopy>().indexnum = chatlist.IndexOf(text);
             text.GetComponent<TextCopy>().parentobj = this.gameObject;
-            monobitView.RPC("TextChatrcv", MonobitTargets.OthersBuffered, inputField.text, MonobitEngine.MonobitNetwork.player.name);
+            monobitView.RPC("TextChatrcv", MonobitTargets.Others, inputField.text, MonobitEngine.MonobitNetwork.player.name);
             inputField.text = "";
         }
         else { return; }
