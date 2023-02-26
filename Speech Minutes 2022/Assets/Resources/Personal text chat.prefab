@@ -848,6 +848,7 @@ MonoBehaviour:
   content: {fileID: 6537572759979371307}
   inputField: {fileID: 8286342483991617388}
   TextChatOrigin: {fileID: 0}
+  chaticon: {fileID: 0}
   chatname: {fileID: 2410157735996429497}
 --- !u!1 &7114908199924831589
 GameObject:

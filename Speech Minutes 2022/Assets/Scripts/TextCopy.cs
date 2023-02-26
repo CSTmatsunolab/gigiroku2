@@ -23,7 +23,8 @@ public class TextCopy : MonobitEngine.MonoBehaviour
     {
         if (parentobj.name == "TextChat")
         {
-            parentobj.GetComponent<TextChat>().monobitView.RPC("Delete", MonobitTargets.AllBuffered, indexnum);
+            parentobj.GetComponent<TextChat>().monobitView.RPC("Delete", MonobitTargets.OthersBuffered, indexnum);
+            parentobj.GetComponent<TextChat>().Delete(indexnum);
         }
         else
         {

@@ -28,6 +28,7 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
 
     List<GameObject> chatlist = new List<GameObject>();
 
+
     public Text chatname;
     private void Start()
     {
@@ -42,6 +43,10 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
         textChatAlpha.alpha = 0;
         textChatAlpha.blocksRaycasts = false;
         chatred = GameObject.Find("chatred").GetComponent<CanvasGroup>();
+
+        Button button = TextChatOrigin.GetComponent<TextChat>().texticon.GetComponent<Button>();
+        //Button button = chaticon.GetComponent<Button>();
+        button.onClick.AddListener(() => OnClickPTextChatBtn());
     }
 
     public void OnClickSendBtn()
@@ -108,6 +113,16 @@ public class Personaltextchat : MonobitEngine.MonoBehaviour
         {
             Destroy(chatlist[indexnum]);
         }
+    }
+    public void OnClickPTextChatBtn()
+    {
+
+        if (textChatAlpha.alpha == 1)
+        {
+            textChatAlpha.alpha = 0;
+            textChatAlpha.blocksRaycasts = false;
+        }
+        else { return; }
     }
 
 }

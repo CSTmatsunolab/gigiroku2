@@ -20,7 +20,7 @@ public class TextChat : MonobitEngine.MonoBehaviour
 
     public InputField inputField;
 
-
+    public GameObject texticon;
     DateTime dt;
     //public Text text;
 
@@ -79,7 +79,15 @@ public class TextChat : MonobitEngine.MonoBehaviour
             /*GameObject text = Instantiate(textchatPrefab, content);
             text.GetComponent<Text>().text = MonobitEngine.MonobitNetwork.player.name + " " + inputField.text;
             text.GetComponent<Text>().text.Replace(" ", "\u00A0");*/
-            monobitView.RPC("TextChatrcv", MonobitTargets.AllBuffered, inputField.text, MonobitEngine.MonobitNetwork.player.name);
+            // monobitView.RPC("TextChatrcv", MonobitTargets.AllBuffered, inputField.text, MonobitEngine.MonobitNetwork.player.name);
+            GameObject text = Instantiate(textchatPrefab, content);
+            dt = DateTime.Now;
+            text.transform.GetChild(0).gameObject.GetComponent<Text>().text = MonobitEngine.MonobitNetwork.player.name + " " + dt.Hour.ToString() + "時" + dt.Minute.ToString() + "分" + "\n" + inputField.text;
+            text.transform.GetChild(0).gameObject.GetComponent<Text>().text.Replace(" ", "\u00A0");
+            chatlist.Add(text);
+            text.GetComponent<TextCopy>().indexnum = chatlist.IndexOf(text);
+            text.GetComponent<TextCopy>().parentobj = this.gameObject;
+            monobitView.RPC("TextChatrcv", MonobitTargets.Others, inputField.text, MonobitEngine.MonobitNetwork.player.name);
             inputField.text = "";
         }
         else { return; }
