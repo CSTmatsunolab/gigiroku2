@@ -53,7 +53,7 @@ public class GoogleAPI : MonobitEngine.MonoBehaviour
     void Start()
     {
 
-        // サービスアカウントの鍵ファイルパス
+        // サービスアカウントの鍵ファイルパス *ご自身で作成されたキーを置いてください
         string secretPath = Application.streamingAssetsPath + @"/GoogleAPI/secretkey.json";
 
         // GoogleCredentialを取得
